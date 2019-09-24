@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [CabecalhoComponent],
+  exports: [
+    CabecalhoComponent
+  ],
   imports: [
     CommonModule
   ]
