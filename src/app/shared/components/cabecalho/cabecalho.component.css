@@ -1,0 +1,34 @@
+.app-toolbar {
+  position: fixed;
+  text-transform: uppercase;
+  top: 0;
+}
+
+.nav-links {
+  padding: 0 25px;
+}
+
+.nav-spacer {
+  flex: 1 1 auto;
+}
+
+.nav-link {
+  font-size: 16px;
+  color: white;
+}
+
+.nav-link-icon:not(#nav-link-icon-github) {
+  height: 28px;
+  margin: 4px 4px 2px 0;
+}
+
+#nav-link-icon-github {
+  height: 26px;
+  margin: 0 6px 2px 0;
+}
+
+@media (max-width: 1000px) {
+  .nav-link-text {
+    display: none;
+  }
+}
