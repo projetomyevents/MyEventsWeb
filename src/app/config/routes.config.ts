@@ -12,6 +12,6 @@ export const RoutesConfig: any = {
   routesNames,
   routes: {
     home: routesNames.home,
-    error404: routesNames.erro404
+    erro404: routesNames.erro404
   }
 };
