@@ -4,6 +4,8 @@ import { UsuarioPageCadastroComponent } from './pages/usuario-page-cadastro/usua
 import { UsuarioPageLoginComponent } from './pages/usuario-page-login/usuario-page-login.component';
 import { UsuarioRoutingModule } from './usuario-routing.module';
 import { UsuarioPageSenhaComponent } from './pages/usuario-page-senha/usuario-page-senha.component';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,7 +13,13 @@ import { UsuarioPageSenhaComponent } from './pages/usuario-page-senha/usuario-pa
   declarations: [UsuarioPageCadastroComponent, UsuarioPageLoginComponent, UsuarioPageSenhaComponent],
   imports: [
     CommonModule,
-    UsuarioRoutingModule
+    UsuarioRoutingModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    ReactiveFormsModule
   ]
 })
 export class UsuarioModule { }
