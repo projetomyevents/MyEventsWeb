@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppConfig } from '../../../config/app.config';
+import { RoutesConfig } from '../../../config/routes.config';
 
 @Component({
   selector: 'app-cabecalho',
@@ -9,6 +10,10 @@ import { AppConfig } from '../../../config/app.config';
 export class CabecalhoComponent implements OnInit {
 
   repoLink = AppConfig.repositoryURL;
+
+  routerNames = RoutesConfig.routesNames;
+
+  dev = AppConfig.dev;
 
   constructor() { }
 

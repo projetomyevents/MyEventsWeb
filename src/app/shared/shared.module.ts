@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
 import { AppRoutingModule } from '../app-routing.module';
 
 
@@ -13,11 +13,12 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     CommonModule,
+    AppRoutingModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
-    AppRoutingModule
+    MatMenuModule
   ]
 })
 export class SharedModule { }

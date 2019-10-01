@@ -8,6 +8,16 @@
       <mat-icon class="nav-link-icon">error_outline</mat-icon>
       <span class="nav-link-text">404</span>
     </a>
+    <!--  TODO: Remover antes da entrega  -->
+    <a mat-button class="nav-link" [matMenuTriggerFor]="usuario" *ngIf="dev">
+      <mat-icon class="nav-link-icon">account_circle</mat-icon>
+      <span class="nav-link-text">Usuário</span>
+      <mat-menu #usuario="matMenu">
+        <button mat-menu-item [routerLink]="routerNames.usuario.cadastro">Cadastro</button>
+        <button mat-menu-item [routerLink]="routerNames.usuario.login">Login</button>
+        <button mat-menu-item [routerLink]="routerNames.usuario.senha">Senha</button>
+      </mat-menu>
+    </a>
   </nav>
   <div class="nav-spacer"></div>
   <div class="nav-links">
