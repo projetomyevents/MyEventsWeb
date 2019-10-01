@@ -17,7 +17,7 @@
   color: white;
 }
 
-.nav-link-icon:not(#nav-link-icon-github) {
+.nav-link-icon {
   height: 28px;
   margin: 4px 4px 2px 0;
 }
