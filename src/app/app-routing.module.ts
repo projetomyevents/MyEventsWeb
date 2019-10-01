@@ -10,6 +10,7 @@ const routesNames = RoutesConfig.routesNames;
 const routes: Routes = [
   {path: '', component: PaginaInicialComponent},
   {path: routesNames.erro404, component: Pagina404Component},
+  {path: '', loadChildren: './modules/usuario/usuario.module#UsuarioModule'},
 
   {path: '**', redirectTo: routesNames.erro404}
 ];
