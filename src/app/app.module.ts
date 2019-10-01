@@ -8,6 +8,7 @@ import { CoreModule } from './modules/core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { PaginaInicialComponent } from './pages/pagina-inicial/pagina-inicial.component';
 import { Pagina404Component } from './pages/pagina404/pagina404.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { Pagina404Component } from './pages/pagina404/pagina404.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
