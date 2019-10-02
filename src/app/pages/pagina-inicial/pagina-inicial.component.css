@@ -1,24 +1,28 @@
-#pagina-inicial {
-  height: 100%;
+#content {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
 }
 
-#pagina-inicial-titulo {
-  font-size: 50px;
-  margin-top: 10%;
+#motto {
   text-transform: uppercase;
+  margin: 25px 15%;
 }
 
-#pagina-inicial-mensagem {
+#descricao {
   font-size: 24px;
-  margin: 5% 25% 0;
+  font-weight: normal;
+  margin: 10px 10%;
 }
 
-#pagina-inicial-btn-criar-evento {
+#btn-criar-evento {
   font-size: 32px;
-  margin: 10% 0 0 0;
   height: 64px;
   width: 380px;
+  margin: 64px 0 32px;
   border-radius: 32px;
 }
 

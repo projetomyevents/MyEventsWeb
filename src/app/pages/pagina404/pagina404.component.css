@@ -1,19 +1,20 @@
-#pagina404 {
-  height: 100%;
+#content {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
 }
 
-#pagina404-mensagem-titulo {
-  font-size: 52px;
+#mensagem-titulo {
   font-weight: lighter;
-  margin-top: 10%;
 }
 
-#pagina404-btn-pagina-inicial {
-  font-size: 32px;
-  margin: 10% 0 0 0;
+#btn-pagina-inicial {
+  font-size: 24px;
   height: 64px;
-  width: 424px;
+  margin: 30px 0 15px;
 }
 
 /* TODO: @media para telas menores */
