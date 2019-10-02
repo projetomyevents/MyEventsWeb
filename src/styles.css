@@ -2,5 +2,5 @@
 @import "app/shared/styles/global.css";
 @import "app/shared/styles/material.css";
 
-html, body { height: 84%; }
+html, body { height: 100%; overflow: hidden; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
