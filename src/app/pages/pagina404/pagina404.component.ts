@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class Pagina404Component implements OnInit {
 
   shortMsg = 'Oops! A página solicitada não foi encontrada.';
-  longMsg = 'A URL pode ter sido digitada incorretamente ou a página que você procura não está mais disponível.';
+  longMsg = 'A URL pode estar incorreta ou a página que você procura não está mais disponível.';
 
   constructor() { }
 
