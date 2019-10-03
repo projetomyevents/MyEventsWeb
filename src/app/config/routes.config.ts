@@ -4,7 +4,7 @@ const routesNames = {
   usuario: {
     login: 'login',
     cadastro: 'cadastro',
-    senha: 'recuperacaodesenha' // recuperação de senha
+    senha: 'recuperacaodesenha'
   }
 };
 
