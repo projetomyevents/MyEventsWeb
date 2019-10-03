@@ -7,7 +7,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./usuario-page-login.component.css']
 })
 export class UsuarioPageLoginComponent implements OnInit {
+
   contaForm: FormGroup;
+
   constructor() { }
 
   ngOnInit() {
