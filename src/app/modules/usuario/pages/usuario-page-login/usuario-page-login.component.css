@@ -1,19 +1,46 @@
-.login-card {
-  width: 400px;
-  margin: 10% auto;
-}
-.mat-card-title{
-  font-size: 16px;
-}
-#btnlogin {
-  left: 25%;
-  width: 50%;;
-}
-.login-full-width{
-  width: 100%;
-}
-#formlogin{
+#content {
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
 }
+
+#formulario {
+  width: 400px;
+}
+
+#formulario-header {
+  margin: 32px 0;
+}
+
+#formulario-dados, #formulario-acoes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#formulario-dados_email, #formulario-dados_senha {
+  width: 360px;
+  margin: 5px 0;
+}
+
+.btn-acoes {
+  margin: 10px 0;
+}
+
+#btn-recuperacao-senha, #btn-cadastro {
+  color: #696969;
+}
+
+#btn-recuperacao-senha {
+  font-size: 12px;
+}
+
+#btn-login {
+  width: 200px;
+  height: 42px;
+}
+
+/* TODO: @media para telas menores */

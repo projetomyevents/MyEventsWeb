@@ -1,39 +1,25 @@
-<mat-card class="login-card">
-  <mat-card-header>
-    <mat-card-title>Login</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form class="login-form">
-      <table class="login-full-width">
-        <tr>
-          <td>
-            <form [formGroup] ="contaForm" id="formlogin">
-              <mat-form-field>
-                <label>
-                  <input matInput type="text" placeholder="Email" formControlName="email">
-                </label>
-                <mat-error *ngIf="contaForm.get('email').hasError('required')">O email é <strong>requerido</strong>!</mat-error>
-                <mat-error *ngIf="contaForm.get('email').hasError('email')">O email é <strong>inválido</strong>!</mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <label>
-                  <input matInput type="password" placeholder="Senha" formControlName="senha">
-                </label>
-                <mat-error *ngIf="contaForm.get('senha').hasError('required')">A senha é <strong>requerida</strong>!</mat-error>
-              </mat-form-field>
-            </form>
-          </td>
-        </tr>
-      </table>
-      <mat-card-actions>
-        <button mat-button routerLink="/recuperacaodesenha">Esqueci minha senha</button>
-      </mat-card-actions>
+<div id="content">
+  <div id="formulario">
+    <h1 id="formulario-header">Login</h1>
+    <form [formGroup]="contaForm" id="formulario-dados">
+      <mat-form-field id="formulario-dados_email">
+        <label>
+          <input matInput type="text" placeholder="Email *" formControlName="email">
+        </label>
+        <mat-error *ngIf="contaForm.get('email').hasError('required')">O email é <strong>requerido</strong>!</mat-error>
+        <mat-error *ngIf="contaForm.get('email').hasError('email')">O email é <strong>inválido</strong>!</mat-error>
+      </mat-form-field>
+      <mat-form-field id="formulario-dados_senha">
+        <label>
+          <input matInput type="password" placeholder="Senha *" formControlName="senha">
+        </label>
+        <mat-error *ngIf="contaForm.get('senha').hasError('required')">A senha é <strong>requerida</strong>!</mat-error>
+      </mat-form-field>
     </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button (click)="login()" id='btnlogin' color="primary">Login</button>
-  </mat-card-actions>
-  <mat-card-actions>
-    <button mat-button routerLink="/cadastro">Não possui uma conta? Cadastre-se!</button>
-  </mat-card-actions>
-</mat-card>
+    <div id="formulario-acoes">
+      <button mat-button class="btn-acoes" id="btn-recuperacao-senha" routerLink="/recuperacaodesenha">Esqueci minha senha!</button>
+      <button mat-raised-button class="btn-acoes" id="btn-login" color="primary" (click)="login()">Login</button>
+      <button mat-button class="btn-acoes" id="btn-cadastro" routerLink="/cadastro">Não possui uma conta? Cadastre-se!</button>
+    </div>
+  </div>
+</div>
