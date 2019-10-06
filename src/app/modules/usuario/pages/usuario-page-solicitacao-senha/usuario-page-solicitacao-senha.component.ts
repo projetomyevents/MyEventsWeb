@@ -18,6 +18,5 @@ export class UsuarioPageSolicitacaoSenhaComponent implements OnInit {
   }
 
   recupSenha() {
-
   }
 }

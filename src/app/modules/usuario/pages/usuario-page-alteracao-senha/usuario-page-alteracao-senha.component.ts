@@ -5,7 +5,7 @@ import { ErrorStateMatcher } from '@angular/material';
 class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null): boolean {
     return (!!(control && control.invalid && control.parent.dirty)
-      || !!(control && control.parent && control.parent.invalid && control.parent.dirty));
+            || !!(control && control.parent && control.parent.invalid && control.parent.dirty));
   }
 }
 
@@ -15,6 +15,7 @@ class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./usuario-page-alteracao-senha.component.css']
 })
 export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
+
   contaForm: FormGroup;
   confirmacaoSenhaMatcher = new ConfirmacaoSenhaErrorStateMatcher();
   esconderSenha = true;

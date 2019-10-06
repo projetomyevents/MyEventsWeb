@@ -11,9 +11,7 @@ import { AutenticacaoService } from '../../../modules/core/shared/autenticacao.s
 export class CabecalhoComponent implements OnInit {
 
   repoLink = AppConfig.repositoryURL;
-
   routerNames = RoutesConfig.routesNames;
-
   dev = AppConfig.dev;
 
   constructor(
