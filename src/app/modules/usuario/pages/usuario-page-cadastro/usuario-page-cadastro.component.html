@@ -24,6 +24,7 @@
             <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-error *ngIf="conta.get('senhas.senha').hasError('required')">A senha é <strong>requerida</strong>!</mat-error>
+          <mat-error *ngIf="conta.get('senhas.senha').hasError('minlength')">A senha deve conter no mínimo seis caracteres!</mat-error>
         </mat-form-field>
         <mat-form-field class="formulario-dados-campo">
           <label>

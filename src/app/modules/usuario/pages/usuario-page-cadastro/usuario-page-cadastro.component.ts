@@ -27,7 +27,7 @@ export class UsuarioPageCadastroComponent implements OnInit {
       nome: new FormControl('', Validators.required),
       email: new FormControl( '', [Validators.required, Validators.email]),
       senhas: new FormGroup({
-        senha: new FormControl('', Validators.required),
+        senha: new FormControl('', [Validators.required, Validators.minLength(6)]),
         confirmacaoSenha: new FormControl('')
       }, this.checarSenha),
       telefone: new FormControl('', Validators.required),

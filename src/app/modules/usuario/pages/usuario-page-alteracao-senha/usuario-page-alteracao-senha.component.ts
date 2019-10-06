@@ -24,7 +24,7 @@ export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
 
   ngOnInit() {
     this.senhas = new FormGroup({
-        senha: new FormControl('', Validators.required),
+          senha: new FormControl('', [Validators.required, Validators.minLength(6)]),
         confirmacaoSenha: new FormControl('')
       }, this.checarSenha);
   }
