@@ -18,4 +18,5 @@ export class UsuarioPageSolicitacaoSenhaComponent implements OnInit {
 
   solicitarNovaSenha() {
   }
+
 }
