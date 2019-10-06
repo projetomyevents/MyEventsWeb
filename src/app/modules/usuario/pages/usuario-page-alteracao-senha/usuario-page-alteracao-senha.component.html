@@ -1,1 +1,30 @@
-<p>usuario-page-alteracao-senha works!</p>
+<div id="content">
+  <div id="formulario">
+    <h1 id="formulario-header">Redefinir Senha</h1>
+     <form [formGroup]="contaForm" id="formulario-dados">
+      <form formGroupName="senhas">
+        <mat-form-field id="formulario-dados_senha">
+          <label>
+            <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Senha *" formControlName="senha">
+          </label>
+          <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha">
+            <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="contaForm.get('senhas.senha').hasError('required')">A senha é <strong>requerida</strong>!</mat-error>
+        </mat-form-field>
+        <mat-form-field id="formulario-dados_confirmacao-senha">
+          <label>
+            <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Confirmação da senha *" formControlName="confirmacaoSenha" [errorStateMatcher]="confirmacaoSenhaMatcher">
+          </label>
+          <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha">
+            <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="contaForm.get('senhas').hasError('diferentes')">As senhas são <strong>diferentes</strong>!</mat-error>
+        </mat-form-field>
+      </form>
+     </form>
+    <div id="formulario-acoes">
+      <button mat-raised-button class="btn-acoes" id="btn-login" color="primary" (click)="alteraSenha()">Confirmar</button>
+    </div>
+  </div>
+</div>
