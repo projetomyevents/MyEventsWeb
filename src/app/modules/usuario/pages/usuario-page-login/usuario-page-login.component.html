@@ -11,10 +11,10 @@
       </mat-form-field>
       <mat-form-field id="formulario-dados_senha">
         <label>
-          <input matInput type="password" [type]="passwordhide ? 'password' : 'text'" placeholder="Senha *" formControlName="senha">
+          <input matInput type="password" [type]="esconderSenha ? 'password' : 'text'" placeholder="Senha *" formControlName="senha">
         </label>
-        <button mat-icon-button matSuffix (click)="passwordhide = !passwordhide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordhide">
-          <mat-icon>{{passwordhide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="esconderSenha">
+          <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
         <mat-error *ngIf="contaForm.get('senha').hasError('required')">A senha é <strong>requerida</strong>!</mat-error>
       </mat-form-field>

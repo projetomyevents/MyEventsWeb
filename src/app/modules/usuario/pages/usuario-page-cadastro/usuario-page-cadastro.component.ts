@@ -9,9 +9,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class UsuarioPageCadastroComponent implements OnInit {
 
   contaForm: FormGroup;
+  esconderSenha = true;
 
   constructor() { }
-  passwordhide = true;
 
   ngOnInit() {
     this.contaForm = new FormGroup( {
