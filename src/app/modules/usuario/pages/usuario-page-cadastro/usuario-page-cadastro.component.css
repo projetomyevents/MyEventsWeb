@@ -21,7 +21,7 @@
 }
 
 #formulario-dados_nome, #formulario-dados_email, #formulario-dados_senha,
-#formulario-dados_telefone, #formulario-dados_CPF {
+#formulario-dados_confirmacao-senha, #formulario-dados_telefone, #formulario-dados_CPF {
   width: 360px;
   margin: 5px 0;
 }
