@@ -1,8 +1,8 @@
-<div id="content">
-  <div id="solicitacao">
-    <h1 id="solicitacao-header">Redefinição de Senha</h1>
-    <form [formGroup]="contaForm" id="solicitacao-dados">
-      <mat-form-field id="solicitacao-dados_email">
+<div class="content">
+  <div class="formulario">
+    <h1 class="formulario-header">Redefinição de Senha</h1>
+    <form [formGroup]="contaForm" class="formulario-dados">
+      <mat-form-field class="formulario-dados-campo">
         <label>
           <input matInput type="text" placeholder="Email *" formControlName="email">
         </label>
@@ -10,8 +10,8 @@
         <mat-error *ngIf="contaForm.get('email').hasError('email')">O email é <strong>inválido</strong>!</mat-error>
       </mat-form-field>
     </form>
-    <div id="solicitacao-acoes">
-      <button mat-raised-button class="btn-acoes" color="primary" (click)="recupSenha()">Confirmar</button>
+    <div class="formulario-acoes-btn">
+      <button mat-raised-button class="formulario-acoes-btn" id="btn-confirmar" color="primary" (click)="recupSenha()">Confirmar</button>
     </div>
   </div>
 </div>

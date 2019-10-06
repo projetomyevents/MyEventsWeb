@@ -1,34 +1,4 @@
-#content {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
-}
-
-#formulario {
-  width: 400px;
-}
-
-#formulario-header {
-  margin: 32px 0;
-}
-
-#formulario-dados, #formulario-acoes {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#formulario-dados_email, #formulario-dados_senha {
-  width: 360px;
-  margin: 5px 0;
-}
-
-.btn-acoes {
-  margin: 10px 0;
-}
+@import "../../styles/global.css";
 
 #btn-recuperacao-senha, #btn-cadastro {
   color: #696969;

@@ -1,39 +1,8 @@
-#content {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
+@import "../../styles/global.css";
+
+#btn-confirmar {
+  width: 200px;
+  height: 42px;
 }
 
-#solicitacao {
-  width: 400px;
-}
-
-#solicitacao-header {
-  margin: 32px 0;
-}
-
-#solicitacao-dados, #solicitacao-acoes {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#solicitacao-dados_email {
-  width: 360px;
-  margin: 5px 0;
-}
-
-.btn-acoes {
-  margin: 10px 0;
-}
-
-#btn-recuperacao-senha, #btn-cadastro {
-  color: #696969;
-}
-
-#btn-recuperacao-senha {
-  font-size: 12px;
-}
+/* TODO: @media para telas menores */
