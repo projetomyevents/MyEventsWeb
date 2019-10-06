@@ -7,6 +7,7 @@ import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } fr
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuarioPageSolicitacaoSenhaComponent } from './pages/usuario-page-solicitacao-senha/usuario-page-solicitacao-senha.component';
 import { UsuarioPageAlteracaoSenhaComponent } from './pages/usuario-page-alteracao-senha/usuario-page-alteracao-senha.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -25,7 +26,8 @@ import { UsuarioPageAlteracaoSenhaComponent } from './pages/usuario-page-alterac
     MatInputModule,
     FormsModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ]
 })
 export class UsuarioModule { }

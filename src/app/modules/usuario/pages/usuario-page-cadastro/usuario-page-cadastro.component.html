@@ -1,1 +1,48 @@
-<p>usuario-page-cadastro works!</p>
+<div id="content">
+  <div id="formulario">
+    <h1 id="formulario-header">Cadastro</h1>
+    <form [formGroup]="contaForm" id="formulario-dados">
+
+      <mat-form-field id="formulario-dados_nome">
+        <label>
+          <input matInput type="text" placeholder="Nome *" formControlName="nome">
+        </label>
+        <mat-error *ngIf="contaForm.get('nome').hasError('required')">O nome é <strong>requerido</strong>!</mat-error>
+      </mat-form-field>
+      <mat-form-field id="formulario-dados_email">
+        <label>
+          <input matInput type="text" placeholder="Email *" formControlName="email">
+        </label>
+        <mat-error *ngIf="contaForm.get('email').hasError('required')">O email é <strong>requerido</strong>!</mat-error>
+        <mat-error *ngIf="contaForm.get('email').hasError('email')">O email é <strong>inválido</strong>!</mat-error>
+      </mat-form-field>
+      <mat-form-field id="formulario-dados_senha">
+        <label>
+          <input matInput type="password" [type]="passwordhide ? 'password' : 'text'" placeholder="Senha *" formControlName="senha">
+        </label>
+        <button mat-icon-button matSuffix (click)="passwordhide = !passwordhide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordhide">
+          <mat-icon>{{passwordhide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="contaForm.get('senha').hasError('required')">A senha é <strong>requerida</strong>!</mat-error>
+      </mat-form-field>
+      <mat-form-field id="formulario-dados_telefone">
+        <label>
+          <input matInput type="text" type="number" placeholder="Telefone *" formControlName="telefone">
+        </label>
+
+        <mat-error *ngIf="contaForm.get('telefone').hasError('required')">O telefone é <strong>requerido</strong>!</mat-error>
+      </mat-form-field>
+      <mat-form-field id="formulario-dados_CPF">
+        <label>
+          <input matInput type="text" placeholder="CPF *" formControlName="CPF">
+        </label>
+        <mat-error *ngIf="contaForm.get('CPF').hasError('required')">O CPF é <strong>requerido</strong>!</mat-error>
+      </mat-form-field>
+
+    </form>
+    <div id="formulario-acoes">
+      <button mat-raised-button class="btn-acoes" id="btn-cadastro" color="primary" (click)="cadastro()">Cadastrar</button>
+      <button mat-button class="btn-acoes" id="btn-login" routerLink="/login">Já possui conta ? Faça Login</button>
+    </div>
+  </div>
+</div>
