@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class UsuarioPageLoginComponent implements OnInit {
 
   contaForm: FormGroup;
+  passwordhide = true;
 
   constructor() { }
 
