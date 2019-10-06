@@ -35,4 +35,5 @@ export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
 
   alterarSenha() {
   }
+
 }

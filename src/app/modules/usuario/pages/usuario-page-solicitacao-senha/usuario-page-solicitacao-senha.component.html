@@ -6,8 +6,8 @@
         <label>
           <input matInput type="email" placeholder="Email *" [formControl]="email">
         </label>
-        <mat-error *ngIf="email.hasError('required')">O email é <strong>requerido</strong>!</mat-error>
-        <mat-error *ngIf="email.hasError('email')">O email é <strong>inválido</strong>!</mat-error>
+        <mat-error *ngIf="email.hasError('required')">O email é <strong>obrigatório</strong>!</mat-error>
+        <mat-error *ngIf="email.hasError('email')">O email informado é <strong>inválido</strong>!</mat-error>
       </mat-form-field>
     </div>
     <div class="formulario-acoes-btn">

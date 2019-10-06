@@ -6,8 +6,8 @@
         <label>
           <input matInput type="text" placeholder="Email *" formControlName="email">
         </label>
-        <mat-error *ngIf="conta.get('email').hasError('required')">O email é <strong>requerido</strong>!</mat-error>
-        <mat-error *ngIf="conta.get('email').hasError('email')">O email é <strong>inválido</strong>!</mat-error>
+        <mat-error *ngIf="conta.get('email').hasError('required')">O email é <strong>obrigatório</strong>!</mat-error>
+        <mat-error *ngIf="conta.get('email').hasError('email')">O email informado é <strong>inválido</strong>!</mat-error>
       </mat-form-field>
       <mat-form-field class="formulario-dados-campo">
         <label>
@@ -16,7 +16,7 @@
         <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha">
           <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error *ngIf="conta.get('senha').hasError('required')">A senha é <strong>requerida</strong>!</mat-error>
+        <mat-error *ngIf="conta.get('senha').hasError('required')">A senha é <strong>obrigatória</strong>!</mat-error>
       </mat-form-field>
     </form>
     <div class="formulario-acoes">
