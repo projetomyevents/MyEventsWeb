@@ -11,7 +11,7 @@
       </mat-form-field>
     </div>
     <div class="formulario-acoes-btn">
-      <button mat-raised-button class="formulario-acoes-btn" id="btn-confirmar" color="primary" (click)="solicitarNovaSenha()">Confirmar</button>
+      <button mat-raised-button class="formulario-acoes-btn" id="btn-confirmar" color="primary" [disabled]="email.invalid" (click)="solicitarNovaSenha()">Confirmar</button>
     </div>
   </div>
 </div>

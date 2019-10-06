@@ -22,7 +22,7 @@
       </mat-form-field>
     </div>
     <div class="formulario-acoes">
-      <button mat-raised-button class="formulario-acoes-btn" id="btn-confirmar" color="primary" (click)="alterarSenha()">Confirmar</button>
+      <button mat-raised-button class="formulario-acoes-btn" id="btn-confirmar" color="primary" [disabled]="senhas.invalid" (click)="alterarSenha()">Confirmar</button>
     </div>
   </div>
 </div>
