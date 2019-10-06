@@ -16,14 +16,14 @@ class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
 })
 export class UsuarioPageCadastroComponent implements OnInit {
 
-  contaForm: FormGroup;
+  conta: FormGroup;
   confirmacaoSenhaMatcher = new ConfirmacaoSenhaErrorStateMatcher();
   esconderSenha = true;
 
   constructor() { }
 
   ngOnInit() {
-    this.contaForm = new FormGroup( {
+    this.conta = new FormGroup( {
       nome: new FormControl('', Validators.required),
       email: new FormControl( '', [Validators.required, Validators.email]),
       senhas: new FormGroup({
@@ -39,7 +39,7 @@ export class UsuarioPageCadastroComponent implements OnInit {
     return senhas.get('senha').value === senhas.get('confirmacaoSenha').value ? null : {diferentes: true};
   }
 
-  cadastro() {
+  cadastrar() {
   }
 
 }

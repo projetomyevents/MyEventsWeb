@@ -1,17 +1,17 @@
 <div class="content">
   <div class="formulario">
     <h1 class="formulario-header">Redefinição de Senha</h1>
-    <form [formGroup]="contaForm" class="formulario-dados">
+    <div class="formulario-dados">
       <mat-form-field class="formulario-dados-campo">
         <label>
-          <input matInput type="text" placeholder="Email *" formControlName="email">
+          <input matInput type="email" placeholder="Email *" [formControl]="email">
         </label>
-        <mat-error *ngIf="contaForm.get('email').hasError('required')">O email é <strong>requerido</strong>!</mat-error>
-        <mat-error *ngIf="contaForm.get('email').hasError('email')">O email é <strong>inválido</strong>!</mat-error>
+        <mat-error *ngIf="email.hasError('required')">O email é <strong>requerido</strong>!</mat-error>
+        <mat-error *ngIf="email.hasError('email')">O email é <strong>inválido</strong>!</mat-error>
       </mat-form-field>
-    </form>
+    </div>
     <div class="formulario-acoes-btn">
-      <button mat-raised-button class="formulario-acoes-btn" id="btn-confirmar" color="primary" (click)="recupSenha()">Confirmar</button>
+      <button mat-raised-button class="formulario-acoes-btn" id="btn-confirmar" color="primary" (click)="solicitarNovaSenha()">Confirmar</button>
     </div>
   </div>
 </div>

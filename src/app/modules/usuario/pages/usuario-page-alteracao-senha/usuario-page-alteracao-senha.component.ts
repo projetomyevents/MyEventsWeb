@@ -16,26 +16,23 @@ class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
 })
 export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
 
-  contaForm: FormGroup;
+  senhas: FormGroup;
   confirmacaoSenhaMatcher = new ConfirmacaoSenhaErrorStateMatcher();
   esconderSenha = true;
 
   constructor() { }
 
   ngOnInit() {
-    this.contaForm = new FormGroup( {
-      senhas: new FormGroup({
+    this.senhas = new FormGroup({
         senha: new FormControl('', Validators.required),
         confirmacaoSenha: new FormControl('')
-      }, this.checarSenha),
-    });
+      }, this.checarSenha);
   }
 
   checarSenha(senhas: FormGroup) {
     return senhas.get('senha').value === senhas.get('confirmacaoSenha').value ? null : {diferentes: true};
   }
 
-  alteraSenha() {
-
+  alterarSenha() {
   }
 }

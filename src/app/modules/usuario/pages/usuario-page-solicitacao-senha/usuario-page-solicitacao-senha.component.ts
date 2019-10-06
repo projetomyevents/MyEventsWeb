@@ -7,16 +7,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./usuario-page-solicitacao-senha.component.css']
 })
 export class UsuarioPageSolicitacaoSenhaComponent implements OnInit {
-  contaForm: FormGroup;
+
+  email: FormControl;
 
   constructor() { }
 
   ngOnInit() {
-    this.contaForm = new FormGroup( {
-      email: new FormControl( '', [Validators.required, Validators.email])
-    });
+    this.email = new FormControl( '', [Validators.required, Validators.email]);
   }
 
-  recupSenha() {
+  solicitarNovaSenha() {
   }
 }

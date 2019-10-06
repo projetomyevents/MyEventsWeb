@@ -8,19 +8,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class UsuarioPageLoginComponent implements OnInit {
 
-  contaForm: FormGroup;
+  conta: FormGroup;
   esconderSenha = true;
 
   constructor() { }
 
   ngOnInit() {
-    this.contaForm = new FormGroup( {
+    this.conta = new FormGroup( {
       email: new FormControl( '', [Validators.required, Validators.email]),
       senha: new FormControl('', Validators.required)
     });
   }
 
-  login() {
+  logar() {
   }
 
 }
