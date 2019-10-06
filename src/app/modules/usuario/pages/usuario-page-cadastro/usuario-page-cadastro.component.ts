@@ -20,12 +20,10 @@ export class UsuarioPageCadastroComponent implements OnInit {
       senha: new FormControl('', Validators.required),
       telefone: new FormControl('', Validators.required),
       CPF: new FormControl('', Validators.required)
-
     });
   }
 
   cadastro() {
-
   }
 
 }

@@ -21,7 +21,6 @@ export class UsuarioPageLoginComponent implements OnInit {
   }
 
   login() {
-
   }
 
 }

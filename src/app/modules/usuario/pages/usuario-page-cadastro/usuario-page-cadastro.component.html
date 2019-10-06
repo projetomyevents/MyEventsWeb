@@ -2,7 +2,6 @@
   <div id="formulario">
     <h1 id="formulario-header">Cadastro</h1>
     <form [formGroup]="contaForm" id="formulario-dados">
-
       <mat-form-field id="formulario-dados_nome">
         <label>
           <input matInput type="text" placeholder="Nome *" formControlName="nome">
@@ -18,7 +17,7 @@
       </mat-form-field>
       <mat-form-field id="formulario-dados_senha">
         <label>
-          <input matInput type="password" [type]="esconderSenha ? 'password' : 'text'" placeholder="Senha *" formControlName="senha">
+          <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Senha *" formControlName="senha">
         </label>
         <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="esconderSenha">
           <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -27,9 +26,8 @@
       </mat-form-field>
       <mat-form-field id="formulario-dados_telefone">
         <label>
-          <input matInput type="text" type="number" placeholder="Telefone *" formControlName="telefone">
+          <input matInput type="tel" placeholder="Telefone *" formControlName="telefone">
         </label>
-
         <mat-error *ngIf="contaForm.get('telefone').hasError('required')">O telefone é <strong>requerido</strong>!</mat-error>
       </mat-form-field>
       <mat-form-field id="formulario-dados_CPF">
@@ -38,7 +36,6 @@
         </label>
         <mat-error *ngIf="contaForm.get('CPF').hasError('required')">O CPF é <strong>requerido</strong>!</mat-error>
       </mat-form-field>
-
     </form>
     <div id="formulario-acoes">
       <button mat-raised-button class="btn-acoes" id="btn-cadastro" color="primary" (click)="cadastro()">Cadastrar</button>

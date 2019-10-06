@@ -15,20 +15,15 @@
   margin: 32px 0;
 }
 
-#formulario-dados , #formulario-acoes {
+#formulario-dados, #formulario-acoes {
   flex-direction: column;
   align-items: center;
 }
 
-#formulario-dados_nome,#formulario-dados_email ,#formulario-dados_senha,
-#formulario-dados_telefone,#formulario-dados_CPF {
+#formulario-dados_nome, #formulario-dados_email, #formulario-dados_senha,
+#formulario-dados_telefone, #formulario-dados_CPF {
   width: 360px;
   margin: 5px 0;
-}
-
-#formulario-dados {
-  flex-direction: column;
-  align-items: center;
 }
 
 .btn-acoes {
