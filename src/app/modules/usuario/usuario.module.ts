@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatProgressBarModule
+} from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { UsuarioPageCadastroComponent } from './pages/usuario-page-cadastro/usuario-page-cadastro.component';
 import { UsuarioPageLoginComponent } from './pages/usuario-page-login/usuario-page-login.component';
@@ -27,7 +34,8 @@ import { UsuarioPageAlteracaoSenhaComponent } from './pages/usuario-page-alterac
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressBarModule
   ]
 })
 export class UsuarioModule { }

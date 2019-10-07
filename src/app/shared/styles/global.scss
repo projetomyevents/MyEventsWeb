@@ -6,3 +6,26 @@
   text-align: center;
   min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
 }
+
+// Complexibilidade das senhas por cores
+.mat-progress-bar-fill::after {
+  .muito-fraca &{
+    background-color: red;
+  }
+
+  .fraca &{
+    background-color: orange;
+  }
+
+  .mediocre &{
+    background-color: green;
+  }
+
+  .forte &{
+    background-color: dodgerblue;
+  }
+
+  .epica &{
+    background-color: blueviolet;
+  }
+}

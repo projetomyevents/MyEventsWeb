@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
+import { complexibilidadeSenha } from '../../../core/shared/complexibilidade.senha';
 
 class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null): boolean {
@@ -19,6 +20,7 @@ export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
   senhas: FormGroup;
   confirmacaoSenhaMatcher = new ConfirmacaoSenhaErrorStateMatcher();
   esconderSenha = true;
+  complexibilidadeSenha = {porcentagem: 0, class: ''};
 
   constructor() { }
 
@@ -27,6 +29,8 @@ export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
         senha: new FormControl('', [Validators.required, Validators.minLength(6)]),
         confirmacaoSenha: new FormControl('')
       }, this.checarSenha);
+    this.senhas.get('senha').valueChanges.subscribe(
+      (senha: string) => this.complexibilidadeSenha = complexibilidadeSenha(senha));
   }
 
   checarSenha(senhas: FormGroup) {

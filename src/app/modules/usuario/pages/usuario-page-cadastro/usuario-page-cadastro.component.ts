@@ -4,6 +4,7 @@ import { ErrorStateMatcher } from '@angular/material';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { completarEmails } from '../../../core/shared/provedores.email';
+import { complexibilidadeSenha } from '../../../core/shared/complexibilidade.senha';
 
 class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null): boolean {
@@ -23,6 +24,7 @@ export class UsuarioPageCadastroComponent implements OnInit {
   confirmacaoSenhaMatcher = new ConfirmacaoSenhaErrorStateMatcher();
   esconderSenha = true;
   provedoresEmail: Observable<string[]>;
+  complexibilidadeSenha = {porcentagem: 0, class: ''};
 
   constructor() { }
 
@@ -41,6 +43,8 @@ export class UsuarioPageCadastroComponent implements OnInit {
       .pipe(
         map(email => completarEmails(email))
       );
+    this.conta.get('senhas.senha').valueChanges.subscribe(
+      (senha: string) => this.complexibilidadeSenha = complexibilidadeSenha(senha));
   }
 
   checarSenha(senhas: FormGroup) {
