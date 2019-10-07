@@ -6,7 +6,7 @@ import { AutenticacaoService } from '../../../modules/core/shared/autenticacao.s
 @Component({
   selector: 'app-cabecalho',
   templateUrl: './cabecalho.component.html',
-  styleUrls: ['./cabecalho.component.css']
+  styleUrls: ['./cabecalho.component.scss']
 })
 export class CabecalhoComponent implements OnInit {
 

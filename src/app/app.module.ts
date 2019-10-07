@@ -10,6 +10,7 @@ import { PaginaInicialComponent } from './pages/pagina-inicial/pagina-inicial.co
 import { Pagina404Component } from './pages/pagina404/pagina404.component';
 import { UsuarioModule } from './modules/usuario/usuario.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,

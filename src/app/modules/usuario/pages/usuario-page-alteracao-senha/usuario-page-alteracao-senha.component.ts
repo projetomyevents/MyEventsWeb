@@ -33,7 +33,7 @@ export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
       (senha: string) => this.complexibilidadeSenha = complexibilidadeSenha(senha));
   }
 
-  checarSenha(senhas: FormGroup) {
+  checarSenha(senhas: FormGroup): {diferentes: true} | null {
     return senhas.get('senha').value === senhas.get('confirmacaoSenha').value ? null : {diferentes: true};
   }
 

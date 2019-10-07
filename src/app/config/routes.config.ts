@@ -8,7 +8,7 @@ const routesNames = {
   }
 };
 
-export const RoutesConfig: any = {
+export const RoutesConfig = {
   routesNames,
   routes: {
     home: routesNames.home,

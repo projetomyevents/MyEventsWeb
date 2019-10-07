@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map as ObservableMap } from 'rxjs/operators';
 import { completarEmails } from '../../../core/shared/provedores.email';
 import { complexibilidadeSenha } from '../../../core/shared/complexibilidade.senha';
 
@@ -39,15 +39,12 @@ export class UsuarioPageCadastroComponent implements OnInit {
       telefone: new FormControl('', Validators.required),
       CPF: new FormControl('', Validators.required)
     });
-    this.provedoresEmail = this.conta.get('email').valueChanges
-      .pipe(
-        map(email => completarEmails(email))
-      );
+    this.provedoresEmail = this.conta.get('email').valueChanges.pipe(ObservableMap(email => completarEmails(email)));
     this.conta.get('senhas.senha').valueChanges.subscribe(
       (senha: string) => this.complexibilidadeSenha = complexibilidadeSenha(senha));
   }
 
-  checarSenha(senhas: FormGroup) {
+  checarSenha(senhas: FormGroup): {diferentes: true} | null {
     return senhas.get('senha').value === senhas.get('confirmacaoSenha').value ? null : {diferentes: true};
   }
 

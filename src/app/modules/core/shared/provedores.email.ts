@@ -5,6 +5,11 @@ const provedoresEmail = [
   'yahoo.com'
 ];
 
+/**
+ * Oferece um array com sugestões do email com provedores adicionados.
+ *
+ * @param email - O email a ser completado.
+ */
 export function completarEmails(email: string): string[] {
   const emailProvedor = email.split('@');
 
