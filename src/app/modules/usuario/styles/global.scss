@@ -1,5 +1,8 @@
+$larguraFormulario: 400px;
+$larguraItens: $larguraFormulario - 40px;
+
 .formulario {
-  width: 400px;
+  width: $larguraFormulario;
 }
 
 .formulario-header {
@@ -13,12 +16,17 @@
 }
 
 .formulario-dados-campo {
-  width: 360px;
+  width: $larguraItens;
   margin: 5px 0;
 }
 
 .formulario-acoes-btn {
   margin: 10px 0;
+}
+
+.formulario-dados-forca-senha {
+  width: $larguraItens;
+  margin: 5px 0;
 }
 
 /* TODO: @media para telas menores */
