@@ -1,12 +1,3 @@
-.content {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
-}
-
 .formulario {
   width: 400px;
 }

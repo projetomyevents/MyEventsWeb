@@ -12,7 +12,7 @@ class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-usuario-page-alteracao-senha',
   templateUrl: './usuario-page-alteracao-senha.component.html',
-  styleUrls: ['./usuario-page-alteracao-senha.component.css']
+  styleUrls: ['./usuario-page-alteracao-senha.component.scss']
 })
 export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
 
@@ -24,7 +24,7 @@ export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
 
   ngOnInit() {
     this.senhas = new FormGroup({
-          senha: new FormControl('', [Validators.required, Validators.minLength(6)]),
+        senha: new FormControl('', [Validators.required, Validators.minLength(6)]),
         confirmacaoSenha: new FormControl('')
       }, this.checarSenha);
   }

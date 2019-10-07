@@ -15,7 +15,7 @@ class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-usuario-page-cadastro',
   templateUrl: './usuario-page-cadastro.component.html',
-  styleUrls: ['./usuario-page-cadastro.component.css']
+  styleUrls: ['./usuario-page-cadastro.component.scss']
 })
 export class UsuarioPageCadastroComponent implements OnInit {
 

@@ -7,7 +7,7 @@ import { completarEmails } from '../../../core/shared/provedores.email';
 @Component({
   selector: 'app-usuario-page-login',
   templateUrl: './usuario-page-login.component.html',
-  styleUrls: ['./usuario-page-login.component.css']
+  styleUrls: ['./usuario-page-login.component.scss']
 })
 export class UsuarioPageLoginComponent implements OnInit {
 

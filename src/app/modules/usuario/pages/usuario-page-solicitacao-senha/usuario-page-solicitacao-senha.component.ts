@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-usuario-page-solicitacao-senha',
   templateUrl: './usuario-page-solicitacao-senha.component.html',
-  styleUrls: ['./usuario-page-solicitacao-senha.component.css']
+  styleUrls: ['./usuario-page-solicitacao-senha.component.scss']
 })
 export class UsuarioPageSolicitacaoSenhaComponent implements OnInit {
 
