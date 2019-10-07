@@ -4,13 +4,18 @@
     <form [formGroup]="conta" class="formulario-dados">
       <mat-form-field class="formulario-dados-campo">
         <label>
-          <input matInput type="text" placeholder="Nome *" formControlName="nome">
+          <input matInput type="text" placeholder="Nome" formControlName="nome">
         </label>
         <mat-error *ngIf="conta.get('nome').hasError('required')">O nome é <strong>obrigatório</strong>!</mat-error>
       </mat-form-field>
       <mat-form-field class="formulario-dados-campo">
         <label>
-          <input matInput type="email" placeholder="Email *" formControlName="email">
+          <input matInput type="email" placeholder="Email" formControlName="email" [matAutocomplete]="emailAutoComplete">
+          <mat-autocomplete autoActiveFirstOption #emailAutoComplete="matAutocomplete">
+            <mat-option *ngFor="let provedor of provedoresEmail | async" [value]="provedor">
+              {{provedor}}
+            </mat-option>
+          </mat-autocomplete>
         </label>
         <mat-error *ngIf="conta.get('email').hasError('required')">O email é <strong>obrigatório</strong>!</mat-error>
         <mat-error *ngIf="conta.get('email').hasError('email')">O email informado é <strong>inválido</strong>!</mat-error>
@@ -18,7 +23,7 @@
       <form formGroupName="senhas">
         <mat-form-field class="formulario-dados-campo">
           <label>
-            <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Senha *" formControlName="senha">
+            <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Senha" formControlName="senha">
           </label>
           <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha">
             <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -28,7 +33,7 @@
         </mat-form-field>
         <mat-form-field class="formulario-dados-campo">
           <label>
-            <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Confirmação da senha *" formControlName="confirmacaoSenha" [errorStateMatcher]="confirmacaoSenhaMatcher">
+            <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Confirmação da senha" formControlName="confirmacaoSenha" [errorStateMatcher]="confirmacaoSenhaMatcher">
           </label>
           <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha">
             <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -38,13 +43,13 @@
       </form>
       <mat-form-field class="formulario-dados-campo">
         <label>
-          <input matInput type="tel" placeholder="Telefone *" formControlName="telefone">
+          <input matInput type="tel" placeholder="Telefone" formControlName="telefone">
         </label>
         <mat-error *ngIf="conta.get('telefone').hasError('required')">O telefone é <strong>obrigatório</strong>!</mat-error>
       </mat-form-field>
       <mat-form-field class="formulario-dados-campo">
         <label>
-          <input matInput type="text" placeholder="CPF *" formControlName="CPF">
+          <input matInput type="text" placeholder="CPF" formControlName="CPF">
         </label>
         <mat-error *ngIf="conta.get('CPF').hasError('required')">O CPF é <strong>obrigatório</strong>!</mat-error>
       </mat-form-field>

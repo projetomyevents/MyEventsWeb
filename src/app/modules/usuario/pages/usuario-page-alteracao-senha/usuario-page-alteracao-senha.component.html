@@ -4,7 +4,7 @@
     <div class="formulario-dados" [formGroup]="senhas">
       <mat-form-field class="formulario-dados-campo">
         <label>
-          <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Nova senha *" formControlName="senha">
+          <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Nova senha" formControlName="senha">
         </label>
         <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha">
           <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -14,7 +14,7 @@
       </mat-form-field>
       <mat-form-field class="formulario-dados-campo">
         <label>
-          <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Confirmação da nova senha *" formControlName="confirmacaoSenha" [errorStateMatcher]="confirmacaoSenhaMatcher">
+          <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Confirmação da nova senha" formControlName="confirmacaoSenha" [errorStateMatcher]="confirmacaoSenhaMatcher">
         </label>
         <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha">
           <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>

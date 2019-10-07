@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
+import { completarEmails } from 'src/app/modules/core/shared/provedores.email';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-usuario-page-solicitacao-senha',
@@ -9,11 +12,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class UsuarioPageSolicitacaoSenhaComponent implements OnInit {
 
   email: FormControl;
+  provedoresEmail: Observable<string[]>;
 
   constructor() { }
 
   ngOnInit() {
     this.email = new FormControl( '', [Validators.required, Validators.email]);
+    this.provedoresEmail = this.email.valueChanges
+      .pipe(
+        map(email => completarEmails(email))
+      );
   }
 
   solicitarNovaSenha() {

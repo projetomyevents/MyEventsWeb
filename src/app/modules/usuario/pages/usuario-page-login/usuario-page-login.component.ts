@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { completarEmails } from '../../../core/shared/provedores.email';
 
 @Component({
   selector: 'app-usuario-page-login',
@@ -10,6 +13,7 @@ export class UsuarioPageLoginComponent implements OnInit {
 
   conta: FormGroup;
   esconderSenha = true;
+  provedoresEmail: Observable<string[]>;
 
   constructor() { }
 
@@ -18,6 +22,10 @@ export class UsuarioPageLoginComponent implements OnInit {
       email: new FormControl( '', [Validators.required, Validators.email]),
       senha: new FormControl('', Validators.required)
     });
+    this.provedoresEmail = this.conta.get('email').valueChanges
+      .pipe(
+        map(email => completarEmails(email))
+      );
   }
 
   logar() {
