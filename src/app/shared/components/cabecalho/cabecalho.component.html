@@ -19,6 +19,13 @@
         <button mat-menu-item routerLink="/alteracaodesenha">Alteração de senha</button>
       </mat-menu>
     </a>
+    <a mat-button class="nav-link" [matMenuTriggerFor]="evento" *ngIf="dev">
+      <mat-icon class="nav-link-icon">date_range</mat-icon>
+      <span class="nav-link-text">Evento</span>
+      <mat-menu #evento="matMenu">
+        <button mat-menu-item [routerLink]="routerNames.evento.criacao">Criacao</button>
+      </mat-menu>
+    </a>
   </nav>
   <div class="nav-spacer"></div>
   <div class="nav-links">
