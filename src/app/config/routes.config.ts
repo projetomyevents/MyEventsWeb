@@ -5,6 +5,9 @@ const routesNames = {
     login: 'login',
     cadastro: 'cadastro',
     senha: 'recuperacaodesenha'
+  },
+  evento: {
+    criacao: 'criacaodeevento'
   }
 };
 
