@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { PaginaInicialComponent } from './pages/pagina-inicial/pagina-inicial.component';
 import { Pagina404Component } from './pages/pagina404/pagina404.component';
 import { UsuarioModule } from './modules/usuario/usuario.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { UsuarioModule } from './modules/usuario/usuario.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     CoreModule,
     SharedModule,
     UsuarioModule,
