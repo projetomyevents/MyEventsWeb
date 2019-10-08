@@ -9,6 +9,11 @@ $larguraItens: $larguraFormulario - 40px;
   margin: 32px 0;
 }
 
+.formulario-mensagem-erro {
+  color: red;
+  width: $larguraFormulario;
+}
+
 .formulario-dados, .formulario-acoes {
   display: flex;
   flex-direction: column;
