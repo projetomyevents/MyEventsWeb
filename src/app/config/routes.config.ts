@@ -7,7 +7,8 @@ const routesNames = {
     senha: 'recuperacaodesenha'
   },
   evento: {
-    criacao: 'criacaodeevento'
+    criacao: 'criacaodeevento',
+    lista: 'listadeeventos'
   }
 };
 
