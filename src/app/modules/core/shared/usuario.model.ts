@@ -1,15 +1,15 @@
 /* Representa um usuário. */
 export interface Usuario {
-  /* A identificação de um usuário. */
+  /* A identificação do usuário. */
   id?: number;
-  /* O email de um usuário. */
+  /* O nome completo do usuário. */
   nome: string;
-  /* O nome completo de um usuário. */
+  /* A senha do usuário. */
   senha: string;
-  /* O CPF de um usuário. */
+  /* O email do usuário. */
   email: string;
-  /* O número de celular de um usuário. */
+  /* O CPF do usuário. */
   cpf: string;
-  /* A senha de um usuário. */
+  /* O número de celular do usuário. */
   celular: string;
 }
