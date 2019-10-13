@@ -1,1 +1,118 @@
-<p>evento-page-criacao works!</p>
+<div class="content">
+  <div class="formulario">
+    <h1 class="formulario-header">Cadastro de Evento</h1>
+
+
+
+    <form class="formulario-dados" [formGroup]="conta" >
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Nome" formControlName="nome">
+        </label>
+        <mat-error *ngIf="conta.get('nome').hasError('required')">O nome é <strong>obrigatória</strong>!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Data" formControlName="data">
+        </label>
+        <mat-error *ngIf="conta.get('data').hasError('required')">O data do evento é <strong>obrigatória</strong>!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="CEP" formControlName="cep">
+        </label>
+        <mat-error *ngIf="conta.get('cep').hasError('required')">O CEP é <strong>obrigatório</strong>!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Estado" formControlName="estado">
+        </label>
+        <mat-error *ngIf="conta.get('estado').hasError('required')">O estado é <strong>obrigatório</strong>!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Cidade" formControlName="cidade">
+        </label>
+        <mat-error *ngIf="conta.get('cidade').hasError('required')">A cidade é <strong>obrigatória</strong>!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Bairro" formControlName="bairro">
+        </label>
+        <mat-error *ngIf="conta.get('bairro').hasError('required')">O bairro é <strong>obrigatório</strong>!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Rua" formControlName="rua">
+        </label>
+        <mat-error *ngIf="conta.get('rua').hasError('required')">O rua é <strong>obrigatório</strong>!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Número" formControlName="numero">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Complemento" formControlName="complemento">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Preço" formControlName="preco">
+        </label>
+        <mat-error *ngIf="conta.get('preco').hasError('required')">O evento deve ter um valor <strong>válido</strong>!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Limite de acompanhantes" formControlName="acompanhantes">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Idade Mínima" formControlName="idade">
+        </label>
+        <mat-error *ngIf="conta.get('idade').hasError('required')">A idade mínima é <strong>obrigatória</strong>!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Traje" formControlName="traje">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Descrição" formControlName="descricao">
+        </label>
+        <mat-error *ngIf="conta.get('descricao').hasError('required')">Uma descrição é <strong>obrigatória</strong>!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Cronograma" formControlName="cronograma">
+        </label>
+        <mat-error *ngIf="conta.get('cronograma').hasError('required')">O cronograma é <strong>obrigatório</strong>!</mat-error>
+      </mat-form-field>
+
+    </form>
+
+
+
+    <div class="formulario-acoes">
+      <button mat-raised-button class="formulario-acoes-btn" id="btn-cadastro" color="primary" >Cadastrar</button>
+    </div>
+  </div>
+</div>
