@@ -1,3 +1,5 @@
+import { Endereco } from './endereco.model';
+
 /* Representa um evento. */
 export interface Evento {
   /* A identificação do evento. */
@@ -6,6 +8,8 @@ export interface Evento {
   nome: string;
   /* O data de inicio do evento. */
   data: Date;
+  /* O endereço do local do evento. */
+  local: Endereco;
   /* O preço de entrada do evento. */
   preco?: string;
   /* O limite de acompanhantes padrão de cada convidado. */
