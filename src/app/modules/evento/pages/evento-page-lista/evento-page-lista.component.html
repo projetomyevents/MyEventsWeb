@@ -1,1 +1,35 @@
-<p>evento-page-lista works!</p>
+<div class="content">
+  <div class="formulario">
+    <h1 class="formulario-header">Convidados</h1>
+
+
+
+    <form class="formulario-dados" [formGroup]="conta" >
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Nome do convidado" formControlName="nome">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Email" formControlName="email">
+        </label>
+      </mat-form-field>
+
+      <mat-form-field class="formulario-dados-campo">
+        <label>
+          <input matInput type="text" placeholder="Menssagem" formControlName="menssagem">
+        </label>
+      </mat-form-field>
+
+    </form>
+
+
+
+    <div class="formulario-acoes">
+      <button mat-raised-button class="formulario-acoes-btn" id="btn-cadastro" color="primary" >Convidar</button>
+    </div>
+  </div>
+</div>
