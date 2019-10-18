@@ -20,7 +20,7 @@
         <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha">
           <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error *ngIf="senhas.hasError('diferentes')">As senhas são <strong>diferentes</strong>!</mat-error>
+        <mat-error *ngIf="senhas.hasError('different')">As senhas são <strong>diferentes</strong>!</mat-error>
       </mat-form-field>
     </div>
     <div class="formulario-acoes">

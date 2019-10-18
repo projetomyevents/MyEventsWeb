@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map as ObservableMap } from 'rxjs/operators';
 import { completarEmails } from '../../../core/shared/provedores.email';
 import { complexibilidadeSenha } from '../../../core/shared/complexibilidade.senha';
+import { CustomValidators } from '../../../core/shared/custom-validators';
 
 class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null): boolean {
@@ -35,17 +36,13 @@ export class UsuarioPageCadastroComponent implements OnInit {
       senhas: new FormGroup({
         senha: new FormControl('', [Validators.required, Validators.minLength(6)]),
         confirmacaoSenha: new FormControl('')
-      }, this.checarSenha),
+      }, CustomValidators.different),
       telefone: new FormControl('', Validators.required),
       CPF: new FormControl('', Validators.required)
     });
     this.provedoresEmail = this.conta.get('email').valueChanges.pipe(ObservableMap(email => completarEmails(email)));
     this.conta.get('senhas.senha').valueChanges.subscribe(
       (senha: string) => this.complexibilidadeSenha = complexibilidadeSenha(senha));
-  }
-
-  checarSenha(senhas: FormGroup): {diferentes: true} | null {
-    return senhas.get('senha').value === senhas.get('confirmacaoSenha').value ? null : {diferentes: true};
   }
 
   cadastrar() {

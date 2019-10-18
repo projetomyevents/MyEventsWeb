@@ -39,7 +39,7 @@
           <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha">
             <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <mat-error *ngIf="conta.get('senhas').hasError('diferentes')">As senhas informadas são <strong>diferentes</strong>!</mat-error>
+          <mat-error *ngIf="conta.get('senhas').hasError('different')">As senhas informadas são <strong>diferentes</strong>!</mat-error>
         </mat-form-field>
       </form>
       <mat-form-field class="formulario-dados-campo">
