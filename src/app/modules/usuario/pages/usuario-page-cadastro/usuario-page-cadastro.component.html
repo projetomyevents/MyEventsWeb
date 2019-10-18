@@ -31,7 +31,7 @@
           <mat-error *ngIf="conta.get('senhas.senha').hasError('required')">A senha é <strong>obrigatória</strong>!</mat-error>
           <mat-error *ngIf="conta.get('senhas.senha').hasError('minlength')">A senha deve conter no mínimo <strong>seis</strong> caracteres!</mat-error>
         </mat-form-field>
-        <mat-progress-bar class="formulario-dados-forca-senha" [ngClass]="complexibilidadeSenha.class" *ngIf="conta.get('senhas.senha').dirty" mode="determinate" [value]="complexibilidadeSenha.porcentagem"></mat-progress-bar>
+        <mat-progress-bar class="formulario-dados-forca-senha" [ngClass]="complexibilidadeSenha.class" *ngIf="conta.get('senhas.senha').dirty && conta.get('senhas.senha').value" mode="determinate" [value]="complexibilidadeSenha.porcentagem"></mat-progress-bar>
         <mat-form-field class="formulario-dados-campo">
           <label>
             <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Confirmação da senha" formControlName="confirmacaoSenha" [errorStateMatcher]="confirmacaoSenhaMatcher">
