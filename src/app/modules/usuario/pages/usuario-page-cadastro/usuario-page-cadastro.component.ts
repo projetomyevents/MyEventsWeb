@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
+import { CustomValidators } from '../../../core/shared/custom-validators';
 import { Observable } from 'rxjs';
 import { map as ObservableMap } from 'rxjs/operators';
 import { completarEmails } from '../../../core/shared/provedores.email';
-import { complexibilidadeSenha } from '../../../core/shared/complexibilidade.senha';
-import { CustomValidators } from '../../../core/shared/custom-validators';
+import { forcaDaSenha } from '../../../core/shared/complexibilidade.senha';
 
 class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null): boolean {
@@ -42,7 +42,7 @@ export class UsuarioPageCadastroComponent implements OnInit {
     });
     this.provedoresEmail = this.conta.get('email').valueChanges.pipe(ObservableMap(email => completarEmails(email)));
     this.conta.get('senhas.senha').valueChanges.subscribe(
-      (senha: string) => this.complexibilidadeSenha = complexibilidadeSenha(senha));
+      (senha: string) => this.complexibilidadeSenha = forcaDaSenha(senha));
   }
 
   cadastrar() {

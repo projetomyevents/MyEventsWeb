@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
-import { complexibilidadeSenha } from '../../../core/shared/complexibilidade.senha';
 import { CustomValidators } from '../../../core/shared/custom-validators';
+import { forcaDaSenha } from '../../../core/shared/complexibilidade.senha';
 
 class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null): boolean {
@@ -32,7 +32,7 @@ export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
       }, CustomValidators.different);
 
     this.senhas.get('senha').valueChanges.subscribe(
-      (senha: string) => this.complexibilidadeSenha = complexibilidadeSenha(senha));
+      (senha: string) => this.complexibilidadeSenha = forcaDaSenha(senha));
   }
 
   alterarSenha() {
