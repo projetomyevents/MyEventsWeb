@@ -10,22 +10,22 @@
 // Complexibilidade das senhas por cores
 .mat-progress-bar-fill::after {
   .muito-fraca &{
-    background-color: red;
+    background-color: hsl(0, 100%, 60%);
   }
 
   .fraca &{
-    background-color: orange;
+    background-color: hsl(20, 100%, 70%);
   }
 
   .mediocre &{
-    background-color: green;
+    background-color: hsl(149, 53%, 57%);
   }
 
   .forte &{
-    background-color: dodgerblue;
+    background-color: hsl(214, 100%, 70%);
   }
 
   .epica &{
-    background-color: blueviolet;
+    background-color: hsl(266, 100%, 59%);
   }
 }

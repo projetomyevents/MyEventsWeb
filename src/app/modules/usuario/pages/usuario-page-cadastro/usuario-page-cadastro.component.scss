@@ -1,12 +1,21 @@
 @import "../../styles/global";
 
-#btn-cadastro {
-  width: 200px;
-  height: 42px;
+.campos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  .campo {
+    width: 45%;
+  }
 }
 
-#btn-login{
-  color: #696969;
+#esconder-senha {
+  top: 9px;
+}
+
+#login {
+  margin-top: 16px;
 }
 
 /* TODO: @media para telas menores */

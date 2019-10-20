@@ -1,30 +1,29 @@
 <div class="content">
   <div class="formulario">
-    <h1 class="formulario-header">Alteração de Senha</h1>
-    <div class="formulario-dados" [formGroup]="senhas">
-      <mat-form-field class="formulario-dados-campo">
+    <h2 class="formulario-cabecalho">Informe uma nova senha</h2>
+    <form class="formulario-dados" [formGroup]="senhas">
+      <mat-form-field class="campo" appearance="outline">
+        <mat-label>Senha</mat-label>
         <label>
-          <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Nova senha" formControlName="senha">
+          <input matInput [type]="esconderSenha ? 'password' : 'text'" formControlName="senha" maxlength="127">
         </label>
-        <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha">
-          <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        <mat-error *ngIf="senhas.get('senha').hasError('required')">A senha é <strong>obrigatória</strong>!</mat-error>
-        <mat-error *ngIf="senhas.get('senha').hasError('minlength')">A senha deve conter no mínimo <strong>seis</strong> caracteres!</mat-error>
+        <mat-error *ngIf="senhas.get('senha').hasError('required')">Informe uma senha</mat-error>
+        <mat-error *ngIf="senhas.get('senha').hasError('minlength')">A senha deve conter <strong>pelo menos 6 caractéres</strong></mat-error>
       </mat-form-field>
-      <mat-progress-bar class="formulario-dados-forca-senha" [ngClass]="complexibilidadeSenha.class" *ngIf="senhas.get('senha').dirty && senhas.get('senha').value" mode="determinate" [value]="complexibilidadeSenha.porcentagem"></mat-progress-bar>
-      <mat-form-field class="formulario-dados-campo">
+      <mat-form-field class="campo" appearance="outline">
+        <mat-label>Confirmar senha</mat-label>
         <label>
-          <input matInput [type]="esconderSenha ? 'password' : 'text'" placeholder="Confirmação da nova senha" formControlName="confirmacaoSenha" [errorStateMatcher]="confirmacaoSenhaMatcher">
+          <input matInput [type]="esconderSenha ? 'password' : 'text'" formControlName="confirmacaoSenha" [errorStateMatcher]="parentErrorStateMatcher" maxlength="127">
         </label>
-        <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha">
-          <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        <mat-error *ngIf="senhas.hasError('different')">As senhas são <strong>diferentes</strong>!</mat-error>
+        <mat-error *ngIf="senhas.hasError('different')">As senhas são <strong>diferentes</strong></mat-error>
       </mat-form-field>
-    </div>
+    </form>
+    <mat-progress-bar *ngIf="senhas.get('senha').dirty && senhas.get('senha').value" class="complexibilidade-senha" [ngClass]="forcaSenha.class" mode="determinate" [value]="forcaSenha.porcentagem" matTooltip="Indicação de complexibilidade da sua senha."></mat-progress-bar>
+    <button mat-icon-button id="esconder-senha" (click)="esconderSenha = !esconderSenha" matTooltip="Esconde/Mostra os caractéres da(s) senha(s).">
+      <mat-icon class="icone">{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
     <div class="formulario-acoes">
-      <button mat-raised-button class="formulario-acoes-btn" id="btn-confirmar" color="primary" [disabled]="senhas.invalid" (click)="alterarSenha()">Confirmar</button>
+      <button mat-raised-button class="acao-principal" color="primary" (click)="alterarSenha()">Alterar senha</button>
     </div>
   </div>
 </div>

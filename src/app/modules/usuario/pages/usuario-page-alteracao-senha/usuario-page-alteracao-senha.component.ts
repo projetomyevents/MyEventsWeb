@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
 import { CustomValidators } from '../../../core/shared/custom-validators';
-import { forcaDaSenha } from '../../../core/shared/complexibilidade.senha';
-
-class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null): boolean {
-    return (!!(control && control.invalid && control.parent.dirty)
-            || !!(control && control.parent && control.parent.invalid && control.parent.dirty));
-  }
-}
+import { ParentErrorStateMatcher } from '../../../core/shared/custom-state-matchers';
+import { forcaSenha } from '../../../core/shared/complexibilidade.senha';
 
 @Component({
   selector: 'app-usuario-page-alteracao-senha',
@@ -19,9 +12,9 @@ class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
 export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
 
   senhas: FormGroup;
-  confirmacaoSenhaMatcher = new ConfirmacaoSenhaErrorStateMatcher();
   esconderSenha = true;
-  complexibilidadeSenha = {porcentagem: 0, class: ''};
+  parentErrorStateMatcher = new ParentErrorStateMatcher();
+  forcaSenha = {porcentagem: 0, class: ''};
 
   constructor() { }
 
@@ -31,11 +24,13 @@ export class UsuarioPageAlteracaoSenhaComponent implements OnInit {
         confirmacaoSenha: new FormControl('')
       }, CustomValidators.different);
 
-    this.senhas.get('senha').valueChanges.subscribe(
-      (senha: string) => this.complexibilidadeSenha = forcaDaSenha(senha));
+    this.senhas.get('senha').valueChanges.subscribe((senha: string) => this.forcaSenha = forcaSenha(senha));
   }
 
   alterarSenha() {
+    if (this.senhas.invalid) {
+      this.senhas.markAllAsTouched();
+    } else { }
   }
 
 }

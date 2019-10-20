@@ -1,37 +1,60 @@
-$larguraFormulario: 400px;
-$larguraItens: $larguraFormulario - 40px;
+.content {}
 
 .formulario {
-  width: $larguraFormulario;
+  width: 500px;
+  padding: 30px;
+  border: 1px solid hsla(0, 0%, 0%, 0.1);
+  border-radius: .3em;
+  background-color: white;
 }
 
-.formulario-header {
-  margin: 32px 0;
+.formulario-cabecalho, .formulario-subcabecalho {
+  margin: 0 0 18px;
+  text-align: left;
 }
 
-.formulario-mensagem-erro {
-  color: red;
-  width: $larguraFormulario;
+.formulario-cabecalho {
+  font-weight: normal;
 }
 
-.formulario-dados, .formulario-acoes {
+.formulario-subcabecalho {
+  font-weight: lighter;
+}
+
+.formulario-dados {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 
-.formulario-dados-campo {
-  width: $larguraItens;
+.campo {
+  width: 100%;
   margin: 5px 0;
 }
 
-.formulario-acoes-btn {
-  margin: 10px 0;
+.complexibilidade-senha {
+  border-radius: 4px;
+  height: 8px;
+  margin: 15px 0;
 }
 
-.formulario-dados-forca-senha {
-  width: $larguraItens;
-  margin: 5px 0;
+.formulario-acoes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.acao-principal {
+  width: 200px;
+  height: 42px;
+}
+
+.icone {
+  color: hsla(0, 0%, 0%, 0.65);
 }
 
 /* TODO: @media para telas menores */

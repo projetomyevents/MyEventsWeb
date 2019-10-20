@@ -1,16 +1,27 @@
 @import "../../styles/global";
 
-#btn-recuperacao-senha, #btn-cadastro {
-  color: #696969;
+.campos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
-#btn-recuperacao-senha {
-  font-size: 12px;
+#senha {
+  width: 86%;
 }
 
-#btn-login {
-  width: 200px;
-  height: 42px;
+#esconder-senha {
+  top: 9px;
+  right: 15px;
+}
+
+#recuperar {
+  font-size: .8em;
+  margin-bottom: 16px;
+}
+
+#cadastro {
+  margin-top: 16px;
 }
 
 /* TODO: @media para telas menores */

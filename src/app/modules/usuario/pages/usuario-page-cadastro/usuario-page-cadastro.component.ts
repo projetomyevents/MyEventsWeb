@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
 import { CustomValidators } from '../../../core/shared/custom-validators';
 import { Observable } from 'rxjs';
 import { map as ObservableMap } from 'rxjs/operators';
+import { ParentErrorStateMatcher } from '../../../core/shared/custom-state-matchers';
 import { completarEmails } from '../../../core/shared/provedores.email';
-import { forcaDaSenha } from '../../../core/shared/complexibilidade.senha';
-
-class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null): boolean {
-    return (!!(control && control.invalid && control.parent.dirty)
-            || !!(control && control.parent && control.parent.invalid && control.parent.dirty));
-  }
-}
+import { forcaSenha } from '../../../core/shared/complexibilidade.senha';
 
 @Component({
   selector: 'app-usuario-page-cadastro',
@@ -22,10 +15,10 @@ class ConfirmacaoSenhaErrorStateMatcher implements ErrorStateMatcher {
 export class UsuarioPageCadastroComponent implements OnInit {
 
   conta: FormGroup;
-  confirmacaoSenhaMatcher = new ConfirmacaoSenhaErrorStateMatcher();
+  parentErrorStateMatcher = new ParentErrorStateMatcher();
   esconderSenha = true;
-  provedoresEmail: Observable<string[]>;
-  complexibilidadeSenha = {porcentagem: 0, class: ''};
+  emailsCompletos: Observable<string[]>;
+  forcaSenha = {porcentagem: 0, class: ''};
 
   constructor() { }
 
@@ -40,12 +33,18 @@ export class UsuarioPageCadastroComponent implements OnInit {
       telefone: new FormControl('', Validators.required),
       CPF: new FormControl('', Validators.required)
     });
-    this.provedoresEmail = this.conta.get('email').valueChanges.pipe(ObservableMap(email => completarEmails(email)));
+
+    this.emailsCompletos = this.conta.get('email').valueChanges.pipe(
+      ObservableMap((email: string) => completarEmails(email)));
+
     this.conta.get('senhas.senha').valueChanges.subscribe(
-      (senha: string) => this.complexibilidadeSenha = forcaDaSenha(senha));
+      (senha: string) => this.forcaSenha = forcaSenha(senha));
   }
 
   cadastrar() {
+    if (this.conta.invalid) {
+      this.conta.markAllAsTouched();
+    } else { }
   }
 
 }

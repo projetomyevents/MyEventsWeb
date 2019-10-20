@@ -12,16 +12,21 @@ import { completarEmails } from 'src/app/modules/core/shared/provedores.email';
 export class UsuarioPageSolicitacaoSenhaComponent implements OnInit {
 
   email: FormControl;
-  provedoresEmail: Observable<string[]>;
+  emailsCompletos: Observable<string[]>;
 
   constructor() { }
 
   ngOnInit() {
     this.email = new FormControl( '', [Validators.required, Validators.email]);
-    this.provedoresEmail = this.email.valueChanges.pipe(ObservableMap(email => completarEmails(email)));
+
+    this.emailsCompletos = this.email.valueChanges.pipe(
+      ObservableMap((email: string) => completarEmails(email)));
   }
 
   solicitarNovaSenha() {
+    if (this.email.invalid) {
+      this.email.markAsTouched();
+    } else { }
   }
 
 }

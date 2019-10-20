@@ -22,7 +22,7 @@ export function complexibilidadeSenha(senha: string): number {
  *
  * @param senha - A senha a ser avaliada.
  */
-export function forcaDaSenha(senha: string): { porcentagem: number; class: string } {
+export function forcaSenha(senha: string): { porcentagem: number; class: string } {
   const complexibilidade = complexibilidadeSenha(senha);  // temporario
   return {
     // retorna 12 caso a complexibilidade for 0 para a barra de força não sumir

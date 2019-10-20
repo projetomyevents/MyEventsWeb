@@ -1,22 +1,24 @@
 <div class="content">
   <div class="formulario">
-    <h1 class="formulario-header">Redefinição de Senha</h1>
+    <h2 class="formulario-cabecalho">Solicitar redefinição de senha</h2>
+    <h4 class="formulario-subcabecalho">Uma mensagem será enviada para esse email com um link para a página de recuperação de senha.</h4>
     <div class="formulario-dados">
-      <mat-form-field class="formulario-dados-campo">
+      <mat-form-field class="campo" appearance="outline">
+        <mat-label>Email</mat-label>
         <label>
-          <input matInput type="email" placeholder="Email" [formControl]="email" [matAutocomplete]="emailAutoComplete">
-          <mat-autocomplete autoActiveFirstOption #emailAutoComplete="matAutocomplete">
-            <mat-option *ngFor="let provedor of provedoresEmail | async" [value]="provedor">
-              {{provedor}}
+          <input matInput type="email" [formControl]="email" name="email" [matAutocomplete]="sugestoesEmails">
+          <mat-autocomplete autoActiveFirstOption #sugestoesEmails="matAutocomplete">
+            <mat-option *ngFor="let email of emailsCompletos | async" [value]="email">
+              {{email}}
             </mat-option>
           </mat-autocomplete>
         </label>
-        <mat-error *ngIf="email.hasError('required')">O email é <strong>obrigatório</strong>!</mat-error>
-        <mat-error *ngIf="email.hasError('email')">O email informado é <strong>inválido</strong>!</mat-error>
+        <mat-error *ngIf="email.hasError('required')">Informe um email</mat-error>
+        <mat-error *ngIf="email.hasError('email')">Informe um email <strong>válido</strong></mat-error>
       </mat-form-field>
     </div>
-    <div class="formulario-acoes-btn">
-      <button mat-raised-button class="formulario-acoes-btn" id="btn-confirmar" color="primary" [disabled]="email.invalid" (click)="solicitarNovaSenha()">Confirmar</button>
+    <div class="formulario-acoes">
+      <button mat-raised-button class="acao-principal" color="primary" (click)="solicitarNovaSenha()">Solicitar nova senha</button>
     </div>
   </div>
 </div>
