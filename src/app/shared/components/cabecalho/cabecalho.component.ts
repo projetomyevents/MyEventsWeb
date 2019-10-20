@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, isDevMode, OnInit } from '@angular/core';
 import { AppConfig } from '../../../config/app.config';
 import { RoutesConfig } from '../../../config/routes.config';
 import { AutenticacaoService } from '../../../modules/core/shared/autenticacao.service';
@@ -12,13 +12,21 @@ export class CabecalhoComponent implements OnInit {
 
   repoLink = AppConfig.repositoryURL;
   routerNames = RoutesConfig.routesNames;
-  dev = AppConfig.dev;
+  dev = isDevMode();
 
   constructor(
     private autenticacaoService: AutenticacaoService
   ) { }
 
   ngOnInit() {
+  }
+
+  usuarioLogado(): boolean {
+    return this.autenticacaoService.usuarioLogado()
+  }
+
+  desconectarUsuario(): void {
+    this.autenticacaoService.desconectar();
   }
 
 }

@@ -36,11 +36,11 @@
       <img id="nav-link-icon-github" src="../../../../assets/github-circle-white-transparent.svg" alt="github-img">
       <span class="nav-link-text">GitHub</span>
     </a>
-    <a mat-button class="nav-link" id="controle-login-cadastro" *ngIf="!autenticacaoService.usuarioLogado()" routerLink="login" matTooltip="Ir para a página de autenticação.">
+    <a mat-button class="nav-link" id="controle-login-cadastro" *ngIf="!usuarioLogado()" routerLink="login" matTooltip="Ir para a página de autenticação.">
       <mat-icon class="nav-link-icon">account_circle</mat-icon>
       <span class="nav-link-text">Login/Cadastro</span>
     </a>
-    <a mat-button class="nav-link" id="controle-sair" *ngIf="autenticacaoService.usuarioLogado()" routerLink="" matTooltip="Desfazer autenticação." (click)="this.autenticacaoService.desconectar()">
+    <a mat-button class="nav-link" id="controle-sair" *ngIf="usuarioLogado()" routerLink="" matTooltip="Desfazer autenticação." (click)="desconectarUsuario()">
       <mat-icon class="nav-link-icon">exit_to_app</mat-icon>
       <span class="nav-link-text">Sair</span>
     </a>
