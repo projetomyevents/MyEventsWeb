@@ -62,8 +62,7 @@ export class UsuarioPageCadastroComponent implements OnInit {
       };
       if (await this.usuarioService.cadastrar(usuario)) {
         // logar usuário automaticamente depois de um cadastro bem sucedido
-        await this.autenticacaoService.autenticarUsuario(
-          this.usuario.get('email').value, this.usuario.get('senha').value);
+        await this.autenticacaoService.autenticarUsuario(usuario.email, usuario.senha);
         await this.router.navigateByUrl('');
       } else {
         // TODO: informar porque não foi possível cadastrar

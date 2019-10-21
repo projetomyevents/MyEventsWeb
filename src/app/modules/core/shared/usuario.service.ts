@@ -18,7 +18,7 @@ export class UsuarioService {
 
   cadastrar(usuario: Usuario): Promise<boolean> {
     // TODO: retornar os possíveis erros
-    return this.http.post(this.url, usuario).toPromise().then(
+    return this.http.post(`${this.url}/usuario`, usuario).toPromise().then(
       () => true,
       () => false
     );
