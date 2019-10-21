@@ -1,13 +1,14 @@
 <div class="content">
   <div class="formulario">
     <h2 class="formulario-cabecalho">Crie sua conta</h2>
-    <form class="formulario-dados" [formGroup]="conta">
+    <h4 class="formulario-subcabecalho" #erros></h4>
+    <form class="formulario-dados" [formGroup]="usuario">
       <mat-form-field class="campo" appearance="outline">
         <mat-label>Nome</mat-label>
         <label>
           <input matInput type="text" formControlName="nome">
         </label>
-        <mat-error *ngIf="conta.get('nome').hasError('required')">Digite o nome</mat-error>
+        <mat-error *ngIf="usuario.get('nome').hasError('required')">Digite o nome</mat-error>
       </mat-form-field>
       <mat-form-field class="campo" appearance="outline">
         <mat-label>Email</mat-label>
@@ -19,22 +20,22 @@
             </mat-option>
           </mat-autocomplete>
         </label>
-        <mat-error *ngIf="conta.get('email').hasError('required')">Informe um email</mat-error>
-        <mat-error *ngIf="conta.get('email').hasError('email')">Informe um email <strong>válido</strong></mat-error>
+        <mat-error *ngIf="usuario.get('email').hasError('required')">Informe um email</mat-error>
+        <mat-error *ngIf="usuario.get('email').hasError('email')">Informe um email <strong>válido</strong></mat-error>
       </mat-form-field>
       <div class="campos">
         <mat-form-field class="campo" appearance="outline">
           <mat-label>CPF</mat-label>
-          <app-cpf-input formControlName="CPF"></app-cpf-input>
-          <mat-error *ngIf="conta.get('CPF').hasError('required')">Informe um CPF</mat-error>
-          <mat-error *ngIf="conta.get('CPF').hasError('cpf')">Informe um CPF <strong>válido</strong></mat-error>
+          <app-cpf-input formControlName="cpf"></app-cpf-input>
+          <mat-error *ngIf="usuario.get('cpf').hasError('required')">Informe um CPF</mat-error>
+          <mat-error *ngIf="usuario.get('cpf').hasError('cpf')">Informe um CPF <strong>válido</strong></mat-error>
         </mat-form-field>
         <mat-form-field class="campo" appearance="outline">
           <mat-label>Telefone</mat-label>
           <label>
             <input matInput type="tel" formControlName="telefone">
           </label>
-          <mat-error *ngIf="conta.get('telefone').hasError('required')">Informe um telefone</mat-error>
+          <mat-error *ngIf="usuario.get('telefone').hasError('required')">Informe um telefone</mat-error>
         </mat-form-field>
       </div>
       <form class="campos" formGroupName="senhas">
@@ -43,8 +44,8 @@
           <label>
             <input matInput [type]="esconderSenha ? 'password' : 'text'" formControlName="senha" maxlength="127">
           </label>
-          <mat-error *ngIf="conta.get('senhas.senha').hasError('required')">Informe uma senha</mat-error>
-          <mat-error *ngIf="conta.get('senhas.senha').hasError('minlength')">A senha deve conter <strong>pelo menos 6 caractéres</strong></mat-error>
+          <mat-error *ngIf="usuario.get('senhas.senha').hasError('required')">Informe uma senha</mat-error>
+          <mat-error *ngIf="usuario.get('senhas.senha').hasError('minlength')">A senha deve conter <strong>pelo menos 6 caractéres</strong></mat-error>
         </mat-form-field>
         <button mat-icon-button id="esconder-senha" (click)="esconderSenha = !esconderSenha" matTooltip="Esconde/Mostra os caractéres da(s) senha(s).">
           <mat-icon class="icone">{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -54,11 +55,11 @@
           <label>
             <input matInput [type]="esconderSenha ? 'password' : 'text'" formControlName="confirmacaoSenha" [errorStateMatcher]="parentErrorStateMatcher" maxlength="127">
           </label>
-          <mat-error *ngIf="conta.get('senhas').hasError('different')">As senhas são <strong>diferentes</strong></mat-error>
+          <mat-error *ngIf="usuario.get('senhas').hasError('different')">As senhas são <strong>diferentes</strong></mat-error>
         </mat-form-field>
       </form>
     </form>
-    <mat-progress-bar *ngIf="conta.get('senhas.senha').dirty && conta.get('senhas.senha').value" class="complexibilidade-senha" [ngClass]="forcaSenha.class" mode="determinate" [value]="forcaSenha.porcentagem" matTooltip="Indicação de complexibilidade da sua senha."></mat-progress-bar>
+    <mat-progress-bar *ngIf="usuario.get('senhas.senha').dirty && usuario.get('senhas.senha').value" class="complexibilidade-senha" [ngClass]="forcaSenha.class" mode="determinate" [value]="forcaSenha.porcentagem" matTooltip="Indicação de complexibilidade da sua senha."></mat-progress-bar>
     <div class="formulario-acoes">
       <button mat-raised-button class="acao-principal" color="primary" (click)="cadastrar()">Cadastrar</button>
       <button mat-button id="login" color="primary" routerLink="/login">Já possui conta ? Faça login</button>

@@ -14,6 +14,7 @@ CPF.prototype.toString = function() {
   return this.grupo1 + this.grupo2 + this.grupo3 + this.identificador;
 };
 
+// TODO: MELHORAR ISSO
 @Component({
   selector: 'app-cpf-input',
   templateUrl: './cpf-input.component.html',
