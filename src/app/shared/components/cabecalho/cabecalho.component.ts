@@ -26,7 +26,7 @@ export class CabecalhoComponent implements OnInit {
   }
 
   desconectarUsuario(): void {
-    this.autenticacaoService.desconectar();
+    this.autenticacaoService.desconectarUsuario();
   }
 
 }
