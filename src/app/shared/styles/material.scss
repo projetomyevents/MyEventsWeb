@@ -6,17 +6,18 @@
 // Diminuir tamanho dos campos de forma que utilizam a aparência 'outline'
 .mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 7px 0;
+  border-top: .54375em solid transparent;
 }
 
 // Ajustar os campos de forma que utilizam a aparência 'outline' para o novo tamanho
 .mat-form-field-appearance-outline .mat-form-field-label {
-  top: 1.34375em;
+  top: 1.44375em;
 }
 
 .mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label, .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-  transform: translateY(-1.19375em) scale(.75);
+  transform: translateY(-.99375em) scale(.75);
 }
 
 .mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server[label]:not(:label-shown) + .mat-form-field-label-wrapper .mat-form-field-label {
-  transform: translateY(-1.19374em) scale(.75);
+  transform: translateY(-.99374em) scale(.75);
 }
