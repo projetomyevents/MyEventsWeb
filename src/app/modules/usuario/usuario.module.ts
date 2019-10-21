@@ -15,6 +15,7 @@ import { UsuarioPageLoginComponent } from './pages/usuario-page-login/usuario-pa
 import { UsuarioRoutingModule } from './usuario-routing.module';
 import { UsuarioPageSolicitacaoSenhaComponent } from './pages/usuario-page-solicitacao-senha/usuario-page-solicitacao-senha.component';
 import { UsuarioPageAlteracaoSenhaComponent } from './pages/usuario-page-alteracao-senha/usuario-page-alteracao-senha.component';
+import { CPFInput } from './components/cpf-input/cpf-input.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { UsuarioPageAlteracaoSenhaComponent } from './pages/usuario-page-alterac
     UsuarioPageCadastroComponent,
     UsuarioPageLoginComponent,
     UsuarioPageSolicitacaoSenhaComponent,
-    UsuarioPageAlteracaoSenhaComponent
+    UsuarioPageAlteracaoSenhaComponent,
+    CPFInput
   ],
   imports: [
     CommonModule,

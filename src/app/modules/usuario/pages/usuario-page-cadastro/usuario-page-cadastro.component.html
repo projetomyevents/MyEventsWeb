@@ -20,15 +20,14 @@
           </mat-autocomplete>
         </label>
         <mat-error *ngIf="conta.get('email').hasError('required')">Informe um email</mat-error>
-        <mat-error *ngIf="conta.get('email').hasError('email')">Informe um email <strong>válido</strong>!</mat-error>
+        <mat-error *ngIf="conta.get('email').hasError('email')">Informe um email <strong>válido</strong></mat-error>
       </mat-form-field>
       <div class="campos">
         <mat-form-field class="campo" appearance="outline">
           <mat-label>CPF</mat-label>
-          <label>
-            <input matInput type="text" formControlName="CPF" maxlength="11">
-          </label>
+          <app-cpf-input formControlName="CPF"></app-cpf-input>
           <mat-error *ngIf="conta.get('CPF').hasError('required')">Informe um CPF</mat-error>
+          <mat-error *ngIf="conta.get('CPF').hasError('cpf')">Informe um CPF <strong>válido</strong></mat-error>
         </mat-form-field>
         <mat-form-field class="campo" appearance="outline">
           <mat-label>Telefone</mat-label>

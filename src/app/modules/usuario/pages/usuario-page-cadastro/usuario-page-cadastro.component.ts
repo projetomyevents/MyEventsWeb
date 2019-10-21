@@ -31,7 +31,7 @@ export class UsuarioPageCadastroComponent implements OnInit {
         confirmacaoSenha: new FormControl('')
       }, CustomValidators.different),
       telefone: new FormControl('', Validators.required),
-      CPF: new FormControl('', Validators.required)
+      CPF: new FormControl('', [Validators.required, CustomValidators.cpf])
     });
 
     this.emailsCompletos = this.conta.get('email').valueChanges.pipe(

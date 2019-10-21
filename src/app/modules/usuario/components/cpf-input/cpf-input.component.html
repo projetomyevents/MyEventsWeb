@@ -1,0 +1,17 @@
+<form class="cpf" [formGroup]="cpf">
+  <label>
+    <input matInput class="digitos" formControlName="grupo1" maxlength="3" size="3" (input)="updateValue()" (blur)="onTouched()" #grupo1>
+  </label>
+  <span class="delimitador">.</span>
+  <label>
+    <input matInput class="digitos" formControlName="grupo2" maxlength="3" size="3" (input)="updateValue()" (blur)="onTouched()" #grupo2>
+  </label>
+  <span class="delimitador">.</span>
+  <label>
+    <input matInput class="digitos" formControlName="grupo3" maxlength="3" size="3" (input)="updateValue()" (blur)="onTouched()" #grupo3>
+  </label>
+  <span class="delimitador">-</span>
+  <label>
+    <input matInput class="identificador" formControlName="identificador" maxlength="2" size="2" (input)="updateValue()" (blur)="onTouched()" #identificador>
+  </label>
+</form>

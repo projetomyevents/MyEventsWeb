@@ -1,0 +1,30 @@
+.cpf {
+  display: flex;
+  justify-content: center;
+}
+
+.digitos, .identificador {
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  font: inherit;
+  text-align: center;
+}
+
+.digitos {
+  width: 2em;
+}
+
+.identificador {
+  width: 1.4em;
+}
+
+.delimitador {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+:host.floating .delimitador {
+  opacity: 1;
+}
