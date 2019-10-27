@@ -3,7 +3,8 @@
   justify-content: center;
 }
 
-.digits, .cv {
+.digits {
+  width: 2em;
   padding: 0;
   border: none;
   outline: none;
@@ -12,17 +13,14 @@
   text-align: center;
 }
 
-.digits {
-  width: 2em;
-}
-
-.cv {
-  width: 1.4em;
+#cv {
+  width: 1.5em;
 }
 
 .delimiter {
   opacity: 0;
   transition: opacity 500ms;
+  line-height: 1em;
 }
 
 :host.floating .delimiter {

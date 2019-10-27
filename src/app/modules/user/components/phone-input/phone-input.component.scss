@@ -27,6 +27,7 @@
 .delimiter {
   opacity: 0;
   transition: opacity 500ms;
+  line-height: 1em;
 }
 
 :host.floating .delimiter {
