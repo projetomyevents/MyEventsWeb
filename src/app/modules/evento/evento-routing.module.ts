@@ -11,8 +11,13 @@ const routesNames = RoutesConfig.routesNames.evento;
 const routes: Routes = [
   {path: routesNames.criacao, component: EventoPageCriacaoComponent},
   {path: routesNames.lista, component: EventoPageListaComponent},
+
   // TODO: implementar criação de url por id do evento
-  {path: 'evento/1i23h1231h23912h3', component: EventoPageVisaoGeralComponent}
+
+
+  {path: routesNames.visao, component: EventoPageVisaoGeralComponent}
+  // para realizar os testes eu comentei essa parte
+  // {path: 'evento/1i23h1231h23912h3', component: EventoPageVisaoGeralComponent}
 ];
 
 @NgModule({

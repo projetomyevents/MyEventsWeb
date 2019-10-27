@@ -6,7 +6,7 @@ import { EventoPageListaComponent } from './pages/evento-page-lista/evento-page-
 import { EventoPageVisaoGeralComponent } from './pages/evento-page-visao-geral/evento-page-visao-geral.component';
 import {MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MatCardModule} from "@angular/material/card";
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({

@@ -8,7 +8,8 @@ const routesNames = {
   },
   evento: {
     criacao: 'criacaodeevento',
-    lista: 'listadeeventos'
+    lista: 'listadeeventos',
+    visao: 'visaogeral'
   }
 };
 
