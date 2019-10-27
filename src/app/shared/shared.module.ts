@@ -2,14 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
 import { AppRoutingModule } from '../app-routing.module';
-import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
-
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
-  declarations: [CabecalhoComponent],
+  declarations: [HeaderComponent],
   exports: [
-    CabecalhoComponent
+    HeaderComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,19 @@
+@import "../../styles/global";
+
+.form-subheader {
+  color: hsl(0, 100%, 60%);
+}
+
+.form-fields .form-field {
+  width: 45%;
+}
+
+#btn-hide-password {
+  top: 7px;
+}
+
+#btn-signin {
+  margin-top: 16px;
+}
+
+/* TODO: @media para telas menores */

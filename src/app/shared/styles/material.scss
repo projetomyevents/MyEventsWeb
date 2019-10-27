@@ -3,13 +3,13 @@
   justify-content: center;
 }
 
-// Diminuir tamanho dos campos de forma que utilizam a aparência 'outline'
+// diminuir tamanho dos campos de forma que utilizam a aparência 'outline'
 .mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 7px 0;
   border-top: .54375em solid transparent;
 }
 
-// Ajustar os campos de forma que utilizam a aparência 'outline' para o novo tamanho
+// ajustar os campos de forma que utilizam a aparência 'outline' para o novo tamanho
 .mat-form-field-appearance-outline .mat-form-field-label {
   top: 1.44375em;
 }

@@ -1,0 +1,30 @@
+.cpf {
+  display: flex;
+  justify-content: center;
+}
+
+.digits, .cv {
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  font: inherit;
+  text-align: center;
+}
+
+.digits {
+  width: 2em;
+}
+
+.cv {
+  width: 1.4em;
+}
+
+.delimiter {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+:host.floating .delimiter {
+  opacity: 1;
+}

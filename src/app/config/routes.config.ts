@@ -1,15 +1,14 @@
 const routesNames = {
   home: '',
-  erro404: '404',
-  usuario: {
-    login: 'login',
-    cadastro: 'cadastro',
-    senha: 'recuperacaodesenha'
+  error404: '404',
+  user: {
+    signin: 'signin',
+    signup: 'signup',
+    passwordReset: 'request-password-reset'
   },
-  evento: {
-    criacao: 'criacaodeevento',
-    lista: 'listadeeventos',
-    visao: 'visaogeral'
+  event: {
+    register: 'register-new-event',
+    list: 'event-list'
   }
 };
 
@@ -17,6 +16,6 @@ export const RoutesConfig = {
   routesNames,
   routes: {
     home: routesNames.home,
-    erro404: routesNames.erro404
+    error404: routesNames.error404
   }
 };

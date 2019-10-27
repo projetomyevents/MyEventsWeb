@@ -1,0 +1,42 @@
+<div class="content">
+  <div class="form">
+    <h2 class="form-header">Login</h2>
+    <h4 class="form-subheader" #error></h4>
+
+    <form class="form-data" [formGroup]="userAccount">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Email</mat-label>
+        <label>
+          <input matInput type="email" formControlName="email" name="email" [matAutocomplete]="emailSuggestions">
+          <mat-autocomplete autoActiveFirstOption #emailSuggestions="matAutocomplete">
+            <mat-option *ngFor="let email of completedEmails | async" [value]="email">
+              {{email}}
+            </mat-option>
+          </mat-autocomplete>
+        </label>
+        <mat-error *ngIf="userAccount.get('email').hasError('required')">Informe um email</mat-error>
+        <mat-error *ngIf="userAccount.get('email').hasError('email')">Informe um email <strong>válido</strong></mat-error>
+      </mat-form-field>
+
+      <div class="form-fields">
+        <mat-form-field class="form-field" id="password-field" appearance="outline">
+          <mat-label>Senha</mat-label>
+          <label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" maxlength="127">
+          </label>
+          <mat-error *ngIf="userAccount.get('password').hasError('required')">Informe uma senha</mat-error>
+        </mat-form-field>
+
+        <button mat-icon-button type="button" id="btn-hide-password" (click)="hidePassword = !hidePassword" matTooltip="Esconde/Mostra os caractéres da(s) senha(s).">
+          <mat-icon class="icon">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </div>
+    </form>
+
+    <div class="form-actions">
+      <button mat-button id="btn-reset-password" [routerLink]="'/' + routesNames.user.passwordReset">Esqueci minha senha!</button>
+      <button mat-raised-button class="form-main-action" color="primary" (click)="signin()">Logar</button>
+      <button mat-button id="btn-signup" color="primary" [routerLink]="'/' + routesNames.user.signup">Não possui uma conta? Cadastre-se!</button>
+    </div>
+  </div>
+</div>

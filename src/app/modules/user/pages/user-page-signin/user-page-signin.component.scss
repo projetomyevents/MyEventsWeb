@@ -1,0 +1,25 @@
+@import "../../styles/global";
+
+.form-subheader {
+  color: hsl(0, 100%, 60%);
+}
+
+#password-field {
+  width: 86%;
+}
+
+#btn-hide-password {
+  top: 7px;
+  right: 15px;
+}
+
+#btn-reset-password {
+  font-size: .8em;
+  margin-bottom: 16px;
+}
+
+#btn-signup {
+  margin-top: 16px;
+}
+
+/* TODO: @media para telas menores */

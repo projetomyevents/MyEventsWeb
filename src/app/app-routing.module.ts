@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RoutesConfig } from './config/routes.config';
-import { PaginaInicialComponent } from './pages/pagina-inicial/pagina-inicial.component';
-import { Pagina404Component } from './pages/pagina404/pagina404.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { Error404PageComponent } from './pages/error-404-page/error-404-page.component';
 
 
 const routesNames = RoutesConfig.routesNames;
 
 const routes: Routes = [
-  {path: '', component: PaginaInicialComponent},
-  {path: routesNames.erro404, component: Pagina404Component},
-  {path: '', loadChildren: './modules/usuario/usuario.module#UsuarioModule'},
-  {path: '', loadChildren: './modules/evento/evento.module#EventoModule'},
+  {path: '', component: HomePageComponent},
+  {path: routesNames.error404, component: Error404PageComponent},
+  {path: '', loadChildren: './modules/user/user.module#UserModule'},
+  {path: '', loadChildren: './modules/event/event.module#EventModule'},
 
-  {path: '**', redirectTo: routesNames.erro404}
+  {path: '**', redirectTo: routesNames.error404}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

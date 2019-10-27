@@ -1,0 +1,78 @@
+<div class="content">
+  <div class="form">
+    <h2 class="form-header">Crie sua conta</h2>
+    <h4 class="form-subheader" #error></h4>
+
+    <form class="form-data" [formGroup]="userAccount">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Nome</mat-label>
+        <label>
+          <input matInput type="text" formControlName="name">
+        </label>
+        <mat-error *ngIf="userAccount.get('name').hasError('required')">Digite o nome</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Email</mat-label>
+        <label>
+          <input matInput type="email" formControlName="email" [matAutocomplete]="emailSuggestions">
+          <mat-autocomplete autoActiveFirstOption #emailSuggestions="matAutocomplete">
+            <mat-option *ngFor="let email of completedEmails | async" [value]="email">
+              {{email}}
+            </mat-option>
+          </mat-autocomplete>
+        </label>
+        <mat-error *ngIf="userAccount.get('email').hasError('required')">Informe um email</mat-error>
+        <mat-error *ngIf="userAccount.get('email').hasError('email')">Informe um email <strong>válido</strong></mat-error>
+      </mat-form-field>
+
+      <div class="form-fields">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>CPF</mat-label>
+          <app-cpf-input formControlName="cpf"></app-cpf-input>
+          <mat-error *ngIf="userAccount.get('cpf').hasError('required')">Informe um CPF</mat-error>
+          <mat-error *ngIf="userAccount.get('cpf').hasError('cpf')">Informe um CPF <strong>válido</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <label>
+            <input matInput type="tel" formControlName="phoneNumber">
+          </label>
+          <mat-error *ngIf="userAccount.get('phoneNumber').hasError('required')">Informe um telefone</mat-error>
+        </mat-form-field>
+      </div>
+
+      <form class="form-fields" formGroupName="passwords">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Senha</mat-label>
+          <label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" maxlength="127">
+          </label>
+          <mat-error *ngIf="userAccount.get('passwords.password').hasError('required')">Informe uma senha</mat-error>
+          <mat-error *ngIf="userAccount.get('passwords.password').hasError('minlength')">A senha deve conter <strong>pelo menos 6 caractéres</strong></mat-error>
+        </mat-form-field>
+
+        <button mat-icon-button id="btn-hide-password" (click)="hidePassword = !hidePassword" matTooltip="Esconde/Mostra os caractéres da(s) senha(s).">
+          <mat-icon class="icon">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Confirmar senha</mat-label>
+          <label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="confirmedPassword" [errorStateMatcher]="parentErrorStateMatcher" maxlength="127">
+          </label>
+          <mat-error *ngIf="userAccount.get('passwords').hasError('different')">As senhas são <strong>diferentes</strong></mat-error>
+        </mat-form-field>
+      </form>
+    </form>
+
+    <mat-progress-bar *ngIf="userAccount.get('passwords.password').dirty && userAccount.get('passwords.password').value" class="password-strength-bar" [ngClass]="passwordStrength.class" mode="determinate" [value]="passwordStrength.percentage" matTooltip="Indicação de complexibilidade da sua senha."></mat-progress-bar>
+
+    <div class="form-actions">
+      <button mat-raised-button class="form-main-action" color="primary" (click)="signup()">Cadastrar</button>
+      <button mat-button id="btn-signin" color="primary" [routerLink]="'/' + routesNames.user.signin">Já possui conta ? Faça login</button>
+    </div>
+
+  </div>
+</div>
