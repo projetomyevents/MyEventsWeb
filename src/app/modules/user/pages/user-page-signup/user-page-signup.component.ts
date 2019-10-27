@@ -10,6 +10,7 @@ import { passwordStrength } from '../../../core/shared/password-complexity';
 import { UserService } from '../../../core/shared/user.service';
 import { AuthenticationService } from '../../../core/shared/authentication.service';
 import { RoutesConfig } from '../../../../config/routes.config';
+import { CPFInput } from '../../components/cpf-input/cpf-input.component';
 
 @Component({
   selector: 'app-user-page-signup',
@@ -21,6 +22,7 @@ export class UserPageSignupComponent implements OnInit {
   routesNames = RoutesConfig.routesNames;
 
   @ViewChild('error', {static: false, read: ElementRef}) error: ElementRef;
+  @ViewChild('cpfInput', {static: false, read: ElementRef}) cpfInput: CPFInput;
 
   userAccount: FormGroup;
   completedEmails: Observable<string[]>;
@@ -53,6 +55,8 @@ export class UserPageSignupComponent implements OnInit {
   async signup(): Promise<void> {
     if (this.userAccount.invalid) {
       this.userAccount.markAllAsTouched();
+      this.cpfInput.cpf.markAllAsTouched();
+      this.userAccount.get('cpf').updateValueAndValidity();
     } else {
       const rawUser = this.userAccount.getRawValue();
       const user = {

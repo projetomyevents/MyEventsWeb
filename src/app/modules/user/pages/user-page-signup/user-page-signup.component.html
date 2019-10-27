@@ -29,7 +29,7 @@
       <div class="form-fields">
         <mat-form-field class="form-field" appearance="outline">
           <mat-label>CPF</mat-label>
-          <app-cpf-input formControlName="cpf"></app-cpf-input>
+          <app-cpf-input formControlName="cpf" #cpfInput></app-cpf-input>
           <mat-error *ngIf="userAccount.get('cpf').hasError('required')">Informe um CPF</mat-error>
           <mat-error *ngIf="userAccount.get('cpf').hasError('cpf')">Informe um CPF <strong>válido</strong></mat-error>
         </mat-form-field>

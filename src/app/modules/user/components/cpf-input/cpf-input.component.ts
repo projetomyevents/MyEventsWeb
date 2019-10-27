@@ -2,7 +2,6 @@ import { Component, ElementRef, HostBinding, Input, OnDestroy, OnInit, Optional,
 import { ControlValueAccessor, FormControl, FormGroup, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material';
 import { FocusMonitor } from '@angular/cdk/a11y';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subject } from 'rxjs';
 
 class CPF {
@@ -13,7 +12,6 @@ CPF.prototype.toString = function() {
   return this.group1 + this.group2 + this.group3 + this.cv;
 };
 
-// TODO: MELHORAR ISSO
 @Component({
   selector: 'app-cpf-input',
   templateUrl: './cpf-input.component.html',
@@ -62,38 +60,33 @@ export class CPFInput implements OnInit, OnDestroy, MatFormFieldControl<CPF>, Co
   }
 
   @Input()
-  get placeholder(): string {
-    return this._placeholder;
-  }
+  get placeholder(): string { return this._placeholder; }
   set placeholder(plh: string) {
     this._placeholder = plh;
     this.stateChanges.next();
   }
 
   @Input()
-  get required(): boolean {
-    return this._required;
-  }
+  get required(): boolean { return this._required; }
   set required(req: boolean) {
-    this._required = coerceBooleanProperty(req);
+    this._required = req;
     this.stateChanges.next();
   }
 
   @Input()
   get disabled(): boolean { return this._disabled; }
   set disabled(value: boolean) {
-    this._disabled = coerceBooleanProperty(value);
+    this._disabled = value;
     if (this._disabled) { this.cpf.disable(); } else { this.cpf.enable(); }
     this.stateChanges.next();
   }
 
   get errorState(): boolean {
-    // TODO: melhorar isso
-    return this.ngControl.errors !== null
-      && !!this.cpf.get('group1').touched
-      && !!this.cpf.get('group2').touched
-      && !!this.cpf.get('group3').touched
-      && !!this.cpf.get('cv').touched;
+    return  this.ngControl.errors !== null
+      && this.cpf.get('group1').touched
+      && this.cpf.get('group2').touched
+      && this.cpf.get('group3').touched
+      && this.cpf.get('cv').touched;
   }
 
   get empty(): boolean {
@@ -105,9 +98,9 @@ export class CPFInput implements OnInit, OnDestroy, MatFormFieldControl<CPF>, Co
               private focusMonitor: FocusMonitor, private elRef: ElementRef<HTMLElement>) {
     this.cpf = new FormGroup({
       group1: new FormControl({value: '', disabled: this.disabled}),
-      group2: new FormControl(''),
-      group3: new FormControl(''),
-      cv: new FormControl('')
+      group2: new FormControl({value: '', disabled: this.disabled}),
+      group3: new FormControl({value: '', disabled: this.disabled}),
+      cv: new FormControl({value: '', disabled: this.disabled})
     });
 
     this.focusMonitor.monitor(this.elRef.nativeElement, true).subscribe((origin: string) => {
@@ -118,16 +111,15 @@ export class CPFInput implements OnInit, OnDestroy, MatFormFieldControl<CPF>, Co
     if (this.ngControl != null) { this.ngControl.valueAccessor = this; }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     this.stateChanges.complete();
-    this.focusMonitor.stopMonitoring(this.elRef.nativeElement)
+    this.focusMonitor.stopMonitoring(this.elRef.nativeElement);
   }
 
   onContainerClick(event: MouseEvent): void {
-    if ((event.target as Element).tagName.toLowerCase() != 'input') {
+    if ((event.target as Element).tagName.toLowerCase() !== 'input') {
       if (this.group1.nativeElement.value.length !== 3) { this.group1.nativeElement.focus(); }
       else if (this.group2.nativeElement.value.length !== 3) { this.group2.nativeElement.focus(); }
       else if (this.group3.nativeElement.value.length !== 3) { this.group3.nativeElement.focus(); }
@@ -137,6 +129,9 @@ export class CPFInput implements OnInit, OnDestroy, MatFormFieldControl<CPF>, Co
 
   updateValue(): void {
     this.onChange(this.value);
+
+    // pequeno hack para mostrar erros, quem nunca
+    if (this.cpf.untouched) { this.cpf.markAllAsTouched(); }
   }
 
   setDescribedByIds(ids: string[]): void {
