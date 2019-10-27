@@ -65,4 +65,23 @@ export class CustomValidators {
     return null;
   }
 
+  /**
+   * Testa se o valor do controle é um número de celular ou telefone brasileiro válido.
+   *
+   * @param control - O controle.
+   */
+  static phone(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) { return null; }
+
+    // remover qualquer caractére que não seja um dígito
+    const rawPhone = control.value.toString().replace(/\D/g, '');
+
+    // não aceitar números de celular ou telefone brasileiro inválidos
+    if (rawPhone.length < 10 || rawPhone.length > 11 || !RegExp(/^[1-9][0-9]9?[2-9][0-9]{7}$/).test(rawPhone)) {
+      return {phone: true};
+    }
+
+    return null;
+  }
+
 }

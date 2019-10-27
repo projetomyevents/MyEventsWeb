@@ -42,7 +42,7 @@ export class UserPageSignupComponent implements OnInit {
         password: new FormControl('', [Validators.required, Validators.minLength(6)]),
         confirmedPassword: new FormControl('')
       }, CustomValidators.different),
-      phoneNumber: new FormControl('', Validators.required),
+      phoneNumber: new FormControl('', [Validators.required, CustomValidators.phone]),
       cpf: new FormControl('', [Validators.required, CustomValidators.cpf])
     });
 
