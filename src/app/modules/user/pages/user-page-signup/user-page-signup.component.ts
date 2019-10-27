@@ -11,6 +11,7 @@ import { UserService } from '../../../core/shared/user.service';
 import { AuthenticationService } from '../../../core/shared/authentication.service';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { CPFInput } from '../../components/cpf-input/cpf-input.component';
+import { PhoneInput } from '../../components/phone-input/phone-input.component';
 
 @Component({
   selector: 'app-user-page-signup',
@@ -22,7 +23,8 @@ export class UserPageSignupComponent implements OnInit {
   routesNames = RoutesConfig.routesNames;
 
   @ViewChild('error', {static: false, read: ElementRef}) error: ElementRef;
-  @ViewChild('cpfInput', {static: false, read: ElementRef}) cpfInput: CPFInput;
+  @ViewChild('cpfInput', {static: false}) cpfInput: CPFInput;
+  @ViewChild('phoneInput', {static: false}) phoneInput: PhoneInput;
 
   userAccount: FormGroup;
   completedEmails: Observable<string[]>;
@@ -30,9 +32,7 @@ export class UserPageSignupComponent implements OnInit {
   hidePassword = true;
   passwordStrength = {percentage: 0, class: ''};
 
-  constructor(private userService: UserService,
-              private authenticationService: AuthenticationService,
-              private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.userAccount = new FormGroup( {
@@ -56,24 +56,11 @@ export class UserPageSignupComponent implements OnInit {
     if (this.userAccount.invalid) {
       this.userAccount.markAllAsTouched();
       this.cpfInput.cpf.markAllAsTouched();
+      this.phoneInput.phone.markAllAsTouched();
       this.userAccount.get('cpf').updateValueAndValidity();
+      this.userAccount.get('phoneNumber').updateValueAndValidity();
     } else {
-      const rawUser = this.userAccount.getRawValue();
-      const user = {
-        email: rawUser.email,
-        password: rawUser.passwords.password,
-        name: rawUser.nome,
-        cpf: rawUser.cpf.toString(),
-        phoneNumber: rawUser.telefone
-      };
-      if (await this.userService.signup(user)) {
-        // logar usuário automaticamente depois de um cadastro bem sucedido
-        await this.authenticationService.authenticateUser(user.email, user.password);
-        await this.router.navigateByUrl('');
-      } else {
-        // TODO: informar porque não foi possível cadastrar
-        this.error.nativeElement.textContent = 'Um erro ocorreu!';
-      }
+      console.log(this.userAccount);
     }
   }
 

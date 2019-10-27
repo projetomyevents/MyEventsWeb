@@ -16,6 +16,7 @@ import { UserPageSigninComponent } from './pages/user-page-signin/user-page-sign
 import { UserPageRequestPasswordResetComponent } from './pages/user-page-request-password-reset/user-page-request-password-reset.component';
 import { UserPagePasswordResetComponent } from './pages/user-page-password-reset/user-page-password-reset.component';
 import { CPFInput } from './components/cpf-input/cpf-input.component';
+import { PhoneInput } from './components/phone-input/phone-input.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CPFInput } from './components/cpf-input/cpf-input.component';
     UserPageSigninComponent,
     UserPageRequestPasswordResetComponent,
     UserPagePasswordResetComponent,
-    CPFInput
+    CPFInput,
+    PhoneInput
   ],
   imports: [
     CommonModule,

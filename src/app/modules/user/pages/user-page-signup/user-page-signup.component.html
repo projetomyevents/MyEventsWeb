@@ -35,10 +35,8 @@
         </mat-form-field>
 
         <mat-form-field class="form-field" appearance="outline">
-          <mat-label>Telefone</mat-label>
-          <label>
-            <input matInput type="tel" formControlName="phoneNumber">
-          </label>
+          <mat-label>Número de celular/telefone</mat-label>
+          <app-phone-input formControlName="phoneNumber" #phoneInput></app-phone-input>
           <mat-error *ngIf="userAccount.get('phoneNumber').hasError('required')">Informe um telefone</mat-error>
         </mat-form-field>
       </div>
