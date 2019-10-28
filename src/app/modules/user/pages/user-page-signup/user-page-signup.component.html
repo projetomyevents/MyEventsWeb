@@ -36,9 +36,9 @@
 
         <mat-form-field class="form-field" appearance="outline">
           <mat-label>Número de celular/telefone</mat-label>
-          <app-phone-input formControlName="phoneNumber" #phoneInput></app-phone-input>
-          <mat-error *ngIf="userAccount.get('phoneNumber').hasError('required')">Informe um telefone</mat-error>
-          <mat-error *ngIf="userAccount.get('phoneNumber').hasError('phone')">Informe um telefone <strong>válido</strong></mat-error>
+          <app-phone-input formControlName="phone" #phoneInput></app-phone-input>
+          <mat-error *ngIf="userAccount.get('phone').hasError('required')">Informe um telefone</mat-error>
+          <mat-error *ngIf="userAccount.get('phone').hasError('phone')">Informe um telefone <strong>válido</strong></mat-error>
         </mat-form-field>
       </div>
 
@@ -69,7 +69,7 @@
     <mat-progress-bar *ngIf="userAccount.get('passwords.password').dirty && userAccount.get('passwords.password').value" class="password-strength-bar" [ngClass]="passwordStrength.class" mode="determinate" [value]="passwordStrength.percentage" matTooltip="Indicação de complexibilidade da sua senha."></mat-progress-bar>
 
     <div class="form-actions">
-      <button mat-raised-button class="form-main-action" color="primary" (click)="signup()">Cadastrar</button>
+      <button mat-raised-button class="form-main-action" color="primary" (click)="signup()" [disabled]="resolvingRequest">Cadastrar</button>
       <button mat-button id="btn-signin" color="primary" [routerLink]="'/' + routesNames.user.signin">Já possui conta ? Faça login</button>
     </div>
 

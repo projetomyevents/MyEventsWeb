@@ -24,13 +24,16 @@ export class UserPagePasswordResetComponent implements OnInit {
         confirmedPassword: new FormControl('')
       }, CustomValidators.different);
 
-    this.passwords.get('password').valueChanges.subscribe((password: string) => this.passwordStrength = passwordStrength(password));
+    this.passwords.get('password').valueChanges
+      .subscribe((password: string) => this.passwordStrength = passwordStrength(password));
   }
 
   resetPassword(): void {
     if (this.passwords.invalid) {
       this.passwords.markAllAsTouched();
-    } else { }
+    } else {
+      console.log(this.passwords);
+    }
   }
 
 }

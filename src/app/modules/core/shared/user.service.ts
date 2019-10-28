@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { NewUser, User } from './user.model';
+import { EndpointsConfig } from '../../../config/endpoints.config';
 import { AppConfig } from '../../../config/app.config';
-import { HttpClient } from '@angular/common/http';
-import { User } from './user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,27 +13,17 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  /**
-   * Autentica um usuário.
-   *
-   * @param email - O email do usuário.
-   * @param password - A senha do usuário.
-   */
-  signin(email: string, password: string): Promise<any> {
-    return this.http.post(`${this.url}/login`, {email, password}, {observe: 'response'}).toPromise();
+  login(email: string, password: string): Promise<HttpResponse<any>> {
+    return this.http.post<any>(`${this.url}/${EndpointsConfig.user.login}`,
+      {email, password}, {observe: 'response'}).toPromise();
   }
 
-  /**
-   * Cadastra um usuário.
-   *
-   * @param user - O usuário.
-   */
-  signup(user: User): Promise<boolean> {
-    // TODO: retornar os possíveis erros
-    return this.http.post(`${this.url}/usuario`, user).toPromise().then(
-      () => true,
-      () => false
-    );
+  register(newUser: NewUser): Promise<void> {
+    return this.http.post<void>(`${this.url}/${EndpointsConfig.user.register}`, newUser).toPromise();
+  }
+
+  get(email: string): Promise<User> {
+    return this.http.get<User>(`${this.url}/${EndpointsConfig.user.getByEmail(email)}`).toPromise();
   }
 
 }

@@ -17,7 +17,7 @@ export class UserPageRequestPasswordResetComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.email = new FormControl( '', [Validators.required, Validators.email]);
+    this.email = new FormControl('', [Validators.required, Validators.email]);
 
     this.completedEmails = this.email.valueChanges.pipe(ObservableMap((email: string) => completeEmails(email)));
   }
@@ -25,7 +25,9 @@ export class UserPageRequestPasswordResetComponent implements OnInit {
   requestPasswordReset(): void {
     if (this.email.invalid) {
       this.email.markAsTouched();
-    } else { }
+    } else {
+      console.log(this.email);
+    }
   }
 
 }

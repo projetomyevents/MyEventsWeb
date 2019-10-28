@@ -37,7 +37,7 @@
   <div class="nav-spacer"></div>
 
   <div class="nav-links">
-    <a mat-button class="nav-link" href="{{repoLink}}" matTooltip="Ir para o repositório do app.">
+    <a mat-button class="nav-link" [href]="repoLink" matTooltip="Ir para o repositório do app.">
       <img id="nav-link-icon-github" src="../../../../assets/github-circle-white-transparent.svg" alt="github-img">
       <span class="nav-link-text">GitHub</span>
     </a>
@@ -47,7 +47,7 @@
       <span class="nav-link-text">Login/Cadastro</span>
     </a>
 
-    <a mat-button class="nav-link" id="controle-sair" *ngIf="userIsLogged()" routerLink="" matTooltip="Desfazer autenticação." (click)="desconectUser()">
+    <a mat-button class="nav-link" id="controle-sair" *ngIf="userIsLogged()" routerLink="" matTooltip="Desfazer autenticação." (click)="disconnectUser()">
       <mat-icon class="nav-link-icon">exit_to_app</mat-icon>
       <span class="nav-link-text">Sair</span>
     </a>

@@ -18,21 +18,20 @@ export class HeaderComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   /**
    * Verifica se o usuário está autenticado.
    */
   userIsLogged(): boolean {
-    return this.authenticationService.userIsLogged()
+    return this.authenticationService.logged();
   }
 
   /**
    * Desconecta o usuário.
    */
-  desconectUser(): void {
-    this.authenticationService.disconnectUser();
+  disconnectUser(): void {
+    this.authenticationService.logout();
   }
 
 }

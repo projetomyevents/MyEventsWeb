@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject} from 'rxjs';
+import { User } from './user.model';
 import { UserService } from './user.service';
-import { AppConfig } from '../../../config/app.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(
-    private userService: UserService
-  ) { }
+  private userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+  public user = this.userSubject.asObservable();
+
+  constructor(private userService: UserService) { }
+
+  /**
+   * Retorna o usuário logado.
+   */
+  public get userValue(): User {
+    return this.userSubject.value;
+  }
 
   /**
    * Autentica um usuário.
@@ -17,28 +26,41 @@ export class AuthenticationService {
    * @param email - O email do usuário.
    * @param password - A senha do usuário.
    */
-  authenticateUser(email, password): Promise<boolean> {
-    return this.userService.signin(email, password).then(
-      (response) => {
-        sessionStorage.setItem('username', email);
-        AppConfig.token = response.headers.get('authorization');
-        return true;
-      },
-      () => false);
+  async login(email: string, password: string): Promise<any> {
+    try {
+      const response = await this.userService.login(email, password);
+      const token = response.headers.get('authorization');
+
+      // guardar informações temporárias e necessárias para realizar a requisição das informações reais
+      this.userSubject.next({email, password, name: '', cpf: '', phone: '', token});
+
+      // resgatar as informações do usuário
+      const user = await this.userService.get(email);
+      user.token = token;
+
+      // guardar as informações do usuário
+      localStorage.setItem('user', JSON.stringify(user));
+      this.userSubject.next(user);
+
+      return user;
+    } catch (err) {
+      return await Promise.reject(err);
+    }
   }
 
   /**
    * Verifica se o usuário está autenticado.
    */
-  userIsLogged(): boolean {
-    return sessionStorage.getItem('username') !== null;
+  logged(): boolean {
+    return !!localStorage.getItem('user');
   }
 
   /**
    * Desconecta o usuário.
    */
-  disconnectUser(): void {
-    sessionStorage.removeItem('username');
+  logout(): void {
+    localStorage.removeItem('user');
+    this.userSubject.next(null);
   }
 
 }
