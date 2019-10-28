@@ -12,7 +12,8 @@ export class CustomValidators {
    */
   static different(group: FormGroup): ValidationErrors | null {
     const controls = Object.keys(group.controls);
-    return controls.every((control: string) => group.get(control).value === group.get(controls.splice(0, 1)).value)
+    const value = group.get(controls.splice(0, 1)).value;
+    return controls.every((control: string) => group.get(control).value === value)
       ? null
       : {different: true};
   }
