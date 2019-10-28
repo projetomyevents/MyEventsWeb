@@ -74,7 +74,7 @@
     ],
     "trailing-comma": false,
     "variable-name": {
-      "options": "allow-leading-underscore"
+      "options": ["allow-leading-underscore", "allow-pascal-case"]
     },
     "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,
