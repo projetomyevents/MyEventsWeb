@@ -14,38 +14,31 @@
   width: 100%;
 
   .campo {
-    width: 25%;
-  }
-
-  .campo-extra {
     width: 45%;
-    text-align: center;
+    text-align: left;
   }
 
   .campo-grande {
-    width: 25%;
-    height: 100px;
+    width: 46%;
+    text-align: center;
   }
 
+
 }
 
+.campo-icon {
+   color: black;
+   height: 10px;
+   margin: 5px 20px 3px 0;
+  font-size: 45px;
+ }
 
-
-#esconder-senha {
-  top: 7px;
+.campo-text {
+  font-size: 25px;
+  color: black;
+  height: 10px;
+  margin: 10px;
 }
 
-#login {
-  margin-top: 16px;
-}
-
-#btn-cadastro {
-  width: 200px;
-  height: 42px;
-}
-
-#btn-login{
-  color: #696969;
-}
 
 /* TODO: @media para telas menores */
