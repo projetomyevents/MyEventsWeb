@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NewUser } from '../../../core/shared/user.model';
+import { RoutesConfig } from '../../../../config/routes.config';
 
 @Component({
   selector: 'app-event-page-register',
@@ -8,28 +10,44 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EventPageRegisterComponent implements OnInit {
 
-  conta: FormGroup;
+  @ViewChild('error', {static: false, read: ElementRef}) error: ElementRef;
+
+  userEvent: FormGroup;
+  resolvingRequest: boolean;
 
   constructor() { }
 
   ngOnInit() {
-    this.conta = new FormGroup( {
-      nome: new FormControl('', Validators.required),
-      data: new FormControl( '', Validators.required),
-      preco: new FormControl('', Validators.required),
-      acompanhantes: new FormControl('', Validators.required),
-      traje: new FormControl('', Validators.required),
-      idade: new FormControl('', Validators.required),
-      cronograma: new FormControl('', Validators.required),
-      descricao: new FormControl('', Validators.required),
-      cep: new FormControl('', Validators.required),
-      estado: new FormControl('', Validators.required),
-      cidade: new FormControl('', Validators.required),
-      bairro: new FormControl('', Validators.required),
-      rua: new FormControl('', Validators.required),
-      numero: new FormControl('', Validators.required),
-      complemento: new FormControl('', Validators.required)
+    this.userEvent = new FormGroup({
+      // step 1 - informações
+      name: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      date: new FormControl('', Validators.required),
+      ticketPrice: new FormControl(''),
+      maxCompanions: new FormControl('', Validators.required),
+      attire: new FormControl(''),
+      minAge: new FormControl(''),
+      schedule: new FormControl('', Validators.required),
+      // step 2 - local
+      CEP: new FormControl('', Validators.required),
+      state: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
+      neighbourhood: new FormControl('', Validators.required),
+      street: new FormControl('', Validators.required),
+      number: new FormControl(''),
+      complement: new FormControl(''),
+      // setp 3 - arquivos
+      image: new FormControl(''),
+      attachment: new FormControl('')
     });
+  }
+
+  async registerNewUserEvent(): Promise<void> {
+    if (this.userEvent.invalid) {
+      this.userEvent.markAllAsTouched();
+    } else {
+      // this.resolvingRequest = true;
+    }
   }
 
 }

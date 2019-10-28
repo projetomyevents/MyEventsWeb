@@ -1,205 +1,37 @@
 <div class="content">
-  <div class="formulario">
-    <h1 class="formulario-header">Cadastro de Evento</h1>
-
-    <form class="formulario-dados" [formGroup]="conta" >
-
-      <div class="campos">
-        <mat-form-field class="campo" appearance="outline">
-
-            <label>
-              <input matInput type="text" placeholder="Nome" formControlName="nome">
-            </label>
-            <mat-error *ngIf="conta.get('nome').hasError('required')">O nome é <strong>obrigatória</strong>!</mat-error>
-
-        </mat-form-field>
-
-        <mat-form-field class="campo" appearance="outline">
-            <label>
-              <input matInput type="date" placeholder="Data" formControlName="data">
-            </label>
-            <mat-error *ngIf="conta.get('data').hasError('required')">A data do evento é <strong>obrigatório</strong>!</mat-error>
-
-        </mat-form-field>
-
-        <mat-form-field class="campo" appearance="outline">
-
-          <label>
-            <input matInput type="text" placeholder="CEP" formControlName="cep">
-          </label>
-          <mat-error *ngIf="conta.get('cep').hasError('required')">O CEP é <strong>obrigatório</strong>!</mat-error>
-
-        </mat-form-field>
-
-      </div>
-
-
-
-
-
-      <div class="campos">
-
-        <mat-form-field class="campo" appearance="outline">
-
-          <label>
-            <input matInput type="text" placeholder="Estado" formControlName="estado">
-          </label>
-          <mat-error *ngIf="conta.get('estado').hasError('required')">O estado é <strong>obrigatório</strong>!</mat-error>
-
-        </mat-form-field>
-
-        <mat-form-field class="campo" appearance="outline">
-        <label>
-          <input matInput type="text" placeholder="Cidade" formControlName="cidade">
-        </label>
-        <mat-error *ngIf="conta.get('cidade').hasError('required')">A cidade é <strong>obrigatória</strong>!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="campo" appearance="outline">
-          <label>
-            <input matInput type="text" placeholder="Bairro" formControlName="bairro">
-          </label>
-          <mat-error *ngIf="conta.get('bairro').hasError('required')">O bairro é <strong>obrigatório</strong>!</mat-error>
-        </mat-form-field>
-
-      </div>
-
-
-
-      <div class="campos">
-
-        <mat-form-field class="campo" appearance="outline">
-
-          <label>
-            <input matInput type="text" placeholder="Rua" formControlName="rua">
-          </label>
-          <mat-error *ngIf="conta.get('rua').hasError('required')">O rua é <strong>obrigatório</strong>!</mat-error>
-
-        </mat-form-field>
-
-        <mat-form-field class="campo" appearance="outline">
-
-          <label>
-            <input matInput type="number" placeholder="Número" formControlName="numero">
-          </label>
-
-        </mat-form-field>
-
-
-
-        <mat-form-field class="campo" appearance="outline">
-
-          <label>
-            <input matInput type="text" placeholder="Traje" formControlName="traje">
-          </label>
-
-        </mat-form-field>
-
-      </div>
-
-
-
-
-      <div class="campos">
-
-        <mat-form-field class="campo" appearance="outline">
-
-          <label>
-            <input matInput type="text" placeholder="Preço" formControlName="preco">
-          </label>
-          <mat-error *ngIf="conta.get('preco').hasError('required')">O evento deve ter um preço <strong>válido</strong>!</mat-error>
-
-
-        </mat-form-field>
-
-        <mat-form-field class="campo" appearance="outline">
-
-          <label>
-            <input matInput type="number" placeholder="Limite de acompanhantes" formControlName="acompanhantes">
-          </label>
-
-        </mat-form-field>
-
-        <mat-form-field class="campo" appearance="outline">
-
-          <label>
-            <input matInput type="number" placeholder="Idade Mínima" formControlName="idade">
-          </label>
-          <mat-error *ngIf="conta.get('idade').hasError('required')">A idade mínima é <strong>obrigatória</strong>!</mat-error>
-
-        </mat-form-field>
-
-      </div>
-
-
-
-
-
-      <div class="campos">
-
-        <mat-form-field class="campo" appearance="outline">
-
-          <label>
-            <input matInput type="text" placeholder="Complemento" formControlName="complemento">
-          </label>
-
-        </mat-form-field>
-
-        <mat-form-field class="campo" appearance="outline">
-
-          <label>
-            <input matInput type="text" placeholder="Descrição" formControlName="descricao">
-          </label>
-          <mat-error *ngIf="conta.get('descricao').hasError('required')">Uma descrição é <strong>obrigatório</strong>!</mat-error>
-
-
-        </mat-form-field>
-
-        <mat-form-field class="campo" appearance="outline">
-
-          <label>
-            <input matInput type="text" placeholder="Cronograma" formControlName="cronograma">
-          </label>
-          <mat-error *ngIf="conta.get('cronograma').hasError('required')">O cronograma é <strong>obrigatório</strong>!</mat-error>
-
-        </mat-form-field>
-
-      </div>
-
-
-
-
-
-
-      <div class="campos">
-
-        <!-- Usei div para não dar erro enquanto ainda não foi feito -->
-
-        <div class="campo-extra" appearance="outline">
-
-          <label>
-            <h1> Documento </h1>
-          </label>
-
+  <div class="form">
+    <h2 class="form-header">Registre um novo evento</h2>
+    <h4 class="form-subheader" #error></h4>
+
+    <mat-horizontal-stepper [formGroup]="userEvent">
+      <mat-step class="form-data" label="Informações" state="info">
+        <p>Informações do evento</p>
+        <div>
+          <button mat-button matStepperNext>Editar o local</button>
         </div>
-
-        <div class="campo-extra" appearance="outline">
-
-          <label>
-            <h1> Imagem </h1>
-          </label>
-
+      </mat-step>
+      <mat-step class="form-data-step" label="Local" state="local">
+        <p>Local do evento</p>
+        <div class="form-data">
+          <button mat-button matStepperPrevious>Editar as informações</button>
+          <button mat-button matStepperNext>Editar os anexos</button>
         </div>
+      </mat-step>
+      <mat-step class="form-data-step" label="Anexos">
+        <p>Anexos do evento</p>
+        <div class="form-data">
+          <button mat-button matStepperPrevious>Editar o local</button>
+          <button mat-raised-button class="form-main-action" color="primary" (click)="registerNewUserEvent()" [disabled]="resolvingRequest">Registrar</button>
+        </div>
+      </mat-step>
 
-      </div>
-
-
-
-
-    </form>
-
-    <div class="formulario-acoes">
-      <button mat-raised-button class="formulario-acoes-btn" id="btn-cadastro" color="primary" >Cadastrar</button>
-    </div>
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="info">
+        <mat-icon>date_range</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="local">
+        <mat-icon>map</mat-icon>
+      </ng-template>
+    </mat-horizontal-stepper>
   </div>
 </div>

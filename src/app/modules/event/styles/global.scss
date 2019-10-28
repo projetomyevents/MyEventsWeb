@@ -1,6 +1,6 @@
 .content {}
 
-.formulario {
+.form {
   width: 500px;
   padding: 30px;
   border: 1px solid hsla(0, 0%, 0%, 0.1);
@@ -8,53 +8,53 @@
   background-color: white;
 }
 
-.formulario-cabecalho, .formulario-subcabecalho {
+.form-header, .form-subheader {
   margin: 0 0 18px;
-  text-align: left;
 }
 
-.formulario-cabecalho {
+.form-header {
   font-weight: normal;
 }
 
-.formulario-subcabecalho {
+.form-subheader {
   font-weight: lighter;
 }
 
-.formulario-dados {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
+//.form-data {
+//  display: flex;
+//  flex-direction: column;
+//  justify-content: space-between;
+//  align-items: center;
+//  width: 100%;
+//}
+//
+//.form-data-step {
+//  width: 100%;
+//}
+//
+//.form-fields {
+//  display: flex;
+//  justify-content: space-between;
+//  width: 100%;
+//}
+//
+//.form-field {
+//  width: 100%;
+//  margin: 5px 0;
+//}
+//
+//.form-actions {
+//  display: flex;
+//  flex-direction: row;
+//  justify-content: space-between;
+//  align-items: center;
+//  width: 100%;
+//  margin-top: 16px;
+//}
 
-.campo {
-  width: 100%;
-  margin: 5px 0;
-}
-
-.complexibilidade-senha {
-  border-radius: 4px;
-  height: 8px;
-  margin: 15px 0;
-}
-
-.formulario-acoes {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 16px;
-}
-
-.acao-principal {
+.form-main-action {
   width: 200px;
   height: 42px;
-}
-
-.icone {
-  color: hsla(0, 0%, 0%, 0.65);
 }
 
 /* TODO: @media para telas menores */

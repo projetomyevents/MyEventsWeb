@@ -1,48 +1,11 @@
 @import "../../styles/global";
 
-.formulario-subcabecalho {
-  color: hsl(0, 100%, 60%);
-}
-
-.formulario {
-  width: 60%;
-}
-
-
-
-.campos {
+.form-data {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-
-  .campo {
-    width: 30%;
-    text-align: center;
-  }
-
-  .campo-extra {
-    width: 45%;
-    text-align: center;
-  }
-
-}
-
-
-#esconder-senha {
-  top: 7px;
-}
-
-#login {
-  margin-top: 16px;
-}
-
-#btn-cadastro {
-  width: 200px;
-  height: 42px;
-}
-
-#btn-login{
-  color: #696969;
 }
 
 /* TODO: @media para telas menores */
