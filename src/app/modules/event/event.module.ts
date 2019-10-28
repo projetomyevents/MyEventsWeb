@@ -6,7 +6,7 @@ import { EventPageRegisterComponent } from './pages/event-page-register/event-pa
 import { EventRoutingModule } from './event-routing.module';
 import { EventPageListComponent } from './pages/event-page-list/event-page-list.component';
 import { EventPageOverviewComponent } from './pages/event-page-overview/event-page-overview.component';
-import {MatIconModule} from "@angular/material/icon";
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-event-page-register',
