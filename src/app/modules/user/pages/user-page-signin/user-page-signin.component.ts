@@ -5,7 +5,7 @@ import { map as ObservableMap } from 'rxjs/operators';
 import { completeEmails } from '../../../core/shared/email-providers';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { AuthenticationService } from '../../../core/shared/authentication.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-page-signin',
@@ -23,7 +23,11 @@ export class UserPageSigninComponent implements OnInit {
   resolvingRequest: boolean;
   hidePassword = true;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.userAccount = new FormGroup( {
@@ -44,7 +48,8 @@ export class UserPageSigninComponent implements OnInit {
         await this.authenticationService.login(
           this.userAccount.get('email').value, this.userAccount.get('password').value);
 
-        await this.router.navigateByUrl(RoutesConfig.routes.home);  // redirecionar o usuário a página inicial
+        // redirecionar o usuário a página inicial
+        await this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || RoutesConfig.routes.home);
       } catch (err) {
         this.error.nativeElement.textContent = err.message;  // mostrar mensagem de erro ao usuário
         this.resolvingRequest = false;
