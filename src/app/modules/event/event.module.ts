@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDatepickerModule,
   MatFormFieldModule,
-  MatInputModule,
+  MatInputModule, MatNativeDateModule,
   MatStepperModule
 } from '@angular/material';
 import { EventPageRegisterComponent } from './pages/event-page-register/event-page-register.component';
@@ -26,7 +26,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatCardModule,
     MatIconModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class EventModule { }

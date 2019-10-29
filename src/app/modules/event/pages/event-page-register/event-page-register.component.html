@@ -5,7 +5,26 @@
 
     <mat-horizontal-stepper [formGroup]="userEvent">
       <mat-step class="form-data" label="Informações" state="info">
-        <p>Informações do evento</p>
+        <div class="form-data-step">
+          <mat-form-field>
+            <label>
+              <input matInput placeholder="Nome do evento" formControlName="name">
+            </label>
+            <mat-error *ngIf="userEvent.get('name').hasError('required')">Informe um nome</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <label>
+              <textarea matInput placeholder="Descrição" formControlName="description"></textarea>
+            </label>
+            <mat-error *ngIf="userEvent.get('description').hasError('required')">Informe a descrição</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <label>
+              <input [matDatepicker]="myDatepicker" formControlName="date">
+            </label>
+            <mat-datepicker #myDatepicker></mat-datepicker>
+          </mat-form-field>
+        </div>
         <div>
           <button mat-button matStepperNext>Editar o local</button>
         </div>

@@ -1,11 +1,13 @@
 @import "../../styles/global";
 
-.form-data {
+.form-data-step {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
-
+.mat-form-field{
+  width: 100%;
+}
 /* TODO: @media para telas menores */
