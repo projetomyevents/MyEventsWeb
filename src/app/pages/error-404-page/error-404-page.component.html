@@ -1,6 +1,6 @@
 <div class="content">
-  <h1 id="short-message">{{shortMessage}}</h1>
-  <h3 id="long-message">{{longMessage}}</h3>
+  <h1 class="mat-headline">Oops! A página solicitada não foi encontrada.</h1>
+  <h2 class="mat-title">A URL pode estar incorreta ou a página que você procura não está mais disponível.</h2>
 
-  <button id="btn-home-page" mat-raised-button color="primary" routerLink="">Ir para a página inicial!</button>
+  <button mat-raised-button color="primary" [routerLink]="homeRoute">Página inicial</button>
 </div>

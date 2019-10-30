@@ -1,11 +1,35 @@
-#short-message {
-  font-weight: lighter;
+h1 {
+  margin: 1em 10%;
 }
 
-#btn-home-page {
+h2 {
+  color: hsl(0, 0%, 0%, .8);
+  margin: 0 5%;
+}
+
+button {
   font-size: 24px;
-  height: 64px;
-  margin: 30px 0 15px;
+  height: 48px;
+  width: 200px;
+  margin: 36px 0 28px;
+  border-radius: 28px;
+}
+
+@media(max-width: 768px) {
+  h1 {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  h2 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  button {
+    height: 64px;
+    border-radius: 32px;
+  }
 }
 
 /* TODO: @media para telas menores */

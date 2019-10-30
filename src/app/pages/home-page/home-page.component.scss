@@ -1,20 +1,34 @@
-#motto {
+h1 {
   text-transform: uppercase;
-  margin: 25px 15%;
+  margin: 1em 15%;
 }
 
-#description {
+h3 {
+  margin: 0 10%;
+}
+
+button {
   font-size: 24px;
-  font-weight: normal;
-  margin: 10px 10%;
+  height: 48px;
+  width: 240px;
+  margin: 36px 0 28px;
+  border-radius: 28px;
 }
 
-#btn-register-new-event {
-  font-size: 32px;
-  height: 64px;
-  width: 380px;
-  margin: 64px 0 32px;
-  border-radius: 32px;
-}
+@media(max-width: 768px) {
+  h1 {
+    font-size: 16px;
+    line-height: 22px;
+  }
 
-/* TODO: @media para telas menores */
+  h3 {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  button {
+    height: 64px;
+    width: 200px;
+    border-radius: 32px;
+  }
+}
