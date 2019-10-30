@@ -7,12 +7,12 @@ import { UserPageRequestPasswordResetComponent } from './pages/user-page-request
 import { UserPagePasswordResetComponent } from './pages/user-page-password-reset/user-page-password-reset.component';
 
 
-const routesNames = RoutesConfig.routesNames.user;
+const userRoutes = RoutesConfig.routes.user;
 
 const routes: Routes = [
-  {path: routesNames.signup, component: UserPageSignupComponent},
-  {path: routesNames.signin, component: UserPageSigninComponent},
-  {path: routesNames.passwordReset, component: UserPageRequestPasswordResetComponent},
+  {path: userRoutes.signup, component: UserPageSignupComponent},
+  {path: userRoutes.signin, component: UserPageSigninComponent},
+  {path: userRoutes.passwordReset, component: UserPageRequestPasswordResetComponent},
   // TODO: implementar o sistema de token para esta rota
   {path: 'password-reset', component: UserPagePasswordResetComponent}
 ];

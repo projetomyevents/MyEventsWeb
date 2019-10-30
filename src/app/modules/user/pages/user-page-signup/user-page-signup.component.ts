@@ -20,7 +20,7 @@ import { NewUser } from '../../../core/shared/user.model';
 })
 export class UserPageSignupComponent implements OnInit {
 
-  routesNames = RoutesConfig.routesNames;
+  userRoutes = RoutesConfig.routes.user;
 
   @ViewChild('error', {static: false, read: ElementRef}) error: ElementRef;
   @ViewChild('cpfInput', {static: false}) cpfInput: CPFInput;

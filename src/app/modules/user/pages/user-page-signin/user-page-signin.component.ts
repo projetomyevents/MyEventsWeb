@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UserPageSigninComponent implements OnInit {
 
-  routesNames = RoutesConfig.routesNames;
+  userRoutes = RoutesConfig.routes.user;
 
   @ViewChild('error', {static: false, read: ElementRef}) error: ElementRef;
 

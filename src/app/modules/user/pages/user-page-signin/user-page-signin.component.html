@@ -34,9 +34,9 @@
     </form>
 
     <div class="form-actions">
-      <button mat-button id="btn-reset-password" [routerLink]="'/' + routesNames.user.passwordReset">Esqueci minha senha!</button>
+      <button mat-button id="btn-reset-password" [routerLink]="'/' + userRoutes.passwordReset">Esqueci minha senha!</button>
       <button mat-raised-button class="form-main-action" color="primary" (click)="signin()" [disabled]="resolvingRequest">Logar</button>
-      <button mat-button id="btn-signup" color="primary" [routerLink]="'/' + routesNames.user.signup">Não possui uma conta? Cadastre-se!</button>
+      <button mat-button id="btn-signup" color="primary" [routerLink]="'/' + userRoutes.signup">Não possui uma conta? Cadastre-se!</button>
     </div>
   </div>
 </div>

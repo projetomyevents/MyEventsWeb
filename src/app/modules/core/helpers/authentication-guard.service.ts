@@ -29,7 +29,7 @@ export class AuthenticationGuardService implements CanActivate {
     }
 
     // se não estiver logado redirecioná-lo para a página de login com um parametro para a rota desejada
-    await this.router.navigate([RoutesConfig.routesNames.user.signin], {queryParams: {returnUrl: state.url}});
+    await this.router.navigate([RoutesConfig.routes.user.signin], {queryParams: {returnUrl: state.url}});
     return false;
   }
 

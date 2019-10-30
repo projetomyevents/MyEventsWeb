@@ -11,7 +11,7 @@ import { AuthenticationService } from '../../../modules/core/shared/authenticati
 export class HeaderComponent implements OnInit {
 
   repoLink = AppConfig.repositoryURL;
-  routesNames = RoutesConfig.routesNames;
+  routes = RoutesConfig.routes;
   dev = isDevMode();
 
   constructor(

@@ -6,11 +6,11 @@ import { EventPageListComponent } from './pages/event-page-list/event-page-list.
 import { EventPageOverviewComponent } from './pages/event-page-overview/event-page-overview.component';
 
 
-const routesNames = RoutesConfig.routesNames.event;
+const eventRoutes = RoutesConfig.routes.event;
 
 const routes: Routes = [
-  {path: routesNames.register, component: EventPageRegisterComponent},
-  {path: routesNames.list, component: EventPageListComponent},
+  {path: eventRoutes.register, component: EventPageRegisterComponent},
+  {path: eventRoutes.list, component: EventPageListComponent},
   // TODO: implementar criação de url por id do evento
   {path: 'event/1i23h1231h23912h3', component: EventPageOverviewComponent}
 ];
