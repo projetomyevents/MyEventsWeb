@@ -1,34 +1,39 @@
-.app-toolbar {
+mat-toolbar {
   position: fixed;
-  text-transform: uppercase;
   top: 0;
+  height: 52px;
+  text-transform: uppercase;
 }
 
-.nav-links {
-  padding: 0 25px;
+nav {
+  padding: 0 15px;
+}
+
+a {
+  font-size: 16px;
+
+  svg path {
+    margin-bottom: 1px;
+    fill: hsl(0, 0%, 100%);
+  }
+
+  &:hover {
+    color: hsl(36, 100%, 50%);
+    background-color: rgba(white, 0.04);
+  }
 }
 
 .nav-spacer {
-  flex: 1 1 auto;
+  flex: auto;
 }
 
-.nav-link {
-  font-size: 16px;
-  color: white;
-}
-
-.nav-link-icon {
+.mat-icon {
   height: 28px;
   margin: 4px 4px 2px 0;
 }
 
-#nav-link-icon-github {
-  height: 26px;
-  margin: 0 6px 2px 0;
-}
-
-@media (max-width: 1000px) {
-  .nav-link-text {
+@media (max-width: 768px) {
+  span {
     display: none;
   }
 }

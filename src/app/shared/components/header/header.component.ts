@@ -10,9 +10,9 @@ import { AuthenticationService } from '../../../modules/core/shared/authenticati
 })
 export class HeaderComponent implements OnInit {
 
-  repoLink = AppConfig.repositoryURL;
+  repositoryURL = AppConfig.repositoryURL;
   routes = RoutesConfig.routes;
-  dev = isDevMode();
+  isDevMode = isDevMode();
 
   constructor(
     private authenticationService: AuthenticationService
@@ -23,14 +23,14 @@ export class HeaderComponent implements OnInit {
   /**
    * Verifica se o usuário está autenticado.
    */
-  userIsLogged(): boolean {
+  logged(): boolean {
     return this.authenticationService.logged();
   }
 
   /**
    * Desconecta o usuário.
    */
-  disconnectUser(): void {
+  logout(): void {
     this.authenticationService.logout();
   }
 
