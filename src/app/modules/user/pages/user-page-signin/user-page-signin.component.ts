@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map as ObservableMap } from 'rxjs/operators';
-import { completeEmails } from '../../../core/shared/email-providers';
 import { RoutesConfig } from '../../../../config/routes.config';
+import { completeEmails } from '../../../core/shared/email-providers';
 import { AuthenticationService } from '../../../core/shared/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-page-signin',

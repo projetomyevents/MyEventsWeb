@@ -1,17 +1,18 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from '../../../core/shared/custom-validators';
+import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { map as ObservableMap } from 'rxjs/operators';
+import { RoutesConfig } from '../../../../config/routes.config';
+import { CustomValidators } from '../../../core/shared/custom-validators';
 import { ParentErrorStateMatcher } from '../../../core/shared/custom-state-matchers';
 import { completeEmails } from '../../../core/shared/email-providers';
 import { passwordStrength } from '../../../core/shared/password-complexity';
-import { RoutesConfig } from '../../../../config/routes.config';
 import { CPFInput } from '../../components/cpf-input/cpf-input.component';
 import { PhoneInput } from '../../components/phone-input/phone-input.component';
-import { UserService } from '../../../core/shared/user.service';
-import { Router } from '@angular/router';
 import { NewUser } from '../../../core/shared/user.model';
+import { UserService } from '../../../core/shared/user.service';
 
 @Component({
   selector: 'app-user-page-signup',
@@ -33,7 +34,7 @@ export class UserPageSignupComponent implements OnInit {
   hidePassword = true;
   passwordStrength = {percentage: 0, class: ''};
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.userAccount = new FormGroup( {
@@ -60,7 +61,7 @@ export class UserPageSignupComponent implements OnInit {
       this.cpfInput.cpf.markAllAsTouched();
       this.phoneInput.phone.markAllAsTouched();
       this.userAccount.get('cpf').updateValueAndValidity();
-      this.userAccount.get('phoneNumber').updateValueAndValidity();
+      this.userAccount.get('phone').updateValueAndValidity();
     } else {
       this.resolvingRequest = true;
 
@@ -76,12 +77,18 @@ export class UserPageSignupComponent implements OnInit {
       try {
         await this.userService.register(newUser);
 
+        await this.snackBar.open('Cadastrado com sucesso! Verifique seu email e ative sua conta.', 'OK',
+          {duration: -1, panelClass: 'snack-bar-success'}).onAction().toPromise();
+
         await this.router.navigateByUrl(RoutesConfig.routes.home);  // redirecionar o usuário a página inicial
       } catch (err) {
-        this.error.nativeElement.textContent = err.message;  // mostrar mensagem de erro ao usuário
-        if (err.errors) {
-          err.errors.forEach(subErr => this.error.nativeElement.textContent += subErr.message);
-        }
+        this.snackBar.open('Falha na tentativa de cadastro! Corrija os erros e tente novamente.', 'OK',
+          {panelClass: 'snack-bar-failure'});
+
+        // mostrar mensagens de erro ao usuário
+        this.error.nativeElement.textContent = err.message;
+        if (err.errors) { err.errors.forEach(subErr => this.error.nativeElement.textContent += subErr.message); }
+
         this.resolvingRequest = false;
       }
     }

@@ -29,3 +29,24 @@
     background-color: hsl(266, 100%, 59%);
   }
 }
+
+// colorizar snack bar
+.snack-bar-success, .snack-bar-problematic, .snack-bar-failure {
+  color: #212121;
+
+  .mat-button {
+    color: #212121;
+  }
+}
+
+.snack-bar-success {
+  background-color: #8bc34a;
+}
+
+.snack-bar-problematic {
+  background-color: #ffa726;
+}
+
+.snack-bar-failure {
+  background-color: #ff1744;
+}

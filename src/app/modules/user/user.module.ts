@@ -7,7 +7,7 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatProgressBarModule, MatTooltipModule
+  MatProgressBarModule, MatSnackBarModule, MatTooltipModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { UserRoutingModule } from './user-routing.module';
@@ -40,7 +40,8 @@ import { PhoneInput } from './components/phone-input/phone-input.component';
     MatIconModule,
     MatAutocompleteModule,
     MatProgressBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
   ]
 })
 export class UserModule { }
