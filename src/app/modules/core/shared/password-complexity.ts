@@ -1,3 +1,5 @@
+import zxcvbn from './zxcvbn.js';
+
 const classes = {
   0: 'too-weak',
   1: 'weak',
@@ -12,8 +14,7 @@ const classes = {
  * @param password - A senha a ser avaliada.
  */
 export function passwordComplexity(password: string): number {
-// TODO: Implementar algoritmo para calcular a complexibilidade da senha.
-  return Math.floor(Math.random() * 5);  // temporario
+  return zxcvbn(password).score;
 }
 
 /**
