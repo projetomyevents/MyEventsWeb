@@ -3,23 +3,33 @@
   justify-content: center;
 }
 
-// diminuir tamanho dos campos de forma que utilizam a aparência 'outline'
-.mat-form-field-appearance-outline .mat-form-field-infix {
-  padding: 7px 0;
-  border-top: .54375em solid transparent;
-}
+.mat-form-field-appearance-outline {
+  // alterar cor das bordas do form field
+  .mat-form-field-outline {
+    color: hsla(0, 0%, 0%, 0.3);
+  }
 
-// ajustar os campos de forma que utilizam a aparência 'outline' para o novo tamanho
-.mat-form-field-appearance-outline .mat-form-field-label {
-  top: 1.44375em;
-}
+  // diminuir tamanho dos campos de forma que utilizam a aparência 'outline'
+  .mat-form-field-infix {
+    padding: 7px 0;
+    border-top: .54375em solid transparent;
+  }
 
-.mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label, .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-  transform: translateY(-.99375em) scale(.75);
-}
+  // ajustar distância entre o rótulo e o campo de input
+  .mat-form-field-label {
+    top: 1.44375em;
+  }
 
-.mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server[label]:not(:label-shown) + .mat-form-field-label-wrapper .mat-form-field-label {
-  transform: translateY(-.99374em) scale(.75);
+  // ajustar distância entre o rótulo e o campo de input quando flutuando
+  &.mat-form-field-can-float {
+    .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label, &.mat-form-field-should-float .mat-form-field-label {
+      transform: translateY(-.99375em) scale(.75);
+    }
+
+    .mat-input-server[label]:not(:label-shown) + .mat-form-field-label-wrapper .mat-form-field-label {
+      transform: translateY(-.99374em) scale(.75);
+    }
+  }
 }
 
 // aumentar o comprimento da snack bar em telas maiores
