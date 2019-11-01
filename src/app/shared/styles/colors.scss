@@ -4,8 +4,4 @@
 
 $primary: mat-palette($mat-grey, 900);
 $accent: mat-palette($mat-orange);
-$warn: mat-palette($mat-red, A400);
-
-$theme: mat-light-theme($primary, $accent, $warn);
-
-@include angular-material-theme($theme);
+$warn: mat-palette($mat-red);

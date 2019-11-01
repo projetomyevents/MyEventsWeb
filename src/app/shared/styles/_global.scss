@@ -1,3 +1,5 @@
+@import "colors";
+
 .content {
   display: flex;
   flex-flow: column;
@@ -10,43 +12,43 @@
 // colorizar a barra de força da senha com base da sua complexibilidade
 .mat-progress-bar-fill::after {
   .too-weak &{
-    background-color: hsl(0, 100%, 60%);
+    background-color: hsl(1, 83%, 63%);
   }
 
   .weak &{
-    background-color: hsl(20, 100%, 70%);
+    background-color: hsl(45, 100%, 58%);
   }
 
   .mediocre &{
-    background-color: hsl(149, 53%, 57%);
+    background-color: hsl(75, 100%, 46%);
   }
 
   .strong &{
-    background-color: hsl(214, 100%, 70%);
+    background-color: hsl(151, 100%, 45%);
   }
 
   .epic &{
-    background-color: hsl(266, 100%, 59%);
+    background-color: hsl(199, 100%, 50%);
   }
 }
 
 // colorizar snack bar
 .snack-bar-success, .snack-bar-problematic, .snack-bar-failure {
-  color: #212121;
+  color: black;
 
   .mat-button {
-    color: #212121;
+    color: black;
   }
 }
 
 .snack-bar-success {
-  background-color: #8bc34a;
+  background-color: hsl(88, 50%, 53%);
 }
 
 .snack-bar-problematic {
-  background-color: #ffa726;
+  background-color: hsl(36, 100%, 57%);
 }
 
 .snack-bar-failure {
-  background-color: #ff1744;
+  background-color: hsl(4, 90%, 58%);
 }
