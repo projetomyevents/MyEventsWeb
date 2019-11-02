@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
@@ -11,7 +11,6 @@ import { completeEmails } from '../../../core/shared/email-providers';
 import { passwordStrength } from '../../../core/shared/password-complexity';
 import { CPFInput } from '../../components/cpf-input/cpf-input.component';
 import { PhoneInput } from '../../components/phone-input/phone-input.component';
-import { NewUser } from '../../../core/shared/user.model';
 import { UserService } from '../../../core/shared/user.service';
 
 @Component({
@@ -23,15 +22,15 @@ export class UserPageSignupComponent implements OnInit {
 
   userRoutes = RoutesConfig.routes.user;
 
-  @ViewChild('error', {static: false, read: ElementRef}) error: ElementRef;
   @ViewChild('cpfInput', {static: false}) cpfInput: CPFInput;
   @ViewChild('phoneInput', {static: false}) phoneInput: PhoneInput;
 
   userAccount: FormGroup;
   completedEmails: Observable<string[]>;
   resolvingRequest: boolean;
-  parentErrorStateMatcher = new ParentErrorStateMatcher();
+  info: string;
   hidePassword = true;
+  parentErrorStateMatcher = new ParentErrorStateMatcher();
   passwordStrength = {percentage: 0, class: ''};
 
   constructor(private userService: UserService, private router: Router, private snackBar: MatSnackBar) { }
@@ -64,31 +63,25 @@ export class UserPageSignupComponent implements OnInit {
       this.userAccount.get('phone').updateValueAndValidity();
     } else {
       this.resolvingRequest = true;
-
-      const newUser: NewUser = {
-        email: this.userAccount.get('email').value,
-        password: this.userAccount.get('passwords.password').value,
-        confirmedPassword: this.userAccount.get('passwords.confirmedPassword').value,
-        name: this.userAccount.get('name').value,
-        cpf: this.userAccount.get('cpf').value.toString(),
-        phone: this.userAccount.get('phone').value.toString()
-      };
-
       try {
-        await this.userService.register(newUser);
+        const rawUser = this.userAccount.getRawValue();
+        await this.userService.register({
+          email: rawUser.email,
+          password: rawUser.passwords.password,
+          confirmedPassword: rawUser.passwords.confirmedPassword,
+          name: rawUser.name,
+          cpf: rawUser.cpf.toString(),
+          phone: rawUser.phone.toString()
+        });
 
         await this.snackBar.open('Cadastrado com sucesso! Verifique seu email e ative sua conta.', 'OK',
           {duration: -1, panelClass: 'snack-bar-success'}).onAction().toPromise();
 
-        await this.router.navigateByUrl(RoutesConfig.routes.home);  // redirecionar o usuário a página inicial
+        await this.router.navigateByUrl(RoutesConfig.routes.home);
       } catch (err) {
-        this.snackBar.open('Falha na tentativa de cadastro! Corrija os erros e tente novamente.', 'OK',
-          {panelClass: 'snack-bar-failure'});
-
-        // mostrar mensagens de erro ao usuário
-        this.error.nativeElement.textContent = err.message;
-        if (err.errors) { err.errors.forEach(subErr => this.error.nativeElement.textContent += subErr.message); }
-
+        this.snackBar.open('Falha na tentativa de cadastro!', 'OK', {panelClass: 'snack-bar-failure'});
+        this.info = err.message;
+        if (err.errors) { err.errors.forEach(subErr => this.info += subErr.message); }
         this.resolvingRequest = false;
       }
     }

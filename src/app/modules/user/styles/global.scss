@@ -1,51 +1,25 @@
-.content {}
+.content { }
 
-.form {
+.card {
   width: 500px;
-  padding: 30px;
-  border: 1px solid hsla(0, 0%, 0%, 0.1);
-  border-radius: .3em;
+  padding: 25px;
+  border: 1px solid hsla(0, 0%, 0%, 0.2);
   background-color: white;
+  box-shadow: 3px 3px 1.5px hsla(0, 0%, 0%, 0.1);
 }
 
-.form-header, .form-subheader {
-  margin: 0 0 18px;
+.card-title, .card-header, .card-subheader {
   text-align: left;
 }
 
-.form-header {
-  font-weight: normal;
-}
-
-.form-subheader {
-  font-weight: lighter;
-}
-
-.form-data {
+.card-content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
-.form-fields {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.form-field {
-  width: 100%;
-  margin: 5px 0;
-}
-
-.password-strength-bar {
-  border-radius: 4px;
-  height: 8px;
-  margin: 15px 0;
-}
-
-.form-actions {
+.card-actions {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,13 +28,31 @@
   margin-top: 16px;
 }
 
-.form-main-action {
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.card-field {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.main-card-action {
   width: 200px;
   height: 42px;
 }
 
+.password-strength-bar {
+  border-radius: 4px;
+  height: 8px;
+  margin: 15px 0;
+}
+
 .icon {
-  color: hsla(0, 0%, 0%, 0.65);
+  color: hsla(0, 0%, 0%, 0.75);
 }
 
 /* TODO: @media para telas menores */

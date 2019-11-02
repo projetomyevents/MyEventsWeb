@@ -1,13 +1,13 @@
 <div class="content">
-  <div class="form">
-    <h2 class="form-header">Login</h2>
-    <h4 class="form-subheader" #error></h4>
+  <div class="card">
+    <h1 class="card-title mat-headline">Login</h1>
+    <h3 class="card-header mat-subheading-2">{{info}}</h3>
 
-    <form class="form-data" [formGroup]="userAccount">
-      <mat-form-field class="form-field" appearance="outline">
+    <form class="card-content" [formGroup]="userAccount">
+      <mat-form-field class="card-field" appearance="outline">
         <mat-label>Email</mat-label>
         <label>
-          <input matInput type="email" formControlName="email" name="email" [matAutocomplete]="emailSuggestions">
+          <input matInput type="email" name="email" formControlName="email" [matAutocomplete]="emailSuggestions">
           <mat-autocomplete autoActiveFirstOption #emailSuggestions="matAutocomplete">
             <mat-option *ngFor="let email of completedEmails | async" [value]="email">
               {{email}}
@@ -18,8 +18,8 @@
         <mat-error *ngIf="userAccount.get('email').hasError('email')">Informe um email <strong>válido</strong></mat-error>
       </mat-form-field>
 
-      <div class="form-fields">
-        <mat-form-field class="form-field" id="password-field" appearance="outline">
+      <div class="card-row">
+        <mat-form-field class="card-field" id="password-field" appearance="outline">
           <mat-label>Senha</mat-label>
           <label>
             <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" maxlength="127">
@@ -27,16 +27,16 @@
           <mat-error *ngIf="userAccount.get('password').hasError('required')">Informe uma senha</mat-error>
         </mat-form-field>
 
-        <button mat-icon-button type="button" id="btn-hide-password" (click)="hidePassword = !hidePassword" matTooltip="Esconde/Mostra os caractéres da(s) senha(s).">
+        <button mat-icon-button type="button" id="hide-password" (click)="hidePassword = !hidePassword" matTooltip="Esconde/Mostra os caractéres da(s) senha(s).">
           <mat-icon class="icon">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </div>
     </form>
 
-    <div class="form-actions">
-      <button mat-button id="btn-reset-password" [routerLink]="'/' + userRoutes.passwordReset">Esqueci minha senha!</button>
-      <button mat-raised-button class="form-main-action" color="primary" (click)="signin()" [disabled]="resolvingRequest">Logar</button>
-      <button mat-button id="btn-signup" color="primary" [routerLink]="'/' + userRoutes.signup">Não possui uma conta? Cadastre-se!</button>
+    <div class="card-actions">
+      <button mat-button id="reset-password" [routerLink]="'/' + userRoutes.passwordReset">Esqueci minha senha!</button>
+      <button mat-raised-button class="main-card-action" color="primary" (click)="signin()" [disabled]="resolvingRequest">Logar</button>
+      <button mat-button id="signup" color="primary" [routerLink]="'/' + userRoutes.signup">Não possui uma conta? Cadastre-se!</button>
     </div>
   </div>
 </div>

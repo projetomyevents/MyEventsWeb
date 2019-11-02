@@ -1,18 +1,18 @@
 @import "../../styles/global";
 
-.form-subheader {
+.card-header {
   color: hsl(0, 100%, 60%);
 }
 
-.form-fields .form-field {
+.card-row .card-field {
   width: 45%;
 }
 
-#btn-hide-password {
-  top: 7px;
+#hide-password {
+  top: -11px;
 }
 
-#btn-signin {
+#signin {
   margin-top: 16px;
 }
 

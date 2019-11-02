@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -16,10 +16,9 @@ export class UserPageSigninComponent implements OnInit {
 
   userRoutes = RoutesConfig.routes.user;
 
-  @ViewChild('error', {static: false, read: ElementRef}) error: ElementRef;
-
   userAccount: FormGroup;
   completedEmails: Observable<string[]>;
+  info: string;
   resolvingRequest: boolean;
   hidePassword = true;
 
@@ -30,28 +29,29 @@ export class UserPageSigninComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userAccount = new FormGroup( {
+    this.userAccount = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required)
     });
 
     this.completedEmails = this.userAccount.get('email').valueChanges
-      .pipe(ObservableMap(email => completeEmails(email)));
+      .pipe(ObservableMap((email: string) => completeEmails(email)));
   }
 
   async signin(): Promise<void> {
     if (this.userAccount.invalid) {
+      this.info = 'Preencha os campos requeridos.';
       this.userAccount.markAllAsTouched();
     } else {
+      this.info = null;
       this.resolvingRequest = true;
       try {
         await this.authenticationService.login(
           this.userAccount.get('email').value, this.userAccount.get('password').value);
 
-        // redirecionar o usuário a página inicial
-        await this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || RoutesConfig.routes.home);
+        await this.router.navigateByUrl(this.route.snapshot.queryParams.redirect || RoutesConfig.routes.home);
       } catch (err) {
-        this.error.nativeElement.textContent = err.message;  // mostrar mensagem de erro ao usuário
+        this.info = 'Falha na autenticação! Verifique se o email e senha digitados estão corretos.';
         this.resolvingRequest = false;
       }
     }

@@ -1,6 +1,6 @@
 @import "../../styles/global";
 
-.form-subheader {
+.card-header {
   color: hsl(0, 100%, 60%);
 }
 
@@ -8,17 +8,17 @@
   width: 86%;
 }
 
-#btn-hide-password {
-  top: 7px;
+#hide-password {
+  top: -11px;
   right: 15px;
 }
 
-#btn-reset-password {
+#reset-password {
   font-size: .8em;
   margin-bottom: 16px;
 }
 
-#btn-signup {
+#signup {
   margin-top: 16px;
 }
 
