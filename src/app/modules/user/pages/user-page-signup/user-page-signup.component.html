@@ -2,6 +2,7 @@
   <div class="card">
     <h1 class="card-title mat-headline">Crie sua conta</h1>
     <h3 class="card-header mat-subheading-2">{{info}}</h3>
+    <h4 class="card-subheader mat-subheading-1">{{extraInfo}}</h4>
 
     <form class="card-content" [formGroup]="userAccount">
       <mat-form-field class="card-field" appearance="outline">
@@ -69,7 +70,7 @@
     <mat-progress-bar *ngIf="userAccount.get('passwords.password').dirty && userAccount.get('passwords.password').value" class="password-strength-bar" [ngClass]="passwordStrength.class" mode="determinate" [value]="passwordStrength.percentage" matTooltip="Indicação de complexibilidade da sua senha."></mat-progress-bar>
 
     <div class="card-actions">
-      <button mat-raised-button class="main-card-action" color="primary" (click)="signup()" [disabled]="resolvingRequest">Cadastrar</button>
+      <button mat-raised-button class="main-card-action" color="primary" (click)="signup()" [disabled]="resolving">Cadastrar</button>
       <button mat-button id="signin" color="primary" [routerLink]="'/' + userRoutes.signin">Já possui conta ? Faça login</button>
     </div>
   </div>

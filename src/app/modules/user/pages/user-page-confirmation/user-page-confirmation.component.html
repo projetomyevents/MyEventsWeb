@@ -1,0 +1,12 @@
+<div class="content">
+  <mat-spinner *ngIf="!confirmed; else confirmationFailed" color="accent"></mat-spinner>
+  <ng-template #confirmationFailed>
+    <div class="card">
+      <h1 class="card-title mat-headline">{{info}}</h1>
+
+      <div class="card-actions">
+        <button mat-raised-button class="main-card-action" color="primary" [routerLink]="'/' + userRoutes.resendConfirmation">Reenviar o link de confirmação</button>
+      </div>
+    </div>
+  </ng-template>
+</div>

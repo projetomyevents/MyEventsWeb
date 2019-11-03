@@ -15,3 +15,8 @@ export interface NewUser {
   cpf: string;
   phone: string;
 }
+
+export interface NewPassword {
+  password: string;
+  confirmedPassword: string;
+}

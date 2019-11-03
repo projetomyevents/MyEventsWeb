@@ -4,7 +4,10 @@ const routesNames = {
   user: {
     signin: 'signin',
     signup: 'signup',
-    passwordReset: 'request-password-reset'
+    confirm: 'confirm',
+    resendConfirmation: 'resend-confirmation',
+    passwordReset: 'password-reset',
+    sendPasswordReset: 'send-password-reset',
   },
   event: {
     register: 'register-new-event',

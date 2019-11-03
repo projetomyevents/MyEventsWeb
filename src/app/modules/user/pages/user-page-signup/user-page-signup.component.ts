@@ -27,8 +27,9 @@ export class UserPageSignupComponent implements OnInit {
 
   userAccount: FormGroup;
   completedEmails: Observable<string[]>;
-  resolvingRequest: boolean;
+  resolving: boolean;
   info: string;
+  extraInfo: string;
   hidePassword = true;
   parentErrorStateMatcher = new ParentErrorStateMatcher();
   passwordStrength = {percentage: 0, class: ''};
@@ -55,17 +56,20 @@ export class UserPageSignupComponent implements OnInit {
   }
 
   async signup(): Promise<void> {
+    this.info = null;
+    this.extraInfo = '';
     if (this.userAccount.invalid) {
+      this.info = 'Preencha os campos requeridos.';
       this.userAccount.markAllAsTouched();
       this.cpfInput.cpf.markAllAsTouched();
       this.phoneInput.phone.markAllAsTouched();
       this.userAccount.get('cpf').updateValueAndValidity();
       this.userAccount.get('phone').updateValueAndValidity();
     } else {
-      this.resolvingRequest = true;
+      this.resolving = true;
       try {
         const rawUser = this.userAccount.getRawValue();
-        await this.userService.register({
+        const response = await this.userService.register({
           email: rawUser.email,
           password: rawUser.passwords.password,
           confirmedPassword: rawUser.passwords.confirmedPassword,
@@ -74,15 +78,15 @@ export class UserPageSignupComponent implements OnInit {
           phone: rawUser.phone.toString()
         });
 
-        await this.snackBar.open('Cadastrado com sucesso! Verifique seu email e ative sua conta.', 'OK',
-          {duration: -1, panelClass: 'snack-bar-success'}).onAction().toPromise();
+        await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'})
+          .onAction().toPromise();
 
         await this.router.navigateByUrl(RoutesConfig.routes.home);
       } catch (err) {
-        this.snackBar.open('Falha na tentativa de cadastro!', 'OK', {panelClass: 'snack-bar-failure'});
+        this.snackBar.open(err.message, 'OK', {panelClass: 'snack-bar-failure'});
         this.info = err.message;
-        if (err.errors) { err.errors.forEach(subErr => this.info += subErr.message); }
-        this.resolvingRequest = false;
+        if (err.errors) { err.errors.forEach(subErr => this.extraInfo += subErr.message); }
+        this.resolving = false;
       }
     }
   }

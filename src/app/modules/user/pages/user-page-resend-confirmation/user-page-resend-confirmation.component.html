@@ -1,7 +1,8 @@
 <div class="content">
   <div class="card">
-    <h1 class="card-title mat-headline">Solicitar redefinição de senha</h1>
-    <h3 class="card-header mat-subheading-2">Uma mensagem será enviada para esse email com um link para a página de recuperação de senha.</h3>
+    <h1 class="card-title mat-headline">Reenviar confirmação de conta</h1>
+    <h3 class="card-header mat-subheading-2">Uma mensagem será enviada para o seu email contendo um link para a página de confirmação da sua conta.</h3>
+    <h4 class="card-subheader mat-subheading-1">{{info}}</h4>
 
     <div class="card-content">
       <mat-form-field class="card-field" appearance="outline">
@@ -20,7 +21,7 @@
     </div>
 
     <div class="card-actions">
-      <button mat-raised-button class="main-card-action" color="primary" (click)="requestPasswordReset()">Solicitar nova senha</button>
+      <button mat-raised-button class="main-card-action" color="primary" (click)="resendConfirmation()" [disabled]="resolving">Enviar</button>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { NewUser, User } from './user.model';
+import { NewPassword, NewUser, User } from './user.model';
 import { EndpointsConfig } from '../../../config/endpoints.config';
 import { AppConfig } from '../../../config/app.config';
 
@@ -18,12 +18,28 @@ export class UserService {
       {email, password}, {observe: 'response'}).toPromise();
   }
 
-  register(newUser: NewUser): Promise<void> {
-    return this.http.post<void>(`${this.url}/${EndpointsConfig.user.register}`, newUser).toPromise();
+  register(newUser: NewUser): Promise<any> {
+    return this.http.post<any>(`${this.url}/${EndpointsConfig.user.register}`, newUser).toPromise();
   }
 
   get(email: string): Promise<User> {
     return this.http.get<User>(`${this.url}/${EndpointsConfig.user.getByEmail(email)}`).toPromise();
+  }
+
+  confirm(token: string): Promise<any> {
+    return this.http.get<any>(`${this.url}/${EndpointsConfig.user.getConfirm(token)}`).toPromise();
+  }
+
+  resendConfirmation(email: string): Promise<any> {
+    return this.http.get<any>(`${this.url}/${EndpointsConfig.user.getResendConfirmation(email)}`).toPromise();
+  }
+
+  resetPassword(token: string, newPassword: NewPassword): Promise<any> {
+    return this.http.post<any>(`${this.url}/${EndpointsConfig.user.getPasswordReset(token)}`, newPassword).toPromise();
+  }
+
+  sendPasswordReset(email: string): Promise<any> {
+    return this.http.get<any>(`${this.url}/${EndpointsConfig.user.getSendPasswordReset(email)}`).toPromise();
   }
 
 }

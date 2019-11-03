@@ -17,8 +17,10 @@
       <mat-menu #user="matMenu">
         <button mat-menu-item [routerLink]="routes.user.signup">Cadastro</button>
         <button mat-menu-item [routerLink]="routes.user.signin">Login</button>
-        <button mat-menu-item [routerLink]="routes.user.passwordReset">Solicitação de senha</button>
-        <button mat-menu-item routerLink="/password-reset">Alteração de senha</button>
+        <button mat-menu-item [routerLink]="routes.user.confirm">Confirmação de conta</button>
+        <button mat-menu-item [routerLink]="routes.user.resendConfirmation">Reenviar confirmação de conta</button>
+        <button mat-menu-item [routerLink]="routes.user.passwordReset">Redefinição de senha</button>
+        <button mat-menu-item [routerLink]="routes.user.sendPasswordReset">Solicitar redefinição de senha</button>
       </mat-menu>
     </a>
 
@@ -37,17 +39,33 @@
   <div class="nav-spacer"></div>
 
   <nav>
-    <a mat-button *ngIf="!logged(); else loggedIn" [routerLink]="routes.user.signin" matTooltip="Ir para a página de autenticação.">
+    <a mat-button [matMenuTriggerFor]="account">
       <mat-icon>account_circle</mat-icon>
-      <span>Login/Cadastro</span>
+      <span *ngIf="logged()">Olá, {{authenticationService.userValue.name}}</span>
+      <span *ngIf="!logged()">Ações</span>
+      <mat-menu #account="matMenu">
+        <button mat-menu-item *ngIf="!logged()" [routerLink]="routes.user.signin">
+          <mat-icon>exit_to_app</mat-icon>
+          Entrar
+        </button>
+        <button mat-menu-item *ngIf="!logged()" [routerLink]="routes.user.signup">
+          <mat-icon>person_add</mat-icon>
+          Cadastrar-se
+        </button>
+        <button mat-menu-item *ngIf="!logged()" [routerLink]="routes.user.resendConfirmation">
+          <mat-icon>confirmation_number</mat-icon>
+          Reenviar confirmação de conta
+        </button>
+        <button mat-menu-item [routerLink]="routes.user.sendPasswordReset">
+          <mat-icon>lock_open</mat-icon>
+          Solicitar redefinição de senha
+        </button>
+        <button mat-menu-item *ngIf="logged()" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Sair
+        </button>
+      </mat-menu>
     </a>
-
-    <ng-template #loggedIn>
-      <a mat-button (click)="logout()" matTooltip="Desfazer autenticação.">
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Sair</span>
-      </a>
-    </ng-template>
 
     <a mat-button [href]="repositoryURL" matTooltip="Ir para o repositório do app.">
       <svg width="22" height="22">

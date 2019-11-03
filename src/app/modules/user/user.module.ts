@@ -7,14 +7,16 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatProgressBarModule, MatSnackBarModule, MatTooltipModule
+  MatProgressBarModule, MatProgressSpinnerModule, MatSnackBarModule, MatTooltipModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { UserRoutingModule } from './user-routing.module';
 import { UserPageSignupComponent } from './pages/user-page-signup/user-page-signup.component';
 import { UserPageSigninComponent } from './pages/user-page-signin/user-page-signin.component';
-import { UserPageRequestPasswordResetComponent } from './pages/user-page-request-password-reset/user-page-request-password-reset.component';
+import { UserPageConfirmationComponent } from './pages/user-page-confirmation/user-page-confirmation.component';
+import { UserPageResendConfirmationComponent } from './pages/user-page-resend-confirmation/user-page-resend-confirmation.component';
 import { UserPagePasswordResetComponent } from './pages/user-page-password-reset/user-page-password-reset.component';
+import { UserPageSendPasswordResetComponent } from './pages/user-page-send-password-reset/user-page-send-password-reset.component';
 import { CPFInput } from './components/cpf-input/cpf-input.component';
 import { PhoneInput } from './components/phone-input/phone-input.component';
 
@@ -23,8 +25,10 @@ import { PhoneInput } from './components/phone-input/phone-input.component';
   declarations: [
     UserPageSignupComponent,
     UserPageSigninComponent,
-    UserPageRequestPasswordResetComponent,
+    UserPageConfirmationComponent,
+    UserPageResendConfirmationComponent,
     UserPagePasswordResetComponent,
+    UserPageSendPasswordResetComponent,
     CPFInput,
     PhoneInput
   ],
@@ -41,7 +45,8 @@ import { PhoneInput } from './components/phone-input/phone-input.component';
     MatAutocompleteModule,
     MatProgressBarModule,
     MatTooltipModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ]
 })
 export class UserModule { }

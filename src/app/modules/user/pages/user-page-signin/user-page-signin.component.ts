@@ -19,7 +19,7 @@ export class UserPageSigninComponent implements OnInit {
   userAccount: FormGroup;
   completedEmails: Observable<string[]>;
   info: string;
-  resolvingRequest: boolean;
+  resolving: boolean;
   hidePassword = true;
 
   constructor(
@@ -39,20 +39,20 @@ export class UserPageSigninComponent implements OnInit {
   }
 
   async signin(): Promise<void> {
+    this.info = null;
     if (this.userAccount.invalid) {
       this.info = 'Preencha os campos requeridos.';
       this.userAccount.markAllAsTouched();
     } else {
-      this.info = null;
-      this.resolvingRequest = true;
+      this.resolving = true;
       try {
         await this.authenticationService.login(
           this.userAccount.get('email').value, this.userAccount.get('password').value);
 
         await this.router.navigateByUrl(this.route.snapshot.queryParams.redirect || RoutesConfig.routes.home);
       } catch (err) {
-        this.info = 'Falha na autenticação! Verifique se o email e senha digitados estão corretos.';
-        this.resolvingRequest = false;
+        this.info = err.message;
+        this.resolving = false;
       }
     }
   }
