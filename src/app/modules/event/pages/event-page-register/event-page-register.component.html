@@ -19,10 +19,37 @@
             <mat-error *ngIf="userEvent.get('description').hasError('required')">Informe a descrição</mat-error>
           </mat-form-field>
           <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Selecione uma data" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="userEvent.get('date').hasError('required')">Informe uma data válida</mat-error>
+          </mat-form-field>
+          <mat-form-field>
             <label>
-              <input [matDatepicker]="myDatepicker" formControlName="date">
+              <input matInput placeholder="Valor (opcional)" formControlName="ticketPrice">
             </label>
-            <mat-datepicker #myDatepicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <label>
+              <input matInput type="number" placeholder="Máximo de acompanhantes" formControlName="maxCompanions">
+            </label>
+            <mat-error *ngIf="userEvent.get('maxCompanions').hasError('required')">Informe um número máximo de acompanhantes</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <label>
+              <input matInput placeholder="Traje (opcional)" formControlName="attire">
+            </label>
+          </mat-form-field>
+          <mat-form-field>
+            <label>
+              <input matInput type="number" placeholder="Idade mínima (opcional)" formControlName="minAge">
+            </label>
+          </mat-form-field>
+          <mat-form-field>
+            <label>
+              <textarea matInput placeholder="Cronograma" formControlName="schedule"></textarea>
+            </label>
+            <mat-error *ngIf="userEvent.get('schedule').hasError('required')">Informe o cronograma do evento</mat-error>
           </mat-form-field>
         </div>
         <div>
@@ -30,7 +57,47 @@
         </div>
       </mat-step>
       <mat-step class="form-data-step" label="Local" state="local">
-        <p>Local do evento</p>
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Logradouro" formControlName="street">
+          </label>
+          <mat-error *ngIf="userEvent.get('street').hasError('required')">Informe o logradouro</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Bairro" formControlName="neighbourhood">
+          </label>
+          <mat-error *ngIf="userEvent.get('neighbourhood').hasError('required')">Informe o bairro</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input type="number" matInput placeholder="Número" formControlName="number">
+          </label>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Complemento" formControlName="complement">
+          </label>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Cidade" formControlName="city">
+          </label>
+          <mat-error *ngIf="userEvent.get('city').hasError('required')">Informe a cidade</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Estado" formControlName="state">
+          </label>
+          <mat-error *ngIf="userEvent.get('state').hasError('required')">Informe o estado</mat-error>
+        </mat-form-field>
+        <mat-form-field hideRequiredMarker>
+          <label>
+            <input matInput placeholder="CEP" formControlName="CEP" required pattern= "\d{5}-?\d{3}">
+          </label>
+          <mat-error *ngIf="userEvent.get('CEP').hasError">CEP inválido</mat-error>
+        </mat-form-field>
+
         <div class="form-data">
           <button mat-button matStepperPrevious>Editar as informações</button>
           <button mat-button matStepperNext>Editar os anexos</button>
