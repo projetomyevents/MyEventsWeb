@@ -1,25 +1,34 @@
-mat-toolbar {
+$highlight-color: hsl(0, 0%, 80%);
+$background-color: hsl(206, 9%, 15%);
+
+.mat-toolbar {
   position: fixed;
   top: 0;
   height: 52px;
   text-transform: uppercase;
+  color: white;
+  background-color: $background-color;
 }
 
 nav {
   padding: 0 15px;
 }
 
-a {
+.mat-button {
   font-size: 16px;
 
-  svg path {
-    margin-bottom: 1px;
-    fill: hsl(0, 0%, 100%);
+  &:hover {
+    color: $highlight-color;
+    background-color: hsla(0, 0%, 100%, 0.04);
+
+    svg {
+      fill: $highlight-color;
+    }
   }
 
-  &:hover {
-    color: hsl(36, 100%, 50%);
-    background-color: rgba(white, 0.04);
+  svg {
+    margin-bottom: 1px;
+    fill: white;
   }
 }
 
