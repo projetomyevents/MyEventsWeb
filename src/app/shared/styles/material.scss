@@ -4,11 +4,6 @@
 }
 
 .mat-form-field-appearance-outline {
-  // alterar cor das bordas do form field
-  .mat-form-field-outline {
-    color: hsla(0, 0%, 0%, 0.3);
-  }
-
   // diminuir tamanho dos campos de forma que utilizam a aparência 'outline'
   .mat-form-field-infix {
     padding: 7px 0;
