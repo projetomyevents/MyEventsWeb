@@ -34,8 +34,8 @@
     </form>
 
     <div class="card-actions">
-      <button mat-button id="reset-password" [routerLink]="'/' + userRoutes.sendPasswordReset">Esqueci minha senha!</button>
-      <button mat-raised-button class="main-card-action" color="primary" (click)="signin()" [disabled]="resolving">Entrar</button>
+      <button mat-button id="reset-password" color="primary" [routerLink]="'/' + userRoutes.sendPasswordReset">Esqueci minha senha!</button>
+      <button mat-flat-button class="main-card-action" color="primary" (click)="signin()" [disabled]="resolving">Entrar</button>
       <button mat-button id="signup" color="primary" [routerLink]="'/' + userRoutes.signup">Não possui uma conta? Cadastre-se!</button>
     </div>
   </div>
