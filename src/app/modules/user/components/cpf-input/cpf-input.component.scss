@@ -1,9 +1,9 @@
-.cpf {
+form {
   display: flex;
   justify-content: center;
 }
 
-.digits {
+input {
   width: 2em;
   padding: 0;
   border: none;
@@ -17,12 +17,12 @@
   width: 1.5em;
 }
 
-.delimiter {
+span {
   opacity: 0;
   transition: opacity 500ms;
   line-height: 1em;
 }
 
-:host.floating .delimiter {
+:host.floating span {
   opacity: 1;
 }
