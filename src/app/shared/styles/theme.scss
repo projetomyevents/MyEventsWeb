@@ -2,8 +2,8 @@
 
 @include mat-core();
 
-$primary: mat-palette($mat-deep-orange);
-$accent: mat-palette($mat-light-green);
+$primary: mat-palette($mat-light-green);
+$accent: mat-palette($mat-deep-orange);
 $warn: mat-palette($mat-red);
 
 $theme: mat-light-theme($primary, $accent, $warn);

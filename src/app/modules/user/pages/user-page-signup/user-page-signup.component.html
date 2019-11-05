@@ -70,8 +70,8 @@
     <mat-progress-bar *ngIf="userAccount.get('passwords.password').dirty && userAccount.get('passwords.password').value" class="password-strength-bar" [ngClass]="passwordStrength.class" mode="determinate" [value]="passwordStrength.percentage" matTooltip="Indicação de complexibilidade da sua senha."></mat-progress-bar>
 
     <div class="card-actions">
-      <button mat-flat-button class="main-card-action" color="primary" (click)="signup()" [disabled]="resolving">Cadastrar</button>
-      <button mat-button id="signin" color="primary" [routerLink]="'/' + userRoutes.signin">Já possui conta ? Faça login</button>
+      <button mat-flat-button class="main-card-action" color="accent" (click)="signup()" [disabled]="resolving">Cadastrar</button>
+      <button mat-button id="signin" color="accent" [routerLink]="'/' + userRoutes.signin">Já possui conta ? Faça login</button>
     </div>
   </div>
 </div>
