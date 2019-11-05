@@ -7,6 +7,10 @@ export const EndpointsConfig: any = {
     getResendConfirmation: getUserResendConfirmation,
     getPasswordReset: getUserPasswordReset,
     getSendPasswordReset: getUserSendPasswordReset
+  },
+  address: {
+    getAllCities: 'address/cities',
+    getAllStates: 'address/states'
   }
 };
 
