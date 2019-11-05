@@ -27,6 +27,13 @@
   }
 }
 
+// ajustar prefixo e sufixo em campos de forma que não utilizam a aparencia legacy do material
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button,
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button {
+  width: auto !important;
+  height: auto !important;
+}
+
 // personalizar menus em cascata
 .mat-menu-panel {
   background-color: hsl(206, 9%, 18%);
