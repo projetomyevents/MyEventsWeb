@@ -1,7 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NewUser } from '../../../core/shared/user.model';
-import { RoutesConfig } from '../../../../config/routes.config';
 
 @Component({
   selector: 'app-event-page-register',
@@ -10,10 +8,9 @@ import { RoutesConfig } from '../../../../config/routes.config';
 })
 export class EventPageRegisterComponent implements OnInit {
 
-  @ViewChild('error', {static: false, read: ElementRef}) error: ElementRef;
-
   userEvent: FormGroup;
-  resolvingRequest: boolean;
+  resolving: boolean;
+  info: string;
 
   constructor() { }
 
@@ -22,9 +19,9 @@ export class EventPageRegisterComponent implements OnInit {
       // step 1 - informações
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      date: new FormControl('', Validators.required),
-      ticketPrice: new FormControl(''),
-      maxCompanions: new FormControl('', Validators.required),
+      startDate: new FormControl('', Validators.required),
+      admissionPrice: new FormControl(''),
+      companionLimit: new FormControl('', Validators.required),
       attire: new FormControl(''),
       minAge: new FormControl(''),
       schedule: new FormControl('', Validators.required),
@@ -38,7 +35,7 @@ export class EventPageRegisterComponent implements OnInit {
       complement: new FormControl(''),
       // setp 3 - arquivos
       image: new FormControl(''),
-      attachment: new FormControl('')
+      attachments: new FormControl('')
     });
   }
 
@@ -46,7 +43,7 @@ export class EventPageRegisterComponent implements OnInit {
     if (this.userEvent.invalid) {
       this.userEvent.markAllAsTouched();
     } else {
-      // this.resolvingRequest = true;
+      console.log(this.userEvent);
     }
   }
 

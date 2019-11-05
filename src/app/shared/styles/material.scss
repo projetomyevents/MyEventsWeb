@@ -52,6 +52,11 @@
   }
 }
 
+// remover padding dos steppers
+.mat-horizontal-content-container {
+  padding: 0 !important;
+}
+
 // aumentar o comprimento da snack bar em telas maiores
 @media(min-width: 768px) {
   .mat-snack-bar-container {

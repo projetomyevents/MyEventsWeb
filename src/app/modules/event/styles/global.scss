@@ -1,60 +1,47 @@
-.content {}
+.content { }
 
-.form {
+.card {
   width: 500px;
-  padding: 30px;
+  padding: 25px;
   border: 1px solid hsla(0, 0%, 0%, 0.1);
-  border-radius: .3em;
   background-color: white;
+  box-shadow: 3px 3px 1.5px hsla(0, 0%, 0%, 0.1);
 }
 
-.form-header, .form-subheader {
-  margin: 0 0 18px;
+.card-title, .card-header, .card-subheader {
+  text-align: left;
 }
 
-.form-header {
-  font-weight: normal;
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.form-subheader {
-  font-weight: lighter;
+.card-field {
+  width: 100%;
+  margin: 5px 0;
 }
 
-//.form-data {
-//  display: flex;
-//  flex-direction: column;
-//  justify-content: space-between;
-//  align-items: center;
-//  width: 100%;
-//}
-//
-//.form-data-step {
-//  width: 100%;
-//}
-//
-//.form-fields {
-//  display: flex;
-//  justify-content: space-between;
-//  width: 100%;
-//}
-//
-//.form-field {
-//  width: 100%;
-//  margin: 5px 0;
-//}
-//
-//.form-actions {
-//  display: flex;
-//  flex-direction: row;
-//  justify-content: space-between;
-//  align-items: center;
-//  width: 100%;
-//  margin-top: 16px;
-//}
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 
-.form-main-action {
-  width: 200px;
-  height: 42px;
+  .card-field {
+    width: 47%;
+  }
+}
+
+.card-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 16px;
 }
 
 /* TODO: @media para telas menores */
