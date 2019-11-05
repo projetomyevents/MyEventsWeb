@@ -1,3 +1,45 @@
 @import "../../styles/global";
 
+.card {
+  width: 600px;
+  padding: 25px;
+  border: 1px solid hsla(0, 0%, 0%, 0.1);
+  background-color: white;
+  box-shadow: 3px 3px 1.5px hsla(0, 0%, 0%, 0.1);
+}
+
+.card-title, .card-header, .card-subheader {
+  text-align: left;
+}
+
+.card-header, .card-subheader {
+  color: hsl(0, 100%, 60%);
+}
+
+.mat-form-field {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.step-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .mat-form-field {
+    width: 48%;
+  }
+}
+
+.step-actions {
+  display: flex;
+  width: 100%;
+  margin-top: 16px;
+
+  span {
+    flex: auto;
+  }
+}
+
 /* TODO: @media para telas menores */

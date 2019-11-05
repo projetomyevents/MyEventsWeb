@@ -2,10 +2,11 @@
   <div class="card">
     <h2 class="card-title mat-headline">Registre um novo evento</h2>
     <h4 class="card-header mat-subheading-2">{{info}}</h4>
+    <h4 class="card-subheader mat-subheading-1">{{extraInfo}}</h4>
 
     <mat-horizontal-stepper [formGroup]="userEvent">
-      <mat-step class="card-content" label="Informações" state="info">
-        <mat-form-field class="card-field" appearance="outline">
+      <mat-step label="Informações básicas" state="subject" [completed]="infoIsValid()">
+        <mat-form-field appearance="outline">
           <mat-label>Nome</mat-label>
           <label>
             <input matInput formControlName="name">
@@ -13,25 +14,25 @@
           <mat-error *ngIf="userEvent.get('name').hasError('required')">Informe um nome</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="card-field" appearance="outline">
+        <mat-form-field appearance="outline">
           <mat-label>Valor (opcional)</mat-label>
           <label>
             <input matInput formControlName="admissionPrice">
           </label>
         </mat-form-field>
 
-        <div class="card-row">
-          <mat-form-field class="card-field">
+        <div class="step-row">
+          <mat-form-field appearance="outline">
             <mat-label>Data de início</mat-label>
             <label>
-              <input matInput [matDatepicker]="pikapika" formControlName="startDate">
+              <input matInput [min]="today" [matDatepicker]="startDate" formControlName="startDate">
             </label>
-            <mat-datepicker-toggle matSuffix [for]="pikapika"></mat-datepicker-toggle>
-            <mat-datepicker #pikapika></mat-datepicker>
+            <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+            <mat-datepicker #startDate></mat-datepicker>
             <mat-error *ngIf="userEvent.get('startDate').hasError('required')">Informe uma data de início</mat-error>
           </mat-form-field>
 
-          <mat-form-field class="card-field" appearance="outline">
+          <mat-form-field appearance="outline">
             <mat-label>Nº máximo de acompanhantes</mat-label>
             <label>
               <input matInput type="number" formControlName="companionLimit">
@@ -40,15 +41,15 @@
           </mat-form-field>
         </div>
 
-        <div class="card-row">
-          <mat-form-field class="card-field" appearance="outline">
+        <div class="step-row">
+          <mat-form-field appearance="outline">
             <mat-label>Idade mínima (opcional)</mat-label>
             <label>
               <input matInput type="number" formControlName="minAge">
             </label>
           </mat-form-field>
 
-          <mat-form-field class="card-field" appearance="outline">
+          <mat-form-field appearance="outline">
             <mat-label>Traje (opcional)</mat-label>
             <label>
               <input matInput formControlName="attire">
@@ -56,7 +57,7 @@
           </mat-form-field>
         </div>
 
-        <mat-form-field class="card-field" appearance="outline">
+        <mat-form-field appearance="outline">
           <mat-label>Descrição</mat-label>
           <label>
             <textarea matInput formControlName="description"></textarea>
@@ -64,7 +65,7 @@
           <mat-error *ngIf="userEvent.get('description').hasError('required')">Informe uma descrição</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="card-field" appearance="outline">
+        <mat-form-field appearance="outline">
           <mat-label>Cronograma</mat-label>
           <label>
             <textarea matInput formControlName="schedule"></textarea>
@@ -72,21 +73,21 @@
           <mat-error *ngIf="userEvent.get('schedule').hasError('required')">Informe um cronograma</mat-error>
         </mat-form-field>
 
-        <div class="card-actions">
+        <div class="step-actions">
+          <span></span>
           <button mat-button color="primary" matStepperNext>Editar o local</button>
         </div>
       </mat-step>
 
-      <mat-step class="card-content" label="Local" state="map">
-        <mat-form-field class="card-field" appearance="outline">
+      <mat-step label="Local" state="map" [completed]="localIsValid()">
+        <mat-form-field appearance="outline">
           <mat-label>CEP</mat-label>
-          <label>
-            <input matInput formControlName="CEP" pattern= "\d{5}-?\d{3}">
-          </label>
-          <mat-error *ngIf="userEvent.get('CEP').hasError('required')">Informe um CPF</mat-error>
+          <app-cep-input formControlName="cep" #cepInput></app-cep-input>
+          <mat-error *ngIf="userEvent.get('cep').hasError('required')">Informe um CEP</mat-error>
+          <mat-error *ngIf="userEvent.get('cep').hasError('cep')">Informe um CEP <strong>válido</strong></mat-error>
         </mat-form-field>
 
-        <mat-form-field class="card-field" appearance="outline">
+        <mat-form-field appearance="outline">
           <mat-label>Estado</mat-label>
           <label>
             <input matInput formControlName="state">
@@ -94,7 +95,7 @@
           <mat-error *ngIf="userEvent.get('state').hasError('required')">Informe um estado</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="card-field" appearance="outline">
+        <mat-form-field appearance="outline">
           <mat-label>Cidade</mat-label>
           <label>
             <input matInput formControlName="city">
@@ -102,7 +103,7 @@
           <mat-error *ngIf="userEvent.get('city').hasError('required')">Informe uma cidade</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="card-field" appearance="outline">
+        <mat-form-field appearance="outline">
           <mat-label>Bairro</mat-label>
           <label>
             <input matInput formControlName="neighbourhood">
@@ -110,7 +111,7 @@
           <mat-error *ngIf="userEvent.get('neighbourhood').hasError('required')">Informe um bairro</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="card-field" appearance="outline">
+        <mat-form-field appearance="outline">
           <mat-label>Logradouro</mat-label>
           <label>
             <input matInput formControlName="street">
@@ -118,29 +119,31 @@
           <mat-error *ngIf="userEvent.get('street').hasError('required')">Informe um logradouro</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="card-field" appearance="outline">
+        <mat-form-field appearance="outline">
           <mat-label>Número</mat-label>
           <label>
             <input matInput formControlName="number">
           </label>
         </mat-form-field>
 
-        <mat-form-field class="card-field" appearance="outline">
+        <mat-form-field appearance="outline">
           <mat-label>Complemento</mat-label>
           <label>
             <input matInput formControlName="complement">
           </label>
         </mat-form-field>
 
-        <div class="card-actions">
+        <div class="step-actions">
           <button mat-button color="primary" matStepperPrevious>Editar as informações</button>
+          <span></span>
           <button mat-button color="primary" matStepperNext>Editar os anexos</button>
         </div>
       </mat-step>
 
-      <mat-step class="card-content" label="Anexos" state="attachments">
-        <div class="card-actions">
+      <mat-step label="Anexos" state="attachments">
+        <div class="step-actions">
           <button mat-button color="primary" matStepperPrevious>Editar o local</button>
+          <span></span>
           <button mat-flat-button class="form-main-action" color="primary" (click)="registerNewUserEvent()" [disabled]="resolving">Registrar</button>
         </div>
       </mat-step>

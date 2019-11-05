@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CEPInput } from '../../components/cep-input/cep-input.component';
+import { CustomValidators } from '../../../core/shared/custom-validators';
 
 @Component({
   selector: 'app-event-page-register',
@@ -8,15 +10,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EventPageRegisterComponent implements OnInit {
 
+  @ViewChild('cepInput', {static: false}) cepInput: CEPInput;
+
   userEvent: FormGroup;
   resolving: boolean;
   info: string;
+  extraInfo: string;
+  today = new Date(Date.now());
 
   constructor() { }
 
   ngOnInit() {
     this.userEvent = new FormGroup({
-      // step 1 - informações
+      // step 1 - informações básicas
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       startDate: new FormControl('', Validators.required),
@@ -26,7 +32,7 @@ export class EventPageRegisterComponent implements OnInit {
       minAge: new FormControl(''),
       schedule: new FormControl('', Validators.required),
       // step 2 - local
-      CEP: new FormControl('', Validators.required),
+      cep: new FormControl('', [Validators.required, CustomValidators.cep]),
       state: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       neighbourhood: new FormControl('', Validators.required),
@@ -40,11 +46,35 @@ export class EventPageRegisterComponent implements OnInit {
   }
 
   async registerNewUserEvent(): Promise<void> {
+    this.info = null;
+    this.extraInfo = '';
     if (this.userEvent.invalid) {
+      this.info = 'Preencha os campos requeridos.';
       this.userEvent.markAllAsTouched();
+      this.cepInput.cep.markAllAsTouched();
+      this.userEvent.get('cep').updateValueAndValidity();
     } else {
-      console.log(this.userEvent);
+      this.resolving = true;
+      try {
+        console.log(this.userEvent);
+      } catch (err) {
+        this.info = err.message;
+        if (err.errors) { err.errors.forEach(subErr => this.extraInfo += subErr.message); }
+        this.resolving = false;
+      }
     }
+  }
+
+  infoIsValid(): boolean {
+    return this.userEvent.get('name').valid && this.userEvent.get('description').valid
+      && this.userEvent.get('startDate').valid && this.userEvent.get('companionLimit').valid
+      && this.userEvent.get('schedule').valid;
+  }
+
+  localIsValid(): boolean {
+    return this.userEvent.get('cep').valid && this.userEvent.get('state').valid
+      && this.userEvent.get('city').valid && this.userEvent.get('neighbourhood').valid
+      && this.userEvent.get('street').valid;
   }
 
 }

@@ -85,4 +85,23 @@ export class CustomValidators {
     return null;
   }
 
+  /**
+   * Testa se o valor do controle é um CEP válido.
+   *
+   * @param control - O controle.
+   */
+  static cep(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) { return null; }
+
+    // remover qualquer caractére que não seja um dígito
+    const rawCep = control.value.toString().replace(/\D/g, '');
+
+    // não aceitar CEPs inválidos
+    if (rawCep.length !== 8) {
+      return {cep: true};
+    }
+
+    return null;
+  }
+
 }
