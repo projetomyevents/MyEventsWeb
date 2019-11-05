@@ -5,7 +5,7 @@ import {
   MatButtonModule,
   MatCardModule, MatDatepickerModule,
   MatFormFieldModule,
-  MatInputModule, MatNativeDateModule,
+  MatInputModule, MatNativeDateModule, MatSelectModule,
   MatStepperModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,7 +29,8 @@ import { CEPInput } from './components/cep-input/cep-input.component';
     MatIconModule,
     MatStepperModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ]
 })
 export class EventModule { }

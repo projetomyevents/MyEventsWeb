@@ -89,17 +89,23 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Estado</mat-label>
-          <label>
-            <input matInput formControlName="state">
-          </label>
+          <mat-select formControlName="state">
+            <mat-option>Nenhuma</mat-option>
+            <mat-option *ngFor="let state of states" [value]="state.id">
+              {{state.name}}
+            </mat-option>
+          </mat-select>
           <mat-error *ngIf="userEvent.get('state').hasError('required')">Informe um estado</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Cidade</mat-label>
-          <label>
-            <input matInput formControlName="city">
-          </label>
+          <mat-select formControlName="city">
+            <mat-option>Nenhuma</mat-option>
+            <mat-option *ngFor="let city of filteredCities" [value]="city.id">
+              {{city.name}}
+            </mat-option>
+          </mat-select>
           <mat-error *ngIf="userEvent.get('city').hasError('required')">Informe uma cidade</mat-error>
         </mat-form-field>
 

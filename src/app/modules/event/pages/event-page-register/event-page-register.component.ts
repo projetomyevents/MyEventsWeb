@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CEPInput } from '../../components/cep-input/cep-input.component';
 import { CustomValidators } from '../../../core/shared/custom-validators';
+import { City, State } from '../../../core/shared/address.model';
+import { AddressService } from '../../../core/shared/address.service';
 
 @Component({
   selector: 'app-event-page-register',
@@ -16,9 +18,12 @@ export class EventPageRegisterComponent implements OnInit {
   resolving: boolean;
   info: string;
   extraInfo: string;
+  cities: City[];
+  states: State[];
+  filteredCities: City[];
   today = new Date(Date.now());
 
-  constructor() { }
+  constructor(private addressService: AddressService) { }
 
   ngOnInit() {
     this.userEvent = new FormGroup({
@@ -43,6 +48,14 @@ export class EventPageRegisterComponent implements OnInit {
       image: new FormControl(''),
       attachments: new FormControl('')
     });
+
+    this.addressService.getAllStates().then((states: State[]) => this.states = states);
+    this.addressService.getAllCities().then((cities: City[]) => this.cities = cities);
+
+    this.userEvent.get('state').valueChanges.subscribe(
+      (stateId: number) => this.filteredCities = stateId == null
+        ? []
+        : this.cities.filter((city: City) => city.stateId === stateId));
   }
 
   async registerNewUserEvent(): Promise<void> {
