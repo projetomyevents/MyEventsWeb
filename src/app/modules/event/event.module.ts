@@ -13,10 +13,11 @@ import { EventRoutingModule } from './event-routing.module';
 import { EventPageRegisterComponent } from './pages/event-page-register/event-page-register.component';
 import { EventPageOverviewComponent } from './pages/event-page-overview/event-page-overview.component';
 import { EventPageListComponent } from './pages/event-page-list/event-page-list.component';
+import { CEPInput } from './components/cep-input/cep-input.component';
 
 
 @NgModule({
-  declarations: [EventPageRegisterComponent, EventPageOverviewComponent, EventPageListComponent],
+  declarations: [EventPageRegisterComponent, EventPageOverviewComponent, EventPageListComponent, CEPInput],
   imports: [
     CommonModule,
     EventRoutingModule,
