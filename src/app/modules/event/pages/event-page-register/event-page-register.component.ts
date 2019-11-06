@@ -29,13 +29,13 @@ export class EventPageRegisterComponent implements OnInit {
     this.userEvent = new FormGroup({
       // step 1 - informações básicas
       name: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
       startDate: new FormControl('', Validators.required),
-      admissionPrice: new FormControl(''),
       companionLimit: new FormControl('', Validators.required),
-      attire: new FormControl(''),
-      minAge: new FormControl(''),
+      description: new FormControl('', Validators.required),
       schedule: new FormControl('', Validators.required),
+      admissionPrice: new FormControl(''),
+      minAge: new FormControl(''),
+      attire: new FormControl(''),
       // step 2 - local
       cep: new FormControl('', [Validators.required, CustomValidators.cep]),
       state: new FormControl('', Validators.required),

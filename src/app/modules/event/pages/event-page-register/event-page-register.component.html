@@ -14,13 +14,6 @@
           <mat-error *ngIf="userEvent.get('name').hasError('required')">Informe um nome</mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Valor (opcional)</mat-label>
-          <label>
-            <input matInput formControlName="admissionPrice">
-          </label>
-        </mat-form-field>
-
         <div class="step-row">
           <mat-form-field appearance="outline">
             <mat-label>Data de início</mat-label>
@@ -33,27 +26,11 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Nº máximo de acompanhantes</mat-label>
+            <mat-label>Limite de acompanhantes</mat-label>
             <label>
-              <input matInput type="number" formControlName="companionLimit">
+              <input matInput type="number" min="0" max="127" formControlName="companionLimit">
             </label>
-            <mat-error *ngIf="userEvent.get('companionLimit').hasError('required')">Informe um número máximo de acompanhantes</mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="step-row">
-          <mat-form-field appearance="outline">
-            <mat-label>Idade mínima (opcional)</mat-label>
-            <label>
-              <input matInput type="number" formControlName="minAge">
-            </label>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Traje (opcional)</mat-label>
-            <label>
-              <input matInput formControlName="attire">
-            </label>
+            <mat-error *ngIf="userEvent.get('companionLimit').hasError('required')">Informe o limite de acompanhantes</mat-error>
           </mat-form-field>
         </div>
 
@@ -72,6 +49,29 @@
           </label>
           <mat-error *ngIf="userEvent.get('schedule').hasError('required')">Informe um cronograma</mat-error>
         </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Valor (opcional)</mat-label>
+          <label>
+            <input matInput formControlName="admissionPrice">
+          </label>
+        </mat-form-field>
+
+        <div class="step-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Idade mínima (opcional)</mat-label>
+            <label>
+              <input matInput type="number" min="0" max="127" formControlName="minAge">
+            </label>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Traje (opcional)</mat-label>
+            <label>
+              <input matInput formControlName="attire">
+            </label>
+          </mat-form-field>
+        </div>
 
         <div class="step-actions">
           <span></span>
@@ -126,14 +126,14 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Número</mat-label>
+          <mat-label>Número (opcional)</mat-label>
           <label>
             <input matInput formControlName="number">
           </label>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Complemento</mat-label>
+          <mat-label>Complemento (opcional)</mat-label>
           <label>
             <input matInput formControlName="complement">
           </label>
