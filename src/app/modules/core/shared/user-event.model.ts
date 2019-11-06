@@ -1,7 +1,7 @@
-import { Address } from './address.model';
+import { SimpleUser } from './user.model';
 
 export interface UserEvent {
-  id?: number;
+  id: number;
   name: string;
   startDate: Date;
   admissionPrice?: string;
@@ -10,7 +10,34 @@ export interface UserEvent {
   attire?: string;
   description: string;
   schedule: string;
-  address: Address;
+  cep: string;
+  stateName: string;
+  cityName: string;
+  neighborhood: string;
+  street: string;
+  number?: string;
+  complement?: string;
   image?: File;
   attachments?: FileList;
+  user: SimpleUser;
+}
+
+export interface NewUserEvent {
+  name: string;
+  startDate: Date;
+  companionLimit: number;
+  description: string;
+  schedule: string;
+  admissionPrice?: string;
+  minAge?: number;
+  attire?: string;
+  cep: string;
+  cityId: number;
+  neighborhood: string;
+  street: string;
+  number?: string;
+  complement?: string;
+  image?: File;
+  attachments?: FileList;
+  userEmail: string;
 }

@@ -7,6 +7,12 @@ export interface User {
   token?: string;
 }
 
+export interface SimpleUser {
+  email: string;
+  name: string;
+  phone: string;
+}
+
 export interface NewUser {
   email: string;
   password: string;

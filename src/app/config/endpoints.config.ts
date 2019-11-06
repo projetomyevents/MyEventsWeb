@@ -8,6 +8,10 @@ export const EndpointsConfig: any = {
     getPasswordReset: getUserPasswordReset,
     getSendPasswordReset: getUserSendPasswordReset
   },
+  event: {
+    register: 'event/register',
+    getEvent: getEventById
+  },
   address: {
     getAllCities: 'address/cities',
     getAllStates: 'address/states'
@@ -32,4 +36,8 @@ function getUserPasswordReset(token: string) {
 
 function getUserSendPasswordReset(email: string) {
   return `user/send-password-reset/${email}`;
+}
+
+function getEventById(id: number) {
+  return `event/${id}`;
 }
