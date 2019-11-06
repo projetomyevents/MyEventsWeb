@@ -39,7 +39,7 @@ export class CEPInput implements OnInit, OnDestroy, MatFormFieldControl<CEP>, Co
   @HostBinding('attr.aria-describedby') describedBy = '';
 
   focused = false;
-  controlType = 'cpf-input';
+  controlType = 'cep-input';
   stateChanges = new Subject<void>();
 
   onChange = (_: any) => {};
