@@ -10,7 +10,8 @@ export const EndpointsConfig: any = {
   },
   event: {
     register: 'event/register',
-    getEvent: getEventById
+    getEvent: getEventById,
+    getEvents: 'event/all'
   },
   address: {
     getAllCities: 'address/cities',

@@ -12,7 +12,7 @@ const routesNames = {
   event: {
     register: 'register-new-event',
     event: 'event/:id',
-    list: 'event-list'
+    list: 'events'
   }
 };
 

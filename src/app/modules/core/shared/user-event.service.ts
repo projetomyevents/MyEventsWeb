@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../../../config/app.config';
 import { EndpointsConfig } from '../../../config/endpoints.config';
-import { NewUserEvent, UserEvent } from './user-event.model';
+import { NewUserEvent, SimpleUserEvent, UserEvent } from './user-event.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,10 @@ export class UserEventService {
 
   get(id: number): Promise<UserEvent> {
     return this.http.get<UserEvent>(`${this.url}/${this.eventEndpoint.getEvent(id)}`).toPromise();
+  }
+
+  getAll(): Promise<SimpleUserEvent[]> {
+    return this.http.get<SimpleUserEvent[]>(`${this.url}/${this.eventEndpoint.getEvents}`).toPromise();
   }
 
 }

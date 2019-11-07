@@ -40,3 +40,10 @@ export interface NewUserEvent {
   image?: string;
   attachments?: string[];
 }
+
+export interface SimpleUserEvent {
+  id: string;
+  name: string;
+  description: string;
+  image?: string;
+}
