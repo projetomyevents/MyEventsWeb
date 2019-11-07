@@ -72,9 +72,7 @@
   }
 }
 
-// aumentar o comprimento da snack bar em telas maiores
-@media(min-width: 768px) {
-  .mat-snack-bar-container {
-    min-width: 800px !important;
-  }
+// aumentar o tamanho da fonte da snackbar
+.mat-simple-snackbar {
+  font-size: 16px;
 }
