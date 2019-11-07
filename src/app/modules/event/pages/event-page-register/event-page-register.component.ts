@@ -6,7 +6,6 @@ import { CEPInput } from '../../components/cep-input/cep-input.component';
 import { CustomValidators } from '../../../core/shared/custom-validators';
 import { City, State } from '../../../core/shared/address.model';
 import { AddressService } from '../../../core/shared/address.service';
-import { AuthenticationService } from '../../../core/shared/authentication.service';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { UserEventService } from '../../../core/shared/user-event.service';
 
@@ -32,7 +31,6 @@ export class EventPageRegisterComponent implements OnInit {
     private addressService: AddressService,
     private userEventService: UserEventService,
     private router: Router,
-    private authenticationService: AuthenticationService,
     private snackBar: MatSnackBar
   ) { }
 
@@ -108,8 +106,7 @@ export class EventPageRegisterComponent implements OnInit {
           number: rawUserEvent.number,
           complement: rawUserEvent.complement,
           image: rawUserEvent.image,
-          attachments: rawUserEvent.attachments,
-          userEmail: this.authenticationService.userValue.email
+          attachments: rawUserEvent.attachments
         });
 
         await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'})

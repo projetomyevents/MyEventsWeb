@@ -39,5 +39,4 @@ export interface NewUserEvent {
   complement?: string;
   image?: string;
   attachments?: string[];
-  userEmail: string;
 }
