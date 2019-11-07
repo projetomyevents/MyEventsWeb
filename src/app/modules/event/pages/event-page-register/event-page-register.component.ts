@@ -1,9 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 import { CEPInput } from '../../components/cep-input/cep-input.component';
 import { CustomValidators } from '../../../core/shared/custom-validators';
 import { City, State } from '../../../core/shared/address.model';
 import { AddressService } from '../../../core/shared/address.service';
+import { AuthenticationService } from '../../../core/shared/authentication.service';
+import { RoutesConfig } from '../../../../config/routes.config';
+import { UserEventService } from '../../../core/shared/user-event.service';
 
 @Component({
   selector: 'app-event-page-register',
@@ -23,7 +28,13 @@ export class EventPageRegisterComponent implements OnInit {
   filteredCities: City[];
   today = new Date(Date.now());
 
-  constructor(private addressService: AddressService) { }
+  constructor(
+    private addressService: AddressService,
+    private userEventService: UserEventService,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit() {
     this.userEvent = new FormGroup({
@@ -40,11 +51,11 @@ export class EventPageRegisterComponent implements OnInit {
       cep: new FormControl('', [Validators.required, CustomValidators.cep]),
       state: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
-      neighbourhood: new FormControl('', Validators.required),
+      neighborhood: new FormControl('', Validators.required),
       street: new FormControl('', Validators.required),
       number: new FormControl(''),
       complement: new FormControl(''),
-      // setp 3 - arquivos
+      // setp 3 - anexos
       image: new FormControl(''),
       attachments: new FormControl('')
     });
@@ -69,8 +80,44 @@ export class EventPageRegisterComponent implements OnInit {
     } else {
       this.resolving = true;
       try {
-        console.log(this.userEvent);
+        const rawUserEvent = this.userEvent.getRawValue();
+
+        // TODO: tratar valores de inputs com tipo 'file', quando eles forem implementados
+        // caso algum atributo ser uma string vazia setá-lo para null
+        Object.keys(rawUserEvent).map((value: string) => {
+          if (typeof rawUserEvent[value] === 'string' && rawUserEvent[value].length === 0) {
+            rawUserEvent[value] = null;
+          }
+        });
+        // caso não existir nenhum anexo setar o atributo de anexos para uma lista vazia (para não ocorrer erro no back)
+        if (rawUserEvent.attachments === null) { rawUserEvent.attachments = []; }
+
+        const response = await this.userEventService.register({
+          name: rawUserEvent.name,
+          startDate: rawUserEvent.startDate,
+          companionLimit: rawUserEvent.companionLimit,
+          description: rawUserEvent.description,
+          schedule: rawUserEvent.schedule,
+          admissionPrice: rawUserEvent.admissionPrice,
+          minAge: rawUserEvent.minAge,
+          attire: rawUserEvent.attire,
+          cep: rawUserEvent.cep.toString(),
+          cityId: rawUserEvent.city,
+          neighborhood: rawUserEvent.neighborhood,
+          street: rawUserEvent.street,
+          number: rawUserEvent.number,
+          complement: rawUserEvent.complement,
+          image: rawUserEvent.image,
+          attachments: rawUserEvent.attachments,
+          userEmail: this.authenticationService.userValue.email
+        });
+
+        await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'})
+          .onAction().toPromise();
+
+        await this.router.navigateByUrl(RoutesConfig.routes.event.list);
       } catch (err) {
+        this.snackBar.open(err.message, 'OK', {panelClass: 'snack-bar-failure'});
         this.info = err.message;
         if (err.errors) { err.errors.forEach(subErr => this.extraInfo += subErr.message); }
         this.resolving = false;
@@ -79,14 +126,14 @@ export class EventPageRegisterComponent implements OnInit {
   }
 
   infoIsValid(): boolean {
-    return this.userEvent.get('name').valid && this.userEvent.get('description').valid
-      && this.userEvent.get('startDate').valid && this.userEvent.get('companionLimit').valid
+    return this.userEvent.get('name').valid && this.userEvent.get('startDate').valid
+      && this.userEvent.get('companionLimit').valid && this.userEvent.get('description').valid
       && this.userEvent.get('schedule').valid;
   }
 
   localIsValid(): boolean {
     return this.userEvent.get('cep').valid && this.userEvent.get('state').valid
-      && this.userEvent.get('city').valid && this.userEvent.get('neighbourhood').valid
+      && this.userEvent.get('city').valid && this.userEvent.get('neighborhood').valid
       && this.userEvent.get('street').valid;
   }
 

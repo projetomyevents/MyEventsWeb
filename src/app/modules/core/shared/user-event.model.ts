@@ -17,8 +17,8 @@ export interface UserEvent {
   street: string;
   number?: string;
   complement?: string;
-  image?: File;
-  attachments?: FileList;
+  image?: string;
+  attachments?: string[];
   user: SimpleUser;
 }
 
@@ -37,7 +37,7 @@ export interface NewUserEvent {
   street: string;
   number?: string;
   complement?: string;
-  image?: File;
-  attachments?: FileList;
+  image?: string;
+  attachments?: string[];
   userEmail: string;
 }
