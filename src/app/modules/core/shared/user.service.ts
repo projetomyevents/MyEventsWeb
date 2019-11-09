@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { NewPassword, NewUser, User } from './user.model';
 import { EndpointsConfig } from '../../../config/endpoints.config';
 import { AppConfig } from '../../../config/app.config';
+import { NewPassword, NewUser, SimpleUser } from './user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,33 +14,61 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Promise<HttpResponse<any>> {
-    return this.http.post<any>(`${this.url}/${this.userEndpoint.login}`,
-      {email, password}, {observe: 'response'}).toPromise();
+  /**
+   * Autentica um usuário.
+   *
+   * @param email - O email do usuário.
+   * @param password - A senha do usuário.
+   */
+  login(email: string, password: string): Promise<HttpResponse<SimpleUser>> {
+    return this.http.post<SimpleUser>(`${this.url}/${this.userEndpoint.login}`, {email, password},
+      {observe: 'response'}).toPromise();
   }
 
+  /**
+   * Registra um novo usuário.
+   *
+   * @param newUser - O novo usuário.
+   */
   register(newUser: NewUser): Promise<any> {
     return this.http.post<any>(`${this.url}/${this.userEndpoint.register}`, newUser).toPromise();
   }
 
-  get(email: string): Promise<User> {
-    return this.http.get<User>(`${this.url}/${this.userEndpoint.getByEmail(email)}`).toPromise();
+  /**
+   * Ativa um usuário.
+   *
+   * @param token - O token de ativação do usuário.
+   */
+  activate(token: string): Promise<any> {
+    return this.http.get<any>(`${this.url}/${this.userEndpoint.activate(token)}`).toPromise();
   }
 
-  confirm(token: string): Promise<any> {
-    return this.http.get<any>(`${this.url}/${this.userEndpoint.getConfirm(token)}`).toPromise();
+  /**
+   * Reenvia o token de ativação de um usuário para o seu email.
+   *
+   * @param email - O email do usuário.
+   */
+  resendActivation(email: string): Promise<any> {
+    return this.http.get<any>(`${this.url}/${this.userEndpoint.resendActivation(email)}`).toPromise();
   }
 
-  resendConfirmation(email: string): Promise<any> {
-    return this.http.get<any>(`${this.url}/${this.userEndpoint.getResendConfirmation(email)}`).toPromise();
-  }
-
+  /**
+   * Redefine a senha do usuário.
+   *
+   * @param token - O token de redefinição de senha do usuário.
+   * @param newPassword - A nova senha do usuário.
+   */
   resetPassword(token: string, newPassword: NewPassword): Promise<any> {
-    return this.http.post<any>(`${this.url}/${this.userEndpoint.getPasswordReset(token)}`, newPassword).toPromise();
+    return this.http.post<any>(`${this.url}/${this.userEndpoint.passwordReset(token)}`, newPassword).toPromise();
   }
 
+  /**
+   * Envia um token de redefinição de senha para o usuário.
+   *
+   * @param email - O email do usuário.
+   */
   sendPasswordReset(email: string): Promise<any> {
-    return this.http.get<any>(`${this.url}/${this.userEndpoint.getSendPasswordReset(email)}`).toPromise();
+    return this.http.get<any>(`${this.url}/${this.userEndpoint.sendPasswordReset(email)}`).toPromise();
   }
 
 }

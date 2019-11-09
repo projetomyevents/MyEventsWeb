@@ -67,7 +67,7 @@
       </form>
     </form>
 
-    <mat-progress-bar *ngIf="userAccount.get('passwords.password').dirty && userAccount.get('passwords.password').value" class="password-strength-bar" [ngClass]="passwordStrength.class" mode="determinate" [value]="passwordStrength.percentage" matTooltip="Indicação de complexibilidade da sua senha."></mat-progress-bar>
+    <app-password-strength-bar *ngIf="userAccount.get('passwords.password').dirty && userAccount.get('passwords.password').value" [passwordControl]="userAccount.get('passwords.password')"></app-password-strength-bar>
 
     <div class="card-actions">
       <button mat-flat-button class="main-card-action" color="accent" (click)="signup()" [disabled]="resolving">Cadastrar</button>

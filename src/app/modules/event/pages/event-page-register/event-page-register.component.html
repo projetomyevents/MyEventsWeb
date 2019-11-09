@@ -4,14 +4,14 @@
     <h4 class="card-header mat-subheading-2">{{info}}</h4>
     <h4 class="card-subheader mat-subheading-1">{{extraInfo}}</h4>
 
-    <mat-horizontal-stepper [formGroup]="userEvent">
+    <mat-horizontal-stepper [formGroup]="event">
       <mat-step label="Informações básicas" state="subject" [completed]="infoIsValid()">
         <mat-form-field appearance="outline">
           <mat-label>Nome</mat-label>
           <label>
             <input matInput formControlName="name">
           </label>
-          <mat-error *ngIf="userEvent.get('name').hasError('required')">Informe um nome</mat-error>
+          <mat-error *ngIf="event.get('name').hasError('required')">Informe um nome</mat-error>
         </mat-form-field>
 
         <div class="step-row">
@@ -22,7 +22,7 @@
             </label>
             <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
             <mat-datepicker #startDate></mat-datepicker>
-            <mat-error *ngIf="userEvent.get('startDate').hasError('required')">Informe uma data de início</mat-error>
+            <mat-error *ngIf="event.get('startDate').hasError('required')">Informe uma data de início</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -30,7 +30,7 @@
             <label>
               <input matInput type="number" min="0" max="127" formControlName="companionLimit">
             </label>
-            <mat-error *ngIf="userEvent.get('companionLimit').hasError('required')">Informe o limite de acompanhantes</mat-error>
+            <mat-error *ngIf="event.get('companionLimit').hasError('required')">Informe o limite de acompanhantes</mat-error>
           </mat-form-field>
         </div>
 
@@ -39,7 +39,7 @@
           <label>
             <textarea matInput formControlName="description"></textarea>
           </label>
-          <mat-error *ngIf="userEvent.get('description').hasError('required')">Informe uma descrição</mat-error>
+          <mat-error *ngIf="event.get('description').hasError('required')">Informe uma descrição</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -47,7 +47,7 @@
           <label>
             <textarea matInput formControlName="schedule"></textarea>
           </label>
-          <mat-error *ngIf="userEvent.get('schedule').hasError('required')">Informe um cronograma</mat-error>
+          <mat-error *ngIf="event.get('schedule').hasError('required')">Informe um cronograma</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -83,8 +83,8 @@
         <mat-form-field appearance="outline">
           <mat-label>CEP</mat-label>
           <app-cep-input formControlName="cep" #cepInput></app-cep-input>
-          <mat-error *ngIf="userEvent.get('cep').hasError('required')">Informe um CEP</mat-error>
-          <mat-error *ngIf="userEvent.get('cep').hasError('cep')">Informe um CEP <strong>válido</strong></mat-error>
+          <mat-error *ngIf="event.get('cep').hasError('required')">Informe um CEP</mat-error>
+          <mat-error *ngIf="event.get('cep').hasError('cep')">Informe um CEP <strong>válido</strong></mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -95,7 +95,7 @@
               {{state.name}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="userEvent.get('state').hasError('required')">Informe um estado</mat-error>
+          <mat-error *ngIf="event.get('state').hasError('required')">Informe um estado</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -106,7 +106,7 @@
               {{city.name}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="userEvent.get('city').hasError('required')">Informe uma cidade</mat-error>
+          <mat-error *ngIf="event.get('city').hasError('required')">Informe uma cidade</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -114,7 +114,7 @@
           <label>
             <input matInput formControlName="neighborhood">
           </label>
-          <mat-error *ngIf="userEvent.get('neighborhood').hasError('required')">Informe um bairro</mat-error>
+          <mat-error *ngIf="event.get('neighborhood').hasError('required')">Informe um bairro</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -122,7 +122,7 @@
           <label>
             <input matInput formControlName="street">
           </label>
-          <mat-error *ngIf="userEvent.get('street').hasError('required')">Informe um logradouro</mat-error>
+          <mat-error *ngIf="event.get('street').hasError('required')">Informe um logradouro</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">

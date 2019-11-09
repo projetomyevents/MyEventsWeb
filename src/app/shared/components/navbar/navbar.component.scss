@@ -1,0 +1,50 @@
+@import "variables";
+
+#navbar {
+  position: fixed;
+
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+  height: $navbar-height;
+  padding: 0 16px;
+
+  background: $navbar-color;
+  color: white;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nav-spacer {
+  flex: auto;
+}
+
+a {
+  font-size: 16px;
+
+  &:hover {
+    background: hsla(0, 0%, 100%, 0.04);
+    color: hsl(0, 0%, 80%);
+
+    svg {
+      fill: hsl(0, 0%, 80%);
+    }
+  }
+
+  svg {
+    margin-bottom: 1px;
+    fill: white;
+  }
+}
+
+.mat-icon {
+  height: 28px;
+  margin: 4px 4px 2px 0;
+}
+
+@media (max-width: 768px) {
+  span {
+    display: none;
+  }
+}

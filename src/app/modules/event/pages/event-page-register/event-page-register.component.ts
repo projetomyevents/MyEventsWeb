@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { CEPInput } from '../../components/cep-input/cep-input.component';
+import { CEPInput } from '../../../core/components/cep-input/cep-input.component';
 import { CustomValidators } from '../../../core/shared/custom-validators';
 import { City, State } from '../../../core/shared/address.model';
 import { AddressService } from '../../../core/shared/address.service';
 import { RoutesConfig } from '../../../../config/routes.config';
-import { UserEventService } from '../../../core/shared/user-event.service';
+import { EventService } from '../../../core/shared/event.service';
 
 @Component({
   selector: 'app-event-page-register',
@@ -18,7 +18,7 @@ export class EventPageRegisterComponent implements OnInit {
 
   @ViewChild('cepInput', {static: false}) cepInput: CEPInput;
 
-  userEvent: FormGroup;
+  event: FormGroup;
   resolving: boolean;
   info: string;
   extraInfo: string;
@@ -29,13 +29,13 @@ export class EventPageRegisterComponent implements OnInit {
 
   constructor(
     private addressService: AddressService,
-    private userEventService: UserEventService,
+    private userEventService: EventService,
     private router: Router,
     private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
-    this.userEvent = new FormGroup({
+    this.event = new FormGroup({
       // step 1 - informações básicas
       name: new FormControl('', Validators.required),
       startDate: new FormControl('', Validators.required),
@@ -61,7 +61,7 @@ export class EventPageRegisterComponent implements OnInit {
     this.addressService.getAllStates().then((states: State[]) => this.states = states);
     this.addressService.getAllCities().then((cities: City[]) => this.cities = cities);
 
-    this.userEvent.get('state').valueChanges.subscribe(
+    this.event.get('state').valueChanges.subscribe(
       (stateId: number) => this.filteredCities = stateId == null
         ? []
         : this.cities.filter((city: City) => city.stateId === stateId));
@@ -70,43 +70,43 @@ export class EventPageRegisterComponent implements OnInit {
   async registerNewUserEvent(): Promise<void> {
     this.info = null;
     this.extraInfo = '';
-    if (this.userEvent.invalid) {
+    if (this.event.invalid) {
       this.info = 'Preencha os campos requeridos.';
-      this.userEvent.markAllAsTouched();
+      this.event.markAllAsTouched();
       this.cepInput.cep.markAllAsTouched();
-      this.userEvent.get('cep').updateValueAndValidity();
+      this.event.get('cep').updateValueAndValidity();
     } else {
       this.resolving = true;
       try {
-        const rawUserEvent = this.userEvent.getRawValue();
+        const rawEvent = this.event.getRawValue();
 
         // TODO: tratar valores de inputs com tipo 'file', quando eles forem implementados
         // caso algum atributo ser uma string vazia setá-lo para null
-        Object.keys(rawUserEvent).map((value: string) => {
-          if (typeof rawUserEvent[value] === 'string' && rawUserEvent[value].length === 0) {
-            rawUserEvent[value] = null;
+        Object.keys(rawEvent).map((value: string) => {
+          if (typeof rawEvent[value] === 'string' && rawEvent[value].length === 0) {
+            rawEvent[value] = null;
           }
         });
         // caso não existir nenhum anexo setar o atributo de anexos para uma lista vazia (para não ocorrer erro no back)
-        if (rawUserEvent.attachments === null) { rawUserEvent.attachments = []; }
+        if (rawEvent.attachments === null) { rawEvent.attachments = []; }
 
         const response = await this.userEventService.register({
-          name: rawUserEvent.name,
-          startDate: rawUserEvent.startDate,
-          companionLimit: rawUserEvent.companionLimit,
-          description: rawUserEvent.description,
-          schedule: rawUserEvent.schedule,
-          admissionPrice: rawUserEvent.admissionPrice,
-          minAge: rawUserEvent.minAge,
-          attire: rawUserEvent.attire,
-          cep: rawUserEvent.cep.toString(),
-          cityId: rawUserEvent.city,
-          neighborhood: rawUserEvent.neighborhood,
-          street: rawUserEvent.street,
-          number: rawUserEvent.number,
-          complement: rawUserEvent.complement,
-          image: rawUserEvent.image,
-          attachments: rawUserEvent.attachments
+          name: rawEvent.name,
+          startDate: rawEvent.startDate,
+          companionLimit: rawEvent.companionLimit,
+          description: rawEvent.description,
+          schedule: rawEvent.schedule,
+          admissionPrice: rawEvent.admissionPrice,
+          minAge: rawEvent.minAge,
+          attire: rawEvent.attire,
+          cep: rawEvent.cep.toString(),
+          cityId: rawEvent.city,
+          neighborhood: rawEvent.neighborhood,
+          street: rawEvent.street,
+          number: rawEvent.number,
+          complement: rawEvent.complement,
+          image: rawEvent.image,
+          attachments: rawEvent.attachments
         });
 
         await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'})
@@ -123,15 +123,15 @@ export class EventPageRegisterComponent implements OnInit {
   }
 
   infoIsValid(): boolean {
-    return this.userEvent.get('name').valid && this.userEvent.get('startDate').valid
-      && this.userEvent.get('companionLimit').valid && this.userEvent.get('description').valid
-      && this.userEvent.get('schedule').valid;
+    return this.event.get('name').valid && this.event.get('startDate').valid
+      && this.event.get('companionLimit').valid && this.event.get('description').valid
+      && this.event.get('schedule').valid;
   }
 
   localIsValid(): boolean {
-    return this.userEvent.get('cep').valid && this.userEvent.get('state').valid
-      && this.userEvent.get('city').valid && this.userEvent.get('neighborhood').valid
-      && this.userEvent.get('street').valid;
+    return this.event.get('cep').valid && this.event.get('state').valid
+      && this.event.get('city').valid && this.event.get('neighborhood').valid
+      && this.event.get('street').valid;
   }
 
 }

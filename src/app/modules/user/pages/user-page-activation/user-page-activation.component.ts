@@ -6,10 +6,10 @@ import { UserService } from '../../../core/shared/user.service';
 
 @Component({
   selector: 'app-user-page-confirmation',
-  templateUrl: './user-page-confirmation.component.html',
-  styleUrls: ['./user-page-confirmation.component.scss']
+  templateUrl: './user-page-activation.component.html',
+  styleUrls: ['./user-page-activation.component.scss']
 })
-export class UserPageConfirmationComponent implements OnInit {
+export class UserPageActivationComponent implements OnInit {
 
   userRoutes = RoutesConfig.routes.user;
 
@@ -24,7 +24,7 @@ export class UserPageConfirmationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.confirm(this.route.snapshot.params.token)
+    this.userService.activate(this.route.snapshot.params.token)
       .then(
         () => {
           this.snackBar.open('Conta ativada.', 'OK', {panelClass: 'snack-bar-success'});

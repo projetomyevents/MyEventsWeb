@@ -5,8 +5,8 @@ import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { map as ObservableMap } from 'rxjs/operators';
 import { completeEmails } from 'src/app/modules/core/shared/email-providers';
-import { UserService } from '../../../core/shared/user.service';
 import { AuthenticationService } from '../../../core/shared/authentication.service';
+import { UserService } from '../../../core/shared/user.service';
 
 @Component({
   selector: 'app-user-page-send-password-reset',

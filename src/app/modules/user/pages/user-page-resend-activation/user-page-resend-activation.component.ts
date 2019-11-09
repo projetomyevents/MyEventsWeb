@@ -8,11 +8,11 @@ import { completeEmails } from 'src/app/modules/core/shared/email-providers';
 import { UserService } from '../../../core/shared/user.service';
 
 @Component({
-  selector: 'app-user-page-resend-confirmation',
-  templateUrl: './user-page-resend-confirmation.component.html',
-  styleUrls: ['./user-page-resend-confirmation.component.scss']
+  selector: 'app-user-page-resend-activation',
+  templateUrl: './user-page-resend-activation.component.html',
+  styleUrls: ['./user-page-resend-activation.component.scss']
 })
-export class UserPageResendConfirmationComponent implements OnInit {
+export class UserPageResendActivationComponent implements OnInit {
 
   email: FormControl;
   completedEmails: Observable<string[]>;
@@ -31,7 +31,7 @@ export class UserPageResendConfirmationComponent implements OnInit {
     this.completedEmails = this.email.valueChanges.pipe(ObservableMap((email: string) => completeEmails(email)));
   }
 
-  async resendConfirmation(): Promise<void> {
+  async resendActivation(): Promise<void> {
     this.info = null;
     if (this.email.invalid) {
       this.info = 'Preencha os campos requeridos.';
@@ -39,7 +39,7 @@ export class UserPageResendConfirmationComponent implements OnInit {
     } else {
       this.resolving = true;
       try {
-        const response = await this.userService.resendConfirmation(this.email.value);
+        const response = await this.userService.resendActivation(this.email.value);
 
         this.info = '';
         await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'})

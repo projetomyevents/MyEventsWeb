@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject} from 'rxjs';
-import { User } from './user.model';
+import { BehaviorSubject } from 'rxjs';
+import { SimpleUser } from './user.model';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { UserService } from './user.service';
 })
 export class AuthenticationService {
 
-  private userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+  private userSubject = new BehaviorSubject<SimpleUser>(JSON.parse(localStorage.getItem('user')));
   public user = this.userSubject.asObservable();
 
   constructor(private userService: UserService) { }
@@ -16,7 +16,7 @@ export class AuthenticationService {
   /**
    * Retorna o usuário logado.
    */
-  public get userValue(): User {
+  public get userValue(): SimpleUser {
     return this.userSubject.value;
   }
 
@@ -31,11 +31,8 @@ export class AuthenticationService {
       const response = await this.userService.login(email, password);
       const token = response.headers.get('authorization');
 
-      // guardar informações temporárias e necessárias para realizar a requisição das informações reais
-      this.userSubject.next({email, password, name: '', cpf: '', phone: '', token});
-
       // resgatar as informações do usuário
-      const user = await this.userService.get(email);
+      const user = response.body;
       user.token = token;
 
       // guardar as informações do usuário

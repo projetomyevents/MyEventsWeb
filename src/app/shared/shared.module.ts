@@ -1,29 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  MatButtonModule,
-  MatIconModule,
-  MatMenuModule,
-  MatToolbarModule,
-  MatTooltipModule
-} from '@angular/material';
+import { MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule } from '@angular/material';
 import { AppRoutingModule } from '../app-routing.module';
-import { HeaderComponent } from './components/header/header.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [NavbarComponent],
   exports: [
-    HeaderComponent
+    NavbarComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
-    MatToolbarModule,
-    MatIconModule,
     MatButtonModule,
-    MatTooltipModule,
-    MatMenuModule
+    MatIconModule,
+    MatMenuModule,
+    MatTooltipModule
   ]
 })
 export class SharedModule { }

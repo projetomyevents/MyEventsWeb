@@ -8,9 +8,8 @@ import { RoutesConfig } from '../../../../config/routes.config';
 import { CustomValidators } from '../../../core/shared/custom-validators';
 import { ParentErrorStateMatcher } from '../../../core/shared/custom-state-matchers';
 import { completeEmails } from '../../../core/shared/email-providers';
-import { passwordStrength } from '../../../core/shared/password-complexity';
-import { CPFInput } from '../../components/cpf-input/cpf-input.component';
-import { PhoneInput } from '../../components/phone-input/phone-input.component';
+import { CPFInput } from '../../../core/components/cpf-input/cpf-input.component';
+import { PhoneInput } from '../../../core/components/phone-input/phone-input.component';
 import { UserService } from '../../../core/shared/user.service';
 
 @Component({
@@ -32,7 +31,6 @@ export class UserPageSignupComponent implements OnInit {
   extraInfo: string;
   hidePassword = true;
   parentErrorStateMatcher = new ParentErrorStateMatcher();
-  passwordStrength = {percentage: 0, class: ''};
 
   constructor(private userService: UserService, private router: Router, private snackBar: MatSnackBar) { }
 
@@ -50,9 +48,6 @@ export class UserPageSignupComponent implements OnInit {
 
     this.completedEmails = this.userAccount.get('email').valueChanges
       .pipe(ObservableMap((email: string) => completeEmails(email)));
-
-    this.userAccount.get('passwords.password').valueChanges
-      .subscribe((password: string) => this.passwordStrength = passwordStrength(password));
   }
 
   async signup(): Promise<void> {

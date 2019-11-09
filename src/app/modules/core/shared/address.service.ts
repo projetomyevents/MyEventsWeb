@@ -15,11 +15,11 @@ export class AddressService {
   constructor(private http: HttpClient) { }
 
   getAllCities(): Promise<City[]> {
-    return this.http.get<City[]>(`${this.url}/${this.addressEndpoint.getAllCities}`).toPromise();
+    return this.http.get<City[]>(`${this.url}/${this.addressEndpoint.cities}`).toPromise();
   }
 
   getAllStates(): Promise<State[]> {
-    return this.http.get<State[]>(`${this.url}/${this.addressEndpoint.getAllStates}`).toPromise();
+    return this.http.get<State[]>(`${this.url}/${this.addressEndpoint.states}`).toPromise();
   }
 
 }

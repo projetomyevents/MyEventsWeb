@@ -1,5 +1,7 @@
-.container {
+@import "variables";
+
+#app-container {
   overflow: auto;
-  height: calc(100% - 52px);
-  margin-top: 52px;
+  height: calc(100% - #{$navbar-height});
+  margin-top: $navbar-height;
 }

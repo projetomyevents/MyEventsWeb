@@ -4,19 +4,17 @@ import { RoutesConfig } from '../../../config/routes.config';
 import { AuthenticationService } from '../../../modules/core/shared/authentication.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class NavbarComponent implements OnInit {
 
   repositoryURL = AppConfig.repositoryURL;
   routes = RoutesConfig.routes;
   isDevMode = isDevMode();
 
-  constructor(
-    private authenticationService: AuthenticationService
-  ) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void { }
 

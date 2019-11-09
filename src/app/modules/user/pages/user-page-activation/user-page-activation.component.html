@@ -1,0 +1,12 @@
+<div class="content">
+  <mat-spinner *ngIf="!confirmed; else activationFailure" color="accent"></mat-spinner>
+  <ng-template #activationFailure>
+    <div class="card">
+      <h1 class="card-title mat-headline">{{info}}</h1>
+
+      <div class="card-actions">
+        <button mat-flat-button class="main-card-action" color="accent" [routerLink]="'/' + userRoutes.resendActivation">Reenviar o link de ativação</button>
+      </div>
+    </div>
+  </ng-template>
+</div>

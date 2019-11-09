@@ -1,10 +1,5 @@
-import { Injectable} from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot
-} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthenticationService } from '../shared/authentication.service';
 import { RoutesConfig } from '../../../config/routes.config';
 
@@ -22,8 +17,7 @@ export class AuthenticationGuardService implements CanActivate {
    * @param state - Idk.
    */
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    const user = this.authenticationService.userValue;
-    if (!!user) {
+    if (!!this.authenticationService.userValue) {
       // se estiver logado permitir o acesso a rota
       return true;
     }

@@ -1,18 +1,3 @@
-export interface User {
-  email: string;
-  password: string;
-  name: string;
-  cpf: string;
-  phone: string;
-  token?: string;
-}
-
-export interface SimpleUser {
-  email: string;
-  name: string;
-  phone: string;
-}
-
 export interface NewUser {
   email: string;
   password: string;
@@ -20,6 +5,13 @@ export interface NewUser {
   name: string;
   cpf: string;
   phone: string;
+}
+
+export interface SimpleUser {
+  email: string;
+  name: string;
+  phone: string;
+  token?: string;
 }
 
 export interface NewPassword {

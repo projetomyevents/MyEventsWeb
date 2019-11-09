@@ -1,32 +1,32 @@
 .content {
   display: flex;
+  min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
   flex-flow: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
 }
 
 // colorizar a barra de força da senha com base da sua complexibilidade
 .mat-progress-bar-fill::after {
   .too-weak &{
-    background-color: hsl(1, 83%, 63%);
+    background-color: hsl(0, 100%, 60%);
   }
 
   .weak &{
-    background-color: hsl(45, 100%, 58%);
+    background-color: hsl(45, 100%, 60%);
   }
 
   .mediocre &{
-    background-color: hsl(75, 100%, 46%);
+    background-color: hsl(90, 100%, 60%);
   }
 
   .strong &{
-    background-color: hsl(151, 100%, 45%);
+    background-color: hsl(135, 100%, 60%);
   }
 
   .epic &{
-    background-color: hsl(199, 100%, 50%);
+    background-color: hsl(180, 100%, 60%);
   }
 }
 

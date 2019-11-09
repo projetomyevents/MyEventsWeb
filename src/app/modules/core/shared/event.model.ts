@@ -1,15 +1,15 @@
 import { SimpleUser } from './user.model';
 
-export interface UserEvent {
+export interface Event {
   id: number;
   name: string;
   startDate: Date;
-  admissionPrice?: string;
   companionLimit: number;
-  minAge?: number;
-  attire?: string;
   description: string;
   schedule: string;
+  admissionPrice?: string;
+  minAge?: number;
+  attire?: string;
   cep: string;
   stateName: string;
   cityName: string;
@@ -22,7 +22,14 @@ export interface UserEvent {
   user: SimpleUser;
 }
 
-export interface NewUserEvent {
+export interface SimpleEvent {
+  id: string;
+  name: string;
+  description: string;
+  image?: string;
+}
+
+export interface NewEvent {
   name: string;
   startDate: Date;
   companionLimit: number;
@@ -39,11 +46,4 @@ export interface NewUserEvent {
   complement?: string;
   image?: string;
   attachments?: string[];
-}
-
-export interface SimpleUserEvent {
-  id: string;
-  name: string;
-  description: string;
-  image?: string;
 }

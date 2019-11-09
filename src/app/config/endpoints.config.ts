@@ -2,43 +2,38 @@ export const EndpointsConfig: any = {
   user: {
     login: 'user/login',
     register: 'user/register',
-    getByEmail: getUserByEmail,
-    getConfirm: getUserConfirm,
-    getResendConfirmation: getUserResendConfirmation,
-    getPasswordReset: getUserPasswordReset,
-    getSendPasswordReset: getUserSendPasswordReset
+    activate: activateUser,
+    resendActivation: resendUserActivation,
+    passwordReset,
+    sendPasswordReset
   },
   event: {
     register: 'event/register',
-    getEvent: getEventById,
-    getEvents: 'event/all'
+    event: eventById,
+    events: 'event/all'
   },
   address: {
-    getAllCities: 'address/cities',
-    getAllStates: 'address/states'
+    cities: 'address/cities',
+    states: 'address/states'
   }
 };
 
-function getUserByEmail(email: string) {
-  return `user/${email}`;
+function activateUser(token: string) {
+  return `user/activate?token=${token}`;
 }
 
-function getUserConfirm(token: string) {
-  return `user/confirm?token=${token}`;
+function resendUserActivation(email: string) {
+  return `user/resend-activation/${email}`;
 }
 
-function getUserResendConfirmation(email: string) {
-  return `user/resend-confirmation/${email}`;
-}
-
-function getUserPasswordReset(token: string) {
+function passwordReset(token: string) {
   return `user/password-reset?token=${token}`;
 }
 
-function getUserSendPasswordReset(email: string) {
+function sendPasswordReset(email: string) {
   return `user/send-password-reset/${email}`;
 }
 
-function getEventById(id: number) {
+function eventById(id: number) {
   return `event/${id}`;
 }

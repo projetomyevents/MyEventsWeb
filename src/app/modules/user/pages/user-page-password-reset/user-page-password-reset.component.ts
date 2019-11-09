@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { CustomValidators } from '../../../core/shared/custom-validators';
 import { ParentErrorStateMatcher } from '../../../core/shared/custom-state-matchers';
-import { passwordStrength } from '../../../core/shared/password-complexity';
 import { UserService } from '../../../core/shared/user.service';
 
 @Component({
@@ -19,7 +18,6 @@ export class UserPagePasswordResetComponent implements OnInit {
   info: string;
   hidePassword = true;
   parentErrorStateMatcher = new ParentErrorStateMatcher();
-  passwordStrength = {percentage: 0, class: ''};
 
   constructor(
     private userService: UserService,
@@ -33,9 +31,6 @@ export class UserPagePasswordResetComponent implements OnInit {
         password: new FormControl('', [Validators.required, Validators.minLength(6)]),
         confirmedPassword: new FormControl('')
       }, CustomValidators.different);
-
-    this.passwords.get('password').valueChanges
-      .subscribe((password: string) => this.passwordStrength = passwordStrength(password));
   }
 
   async resetPassword(): Promise<void> {
@@ -51,8 +46,8 @@ export class UserPagePasswordResetComponent implements OnInit {
           confirmedPassword: this.passwords.get('confirmedPassword').value
         });
 
-        await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'})
-          .onAction().toPromise();
+        await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()
+          .toPromise();
 
         await this.router.navigateByUrl('');
       } catch (err) {
