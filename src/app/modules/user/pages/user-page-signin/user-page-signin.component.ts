@@ -44,7 +44,8 @@ export class UserPageSigninComponent implements OnInit {
         const rawUser = this.user.getRawValue();
         await this.authenticationService.login(rawUser.email, rawUser.password);
 
-        await this.router.navigateByUrl(this.route.snapshot.queryParams.redirect || RoutesConfig.routes.event.events);
+        await this.router.navigateByUrl(
+          this.route.snapshot.queryParamMap.get('redirect') || RoutesConfig.routes.event.events);
       } catch (err) {
         this.info = err.message;
         this.resolving = false;

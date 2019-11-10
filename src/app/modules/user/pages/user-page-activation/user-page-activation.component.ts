@@ -25,7 +25,7 @@ export class UserPageActivationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.activate(this.route.snapshot.params.token).then(
+    this.userService.activate(this.route.snapshot.paramMap.get('token')).then(
       async (response: any) => {
         this.snackBar.open(response.message, 'OK', {panelClass: 'snack-bar-success'});
         await this.router.navigateByUrl(RoutesConfig.routes.home);

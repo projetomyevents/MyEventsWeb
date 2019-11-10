@@ -46,7 +46,7 @@ export class UserPagePasswordResetComponent implements OnInit {
       this.resolving = true;
       try {
         const rawPassword = this.passwords.getRawValue();
-        const response = await this.userService.resetPassword(this.route.snapshot.params.token, {
+        const response = await this.userService.resetPassword(this.route.snapshot.paramMap.get('token'), {
           password: rawPassword.password,
           confirmedPassword: rawPassword.confirmedPassword
         });
