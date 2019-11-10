@@ -3,16 +3,16 @@ h1 {
 }
 
 h2 {
-  color: hsl(0, 0%, 0%, .8);
   margin: 0 5%;
+  color: hsl(0, 0%, 0%, .8);
 }
 
 button {
-  font-size: 24px;
-  height: 48px;
   width: 200px;
+  height: 48px;
   margin: 36px 0 28px;
   border-radius: 28px;
+  font-size: 24px;
 }
 
 @media(max-width: 768px) {

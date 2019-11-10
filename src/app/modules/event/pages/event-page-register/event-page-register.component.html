@@ -30,7 +30,9 @@
             <label>
               <input matInput type="number" min="0" max="127" formControlName="companionLimit">
             </label>
-            <mat-error *ngIf="event.get('companionLimit').hasError('required')">Informe o limite de acompanhantes</mat-error>
+            <mat-error *ngIf="event.get('companionLimit').hasError('required')">
+              Informe o limite de acompanhantes
+            </mat-error>
           </mat-form-field>
         </div>
 
@@ -82,7 +84,7 @@
       <mat-step label="Local" state="map" [completed]="localIsValid()">
         <mat-form-field appearance="outline">
           <mat-label>CEP</mat-label>
-          <app-cep-input formControlName="cep" #cepInput></app-cep-input>
+          <app-cep-input formControlName="cep"></app-cep-input>
           <mat-error *ngIf="event.get('cep').hasError('required')">Informe um CEP</mat-error>
           <mat-error *ngIf="event.get('cep').hasError('cep')">Informe um CEP <strong>válido</strong></mat-error>
         </mat-form-field>
@@ -150,7 +152,10 @@
         <div class="step-actions">
           <button mat-button color="primary" matStepperPrevious>Editar o local</button>
           <span></span>
-          <button mat-flat-button class="form-main-action" color="primary" (click)="registerNewUserEvent()" [disabled]="resolving">Registrar</button>
+          <button mat-flat-button class="form-main-action" color="primary" [disabled]="resolving"
+                  (click)="registerNewUserEvent()">
+            Registrar
+          </button>
         </div>
       </mat-step>
     </mat-horizontal-stepper>

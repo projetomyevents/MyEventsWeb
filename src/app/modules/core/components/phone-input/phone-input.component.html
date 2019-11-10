@@ -1,14 +1,17 @@
 <form [formGroup]="phone">
   <span>(</span>
   <label>
-    <input matInput id="area" formControlName="area" maxlength="2" size="2" (input)="updateValue()" (blur)="onTouched()" #area>
+    <input matInput id="area" maxlength="2" size="2" formControlName="area"
+           (input)="onAnyInputChange()" (blur)="onTouched()" #area>
   </label>
   <span>)</span>
   <label>
-    <input matInput id="exchange" formControlName="exchange" maxlength="5" size="5" (input)="updateValue()" (blur)="onTouched()" #exchange>
+    <input matInput id="exchange" maxlength="5" size="5" formControlName="exchange"
+           (input)="onAnyInputChange()" (blur)="onTouched()" #exchange>
   </label>
   <span>-</span>
   <label>
-    <input matInput id="subscriber" formControlName="subscriber" maxlength="4" size="4" (input)="updateValue()" (blur)="onTouched()" #subscriber>
+    <input matInput id="subscriber" maxlength="4" size="4" formControlName="subscriber"
+           (input)="onAnyInputChange()" (blur)="onTouched()" #subscriber>
   </label>
 </form>

@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { CEPInput } from '../../../core/components/cep-input/cep-input.component';
 import { CustomValidators } from '../../../core/shared/custom-validators';
-import { City, State } from '../../../core/shared/address.model';
-import { AddressService } from '../../../core/shared/address.service';
+import { City, State } from '../../shared/address.model';
+import { AddressService } from '../../shared/address.service';
 import { RoutesConfig } from '../../../../config/routes.config';
-import { EventService } from '../../../core/shared/event.service';
+import { EventService } from '../../shared/event.service';
 
+// TODO: implementar upload de arquivos
 @Component({
   selector: 'app-event-page-register',
   templateUrl: './event-page-register.component.html',
@@ -16,23 +16,24 @@ import { EventService } from '../../../core/shared/event.service';
 })
 export class EventPageRegisterComponent implements OnInit {
 
-  @ViewChild('cepInput', {static: false}) cepInput: CEPInput;
-
   event: FormGroup;
-  resolving: boolean;
+
   info: string;
   extraInfo: string;
+  resolving: boolean;
+
+  today = new Date(Date.now());
   cities: City[];
   states: State[];
   filteredCities: City[];
-  today = new Date(Date.now());
 
   constructor(
     private addressService: AddressService,
     private userEventService: EventService,
     private router: Router,
     private snackBar: MatSnackBar
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.event = new FormGroup({
@@ -73,8 +74,6 @@ export class EventPageRegisterComponent implements OnInit {
     if (this.event.invalid) {
       this.info = 'Preencha os campos requeridos.';
       this.event.markAllAsTouched();
-      this.cepInput.cep.markAllAsTouched();
-      this.event.get('cep').updateValueAndValidity();
     } else {
       this.resolving = true;
       try {
@@ -88,7 +87,9 @@ export class EventPageRegisterComponent implements OnInit {
           }
         });
         // caso não existir nenhum anexo setar o atributo de anexos para uma lista vazia (para não ocorrer erro no back)
-        if (rawEvent.attachments === null) { rawEvent.attachments = []; }
+        if (rawEvent.attachments === null) {
+          rawEvent.attachments = [];
+        }
 
         const response = await this.userEventService.register({
           name: rawEvent.name,
@@ -109,29 +110,29 @@ export class EventPageRegisterComponent implements OnInit {
           attachments: rawEvent.attachments
         });
 
-        await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'})
-          .onAction().toPromise();
+        await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()
+          .toPromise();
 
         await this.router.navigateByUrl(RoutesConfig.routes.event.list);
       } catch (err) {
         this.snackBar.open(err.message, 'OK', {panelClass: 'snack-bar-failure'});
         this.info = err.message;
-        if (err.errors) { err.errors.forEach(subErr => this.extraInfo += subErr.message); }
+        if (err.errors) {
+          err.errors.forEach(subErr => this.extraInfo += subErr.message);
+        }
         this.resolving = false;
       }
     }
   }
 
   infoIsValid(): boolean {
-    return this.event.get('name').valid && this.event.get('startDate').valid
-      && this.event.get('companionLimit').valid && this.event.get('description').valid
-      && this.event.get('schedule').valid;
+    const {name, startDate, companionLimit, description, schedule} = this.event.controls;
+    return name.valid && startDate.valid && companionLimit.valid && description.valid && schedule.valid;
   }
 
   localIsValid(): boolean {
-    return this.event.get('cep').valid && this.event.get('state').valid
-      && this.event.get('city').valid && this.event.get('neighborhood').valid
-      && this.event.get('street').valid;
+    const {cep, state, city, neighborhood, street} = this.event.controls;
+    return cep.valid && state.valid && city.valid && neighborhood.valid && street.valid;
   }
 
 }

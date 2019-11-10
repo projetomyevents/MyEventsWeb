@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { SimpleUser } from './user.model';
-import { UserService } from './user.service';
+import { SimpleUser } from '../../user/shared/user.model';
+import { UserService } from '../../user/shared/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,8 @@ export class AuthenticationService {
   private userSubject = new BehaviorSubject<SimpleUser>(JSON.parse(localStorage.getItem('user')));
   public user = this.userSubject.asObservable();
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+  }
 
   /**
    * Retorna o usuário logado.

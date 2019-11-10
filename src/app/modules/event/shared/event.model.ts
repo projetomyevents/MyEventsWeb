@@ -1,4 +1,4 @@
-import { SimpleUser } from './user.model';
+import { SimpleUser } from '../../user/shared/user.model';
 
 export interface Event {
   id: number;

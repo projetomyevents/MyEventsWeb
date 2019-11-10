@@ -8,7 +8,8 @@ import { RoutesConfig } from '../../../config/routes.config';
 })
 export class AuthenticationGuardService implements CanActivate {
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) { }
+  constructor(private router: Router, private authenticationService: AuthenticationService) {
+  }
 
   /**
    * Define se a rota pode ser acessada pelo usuário atual.
@@ -17,7 +18,7 @@ export class AuthenticationGuardService implements CanActivate {
    * @param state - Idk.
    */
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    if (!!this.authenticationService.userValue) {
+    if (this.authenticationService.userValue) {
       // se estiver logado permitir o acesso a rota
       return true;
     }

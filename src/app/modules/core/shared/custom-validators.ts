@@ -24,13 +24,17 @@ export class CustomValidators {
    * @param control - O controle.
    */
   static cpf(control: AbstractControl): ValidationErrors | null {
-    if (!control.value) { return null; }
+    if (!control.value) {
+      return null;
+    }
 
     // remover qualquer caractére que não seja um dígito
     const rawCpf = control.value.toString().replace(/\D/g, '');
 
     // não aceitar CPFs inválidos
-    if (rawCpf.length !== 11 || RegExp(`[${rawCpf[0]}]{11}`).test(rawCpf)) { return {cpf: true}; }
+    if (rawCpf.length !== 11 || RegExp(`[${rawCpf[0]}]{11}`).test(rawCpf)) {
+      return {cpf: true};
+    }
 
     // transformar o cpf em uma lista tamanho 11 de números e dividir em digitos e identificador
     const cpf = [...rawCpf].map(value => Number(value));
@@ -72,7 +76,9 @@ export class CustomValidators {
    * @param control - O controle.
    */
   static phone(control: AbstractControl): ValidationErrors | null {
-    if (!control.value) { return null; }
+    if (!control.value) {
+      return null;
+    }
 
     // remover qualquer caractére que não seja um dígito
     const rawPhone = control.value.toString().replace(/\D/g, '');
@@ -91,7 +97,9 @@ export class CustomValidators {
    * @param control - O controle.
    */
   static cep(control: AbstractControl): ValidationErrors | null {
-    if (!control.value) { return null; }
+    if (!control.value) {
+      return null;
+    }
 
     // remover qualquer caractére que não seja um dígito
     const rawCep = control.value.toString().replace(/\D/g, '');

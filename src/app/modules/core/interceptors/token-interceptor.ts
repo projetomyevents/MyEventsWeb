@@ -8,13 +8,14 @@ import { AuthenticationService } from '../shared/authentication.service';
 })
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const user = this.authenticationService.userValue;
 
     // se o usuário estiver autenticado adicionar o token de autorização no cabeçalho da requisição
-    if (!!user && user.token) {
+    if (user && user.token) {
       request = request.clone({
         setHeaders: {
           Authorization: user.token

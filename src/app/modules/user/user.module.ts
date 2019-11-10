@@ -8,7 +8,6 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatProgressBarModule,
-  MatProgressSpinnerModule,
   MatSnackBarModule,
   MatTooltipModule
 } from '@angular/material';
@@ -46,8 +45,8 @@ import { UserPageSendPasswordResetComponent } from './pages/user-page-send-passw
     MatAutocompleteModule,
     MatProgressBarModule,
     MatTooltipModule,
-    MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatSnackBarModule
   ]
 })
-export class UserModule { }
+export class UserModule {
+}

@@ -4,42 +4,35 @@
     <h3 class="card-header mat-subheading-2">{{info}}</h3>
     <h4 class="card-subheader mat-subheading-1">{{extraInfo}}</h4>
 
-    <form class="card-content" [formGroup]="userAccount">
+    <form class="card-content" [formGroup]="user">
       <mat-form-field class="card-field" appearance="outline">
         <mat-label>Nome</mat-label>
         <label>
-          <input matInput type="text" formControlName="name">
+          <input matInput formControlName="name">
         </label>
-        <mat-error *ngIf="userAccount.get('name').hasError('required')">Digite o nome</mat-error>
+        <mat-error *ngIf="user.get('name').hasError('required')">Digite o nome</mat-error>
       </mat-form-field>
 
       <mat-form-field class="card-field" appearance="outline">
         <mat-label>Email</mat-label>
-        <label>
-          <input matInput type="email" name="email" formControlName="email" [matAutocomplete]="emailSuggestions">
-          <mat-autocomplete autoActiveFirstOption #emailSuggestions="matAutocomplete">
-            <mat-option *ngFor="let email of completedEmails | async" [value]="email">
-              {{email}}
-            </mat-option>
-          </mat-autocomplete>
-        </label>
-        <mat-error *ngIf="userAccount.get('email').hasError('required')">Informe um email</mat-error>
-        <mat-error *ngIf="userAccount.get('email').hasError('email')">Informe um email <strong>válido</strong></mat-error>
+        <app-email-input formControlName="email"></app-email-input>
+        <mat-error *ngIf="user.get('email').hasError('required')">Informe um email</mat-error>
+        <mat-error *ngIf="user.get('email').hasError('email')">Informe um email <strong>válido</strong></mat-error>
       </mat-form-field>
 
       <div class="card-row">
         <mat-form-field class="card-field" appearance="outline">
           <mat-label>CPF</mat-label>
-          <app-cpf-input formControlName="cpf" #cpfInput></app-cpf-input>
-          <mat-error *ngIf="userAccount.get('cpf').hasError('required')">Informe um CPF</mat-error>
-          <mat-error *ngIf="userAccount.get('cpf').hasError('cpf')">Informe um CPF <strong>válido</strong></mat-error>
+          <app-cpf-input formControlName="cpf"></app-cpf-input>
+          <mat-error *ngIf="user.get('cpf').hasError('required')">Informe um CPF</mat-error>
+          <mat-error *ngIf="user.get('cpf').hasError('cpf')">Informe um CPF <strong>válido</strong></mat-error>
         </mat-form-field>
 
         <mat-form-field class="card-field" appearance="outline">
           <mat-label>Número de celular/telefone</mat-label>
-          <app-phone-input formControlName="phone" #phoneInput></app-phone-input>
-          <mat-error *ngIf="userAccount.get('phone').hasError('required')">Informe um telefone</mat-error>
-          <mat-error *ngIf="userAccount.get('phone').hasError('phone')">Informe um telefone <strong>válido</strong></mat-error>
+          <app-phone-input formControlName="phone"></app-phone-input>
+          <mat-error *ngIf="user.get('phone').hasError('required')">Informe um telefone</mat-error>
+          <mat-error *ngIf="user.get('phone').hasError('phone')">Informe um telefone <strong>válido</strong></mat-error>
         </mat-form-field>
       </div>
 
@@ -47,31 +40,41 @@
         <mat-form-field class="card-field" appearance="outline">
           <mat-label>Senha</mat-label>
           <label>
-            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" maxlength="127">
+            <input matInput [type]="hidePassword ? 'password' : 'text'" maxlength="127" formControlName="password">
           </label>
-          <mat-error *ngIf="userAccount.get('passwords.password').hasError('required')">Informe uma senha</mat-error>
-          <mat-error *ngIf="userAccount.get('passwords.password').hasError('minlength')">A senha deve conter <strong>pelo menos 6 caractéres</strong></mat-error>
+          <mat-error *ngIf="user.get('passwords.password').hasError('required')">Informe uma senha</mat-error>
+          <mat-error *ngIf="user.get('passwords.password').hasError('minlength')">
+            A senha deve conter <strong>pelo menos 6 caractéres</strong>
+          </mat-error>
         </mat-form-field>
 
-        <button mat-icon-button id="hide-password" (click)="hidePassword = !hidePassword" matTooltip="Esconde/Mostra os caractéres da(s) senha(s).">
+        <button mat-icon-button id="hide-password" (click)="hidePassword = !hidePassword"
+                matTooltip="Esconde/Mostra os caractéres da(s) senha(s).">
           <mat-icon class="icon">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
 
         <mat-form-field class="card-field" appearance="outline">
           <mat-label>Confirmar senha</mat-label>
           <label>
-            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="confirmedPassword" [errorStateMatcher]="parentErrorStateMatcher" maxlength="127">
+            <input matInput [type]="hidePassword ? 'password' : 'text'" maxlength="127"
+                   [errorStateMatcher]="parentErrorStateMatcher" formControlName="confirmedPassword">
           </label>
-          <mat-error *ngIf="userAccount.get('passwords').hasError('different')">As senhas são <strong>diferentes</strong></mat-error>
+          <mat-error *ngIf="user.get('passwords').hasError('different')">As senhas são
+            <strong>diferentes</strong></mat-error>
         </mat-form-field>
       </form>
     </form>
 
-    <app-password-strength-bar *ngIf="userAccount.get('passwords.password').dirty && userAccount.get('passwords.password').value" [passwordControl]="userAccount.get('passwords.password')"></app-password-strength-bar>
+    <app-password-strength-bar *ngIf="user.get('passwords.password').dirty && user.get('passwords.password').value"
+                               [passwordControl]="user.get('passwords.password')"></app-password-strength-bar>
 
     <div class="card-actions">
-      <button mat-flat-button class="main-card-action" color="accent" (click)="signup()" [disabled]="resolving">Cadastrar</button>
-      <button mat-button id="signin" color="accent" [routerLink]="'/' + userRoutes.signin">Já possui conta ? Faça login</button>
+      <button mat-flat-button class="main-card-action" color="accent" [disabled]="resolving" (click)="signup()">
+        Cadastrar
+      </button>
+      <button mat-button id="signin" color="accent" [routerLink]="'/' + userRoutes.signin">
+        Já possui conta ? Faça login!
+      </button>
     </div>
   </div>
 </div>

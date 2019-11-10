@@ -13,7 +13,8 @@ export class EventService {
   url = AppConfig.serverUrl;
   eventEndpoint = EndpointsConfig.event;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   /**
    * Registra um novo evento.

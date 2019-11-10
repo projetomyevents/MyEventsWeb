@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { CustomValidators } from '../../../core/shared/custom-validators';
 import { ParentErrorStateMatcher } from '../../../core/shared/custom-state-matchers';
-import { UserService } from '../../../core/shared/user.service';
+import { UserService } from '../../shared/user.service';
+import { RoutesConfig } from '../../../../config/routes.config';
 
 @Component({
   selector: 'app-user-page-password-reset',
@@ -14,8 +15,10 @@ import { UserService } from '../../../core/shared/user.service';
 export class UserPagePasswordResetComponent implements OnInit {
 
   passwords: FormGroup;
-  resolving: boolean;
+
   info: string;
+  resolving: boolean;
+
   hidePassword = true;
   parentErrorStateMatcher = new ParentErrorStateMatcher();
 
@@ -24,13 +27,14 @@ export class UserPagePasswordResetComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.passwords = new FormGroup({
-        password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-        confirmedPassword: new FormControl('')
-      }, CustomValidators.different);
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmedPassword: new FormControl('')
+    }, CustomValidators.different);
   }
 
   async resetPassword(): Promise<void> {
@@ -41,15 +45,16 @@ export class UserPagePasswordResetComponent implements OnInit {
     } else {
       this.resolving = true;
       try {
+        const rawPassword = this.passwords.getRawValue();
         const response = await this.userService.resetPassword(this.route.snapshot.params.token, {
-          password: this.passwords.get('password').value,
-          confirmedPassword: this.passwords.get('confirmedPassword').value
+          password: rawPassword.password,
+          confirmedPassword: rawPassword.confirmedPassword
         });
 
         await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()
           .toPromise();
 
-        await this.router.navigateByUrl('');
+        await this.router.navigateByUrl(RoutesConfig.routes.home);
       } catch (err) {
         this.info = err.message;
         this.snackBar.open(err.message, 'OK', {duration: -1, panelClass: 'snack-bar-failure'});

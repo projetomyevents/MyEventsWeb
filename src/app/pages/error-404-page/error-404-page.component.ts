@@ -10,8 +10,10 @@ export class Error404PageComponent implements OnInit {
 
   homeRoute = RoutesConfig.routes.home;
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
 }

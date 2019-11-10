@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map as ObservableMap } from 'rxjs/operators';
 import { RoutesConfig } from '../../../../config/routes.config';
-import { completeEmails } from '../../../core/shared/email-providers';
 import { AuthenticationService } from '../../../core/shared/authentication.service';
 
 @Component({
@@ -16,8 +13,8 @@ export class UserPageSigninComponent implements OnInit {
 
   userRoutes = RoutesConfig.routes.user;
 
-  userAccount: FormGroup;
-  completedEmails: Observable<string[]>;
+  user: FormGroup;
+
   info: string;
   resolving: boolean;
   hidePassword = true;
@@ -26,30 +23,28 @@ export class UserPageSigninComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.userAccount = new FormGroup({
+    this.user = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required)
     });
-
-    this.completedEmails = this.userAccount.get('email').valueChanges
-      .pipe(ObservableMap((email: string) => completeEmails(email)));
   }
 
   async signin(): Promise<void> {
     this.info = null;
-    if (this.userAccount.invalid) {
+    if (this.user.invalid) {
       this.info = 'Preencha os campos requeridos.';
-      this.userAccount.markAllAsTouched();
+      this.user.markAllAsTouched();
     } else {
       this.resolving = true;
       try {
-        await this.authenticationService.login(
-          this.userAccount.get('email').value, this.userAccount.get('password').value);
+        const rawUser = this.user.getRawValue();
+        await this.authenticationService.login(rawUser.email, rawUser.password);
 
-        await this.router.navigateByUrl(this.route.snapshot.queryParams.redirect || RoutesConfig.routes.home);
+        await this.router.navigateByUrl(this.route.snapshot.queryParams.redirect || RoutesConfig.routes.event.events);
       } catch (err) {
         this.info = err.message;
         this.resolving = false;

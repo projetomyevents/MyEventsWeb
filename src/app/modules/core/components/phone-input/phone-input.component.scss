@@ -26,8 +26,8 @@ input {
 
 span {
   opacity: 0;
-  transition: opacity 500ms;
   line-height: 1em;
+  transition: opacity 200ms;
 }
 
 :host.floating span {

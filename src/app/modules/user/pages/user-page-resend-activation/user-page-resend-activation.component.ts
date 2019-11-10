@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { Observable } from 'rxjs';
-import { map as ObservableMap } from 'rxjs/operators';
-import { completeEmails } from 'src/app/modules/core/shared/email-providers';
-import { UserService } from '../../../core/shared/user.service';
+import { UserService } from '../../shared/user.service';
+import { RoutesConfig } from '../../../../config/routes.config';
 
 @Component({
   selector: 'app-user-page-resend-activation',
@@ -15,20 +13,19 @@ import { UserService } from '../../../core/shared/user.service';
 export class UserPageResendActivationComponent implements OnInit {
 
   email: FormControl;
-  completedEmails: Observable<string[]>;
-  resolving: boolean;
+
   info: string;
+  resolving: boolean;
 
   constructor(
     private userService: UserService,
     private router: Router,
     private snackBar: MatSnackBar
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.email = new FormControl('', [Validators.required, Validators.email]);
-
-    this.completedEmails = this.email.valueChanges.pipe(ObservableMap((email: string) => completeEmails(email)));
   }
 
   async resendActivation(): Promise<void> {
@@ -41,11 +38,10 @@ export class UserPageResendActivationComponent implements OnInit {
       try {
         const response = await this.userService.resendActivation(this.email.value);
 
-        this.info = '';
-        await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'})
-          .onAction().toPromise();
+        await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()
+          .toPromise();
 
-        await this.router.navigateByUrl('');
+        await this.router.navigateByUrl(RoutesConfig.routes.home);
       } catch (err) {
         this.snackBar.open(err.message, 'OK', {panelClass: 'snack-bar-failure'});
         this.info = err.message;

@@ -12,7 +12,8 @@ export class AddressService {
   url = AppConfig.serverUrl;
   addressEndpoint = EndpointsConfig.address;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getAllCities(): Promise<City[]> {
     return this.http.get<City[]>(`${this.url}/${this.addressEndpoint.cities}`).toPromise();

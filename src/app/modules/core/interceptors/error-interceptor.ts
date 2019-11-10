@@ -9,7 +9,8 @@ import { catchError as ObservableCatchError } from 'rxjs/operators';
 })
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any/*HttpEvent<any>*/> {
     return next.handle(request).pipe(ObservableCatchError(reason => {

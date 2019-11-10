@@ -1,17 +1,25 @@
 <form [formGroup]="cpf">
   <label>
-    <input matInput formControlName="group1" maxlength="3" size="3" (input)="updateValue()" (blur)="onTouched()" #group1>
+    <input matInput maxlength="3" size="3" formControlName="group1"
+           (input)="onAnyInputChange()" (blur)="onTouched()"
+           #group1>
   </label>
-  <span >.</span>
+  <span>.</span>
   <label>
-    <input matInput formControlName="group2" maxlength="3" size="3" (input)="updateValue()" (blur)="onTouched()" #group2>
+    <input matInput maxlength="3" size="3" formControlName="group2"
+           (input)="onAnyInputChange()" (blur)="onTouched()"
+           #group2>
   </label>
-  <span >.</span>
+  <span>.</span>
   <label>
-    <input matInput formControlName="group3" maxlength="3" size="3" (input)="updateValue()" (blur)="onTouched()" #group3>
+    <input matInput maxlength="3" size="3" formControlName="group3"
+           (input)="onAnyInputChange()" (blur)="onTouched()"
+           #group3>
   </label>
-  <span >-</span>
+  <span>-</span>
   <label>
-    <input matInput id="cv" formControlName="cv" maxlength="2" size="2" (input)="updateValue()" (blur)="onTouched()" #cv>
+    <input matInput id="cv" maxlength="2" size="2" formControlName="cv"
+           (input)="onAnyInputChange()" (blur)="onTouched()"
+           #cv>
   </label>
 </form>

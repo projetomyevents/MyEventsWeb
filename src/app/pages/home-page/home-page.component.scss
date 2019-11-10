@@ -1,6 +1,6 @@
 h1 {
-  text-transform: uppercase;
   margin: 1em 15%;
+  text-transform: uppercase;
 }
 
 h3 {
@@ -8,11 +8,11 @@ h3 {
 }
 
 button {
-  font-size: 24px;
-  height: 48px;
   width: 240px;
+  height: 48px;
   margin: 36px 0 28px;
   border-radius: 28px;
+  font-size: 24px;
 }
 
 @media(max-width: 768px) {
@@ -27,8 +27,8 @@ button {
   }
 
   button {
-    height: 64px;
     width: 200px;
+    height: 64px;
     border-radius: 32px;
   }
 }

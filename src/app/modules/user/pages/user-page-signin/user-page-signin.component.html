@@ -3,40 +3,42 @@
     <h1 class="card-title mat-headline">Login</h1>
     <h3 class="card-header mat-subheading-2">{{info}}</h3>
 
-    <form class="card-content" [formGroup]="userAccount">
+    <form class="card-content" [formGroup]="user">
       <mat-form-field class="card-field" appearance="outline">
         <mat-label>Email</mat-label>
-        <label>
-          <input matInput type="email" name="email" formControlName="email" [matAutocomplete]="emailSuggestions">
-          <mat-autocomplete autoActiveFirstOption #emailSuggestions="matAutocomplete">
-            <mat-option *ngFor="let email of completedEmails | async" [value]="email">
-              {{email}}
-            </mat-option>
-          </mat-autocomplete>
-        </label>
-        <mat-error *ngIf="userAccount.get('email').hasError('required')">Informe um email</mat-error>
-        <mat-error *ngIf="userAccount.get('email').hasError('email')">Informe um email <strong>válido</strong></mat-error>
+        <app-email-input formControlName="email"></app-email-input>
+        <mat-error *ngIf="user.get('email').hasError('required')">Informe um email</mat-error>
+        <mat-error *ngIf="user.get('email').hasError('email')">
+          Informe um email <strong>válido</strong>
+        </mat-error>
       </mat-form-field>
 
       <div class="card-row">
         <mat-form-field class="card-field" id="password-field" appearance="outline">
           <mat-label>Senha</mat-label>
           <label>
-            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" maxlength="127">
+            <input matInput [type]="hidePassword ? 'password' : 'text'" maxlength="127" formControlName="password">
           </label>
-          <mat-error *ngIf="userAccount.get('password').hasError('required')">Informe uma senha</mat-error>
+          <mat-error *ngIf="user.get('password').hasError('required')">Informe uma senha</mat-error>
         </mat-form-field>
 
-        <button mat-icon-button type="button" id="hide-password" (click)="hidePassword = !hidePassword" matTooltip="Esconde/Mostra os caractéres da(s) senha(s).">
+        <button mat-icon-button type="button" id="hide-password" (click)="hidePassword = !hidePassword"
+                matTooltip="Esconde/Mostra os caractéres da(s) senha(s).">
           <mat-icon class="icon">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </div>
     </form>
 
     <div class="card-actions">
-      <button mat-button id="reset-password" color="accent" [routerLink]="'/' + userRoutes.sendPasswordReset">Esqueci minha senha!</button>
-      <button mat-flat-button class="main-card-action" color="accent" (click)="signin()" [disabled]="resolving">Entrar</button>
-      <button mat-button id="signup" color="accent" [routerLink]="'/' + userRoutes.signup">Não possui uma conta? Cadastre-se!</button>
+      <button mat-button id="reset-password" color="accent" [routerLink]="'/' + userRoutes.sendPasswordReset">
+        Esqueci minha senha!
+      </button>
+      <button mat-flat-button class="main-card-action" color="accent" [disabled]="resolving" (click)="signin()">
+        Entrar
+      </button>
+      <button mat-button id="signup" color="accent" [routerLink]="'/' + userRoutes.signup">
+        Não possui uma conta? Cadastre-se!
+      </button>
     </div>
   </div>
 </div>

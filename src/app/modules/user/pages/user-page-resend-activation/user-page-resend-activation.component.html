@@ -1,27 +1,25 @@
 <div class="content">
   <div class="card">
     <h1 class="card-title mat-headline">Reenviar ativação de conta</h1>
-    <h3 class="card-header mat-subheading-2">Uma mensagem será enviada para o seu email contendo um link para a página de ativação da sua conta.</h3>
+    <h3 class="card-header mat-subheading-2">
+      Uma mensagem será enviada para o seu email contendo um link para a página de ativação da sua conta.
+    </h3>
     <h4 class="card-subheader mat-subheading-1">{{info}}</h4>
 
     <div class="card-content">
       <mat-form-field class="card-field" appearance="outline">
         <mat-label>Email</mat-label>
-        <label>
-          <input matInput type="email" name="email" [formControl]="email" [matAutocomplete]="emailSuggestions">
-          <mat-autocomplete autoActiveFirstOption #emailSuggestions="matAutocomplete">
-            <mat-option *ngFor="let email of completedEmails | async" [value]="email">
-              {{email}}
-            </mat-option>
-          </mat-autocomplete>
-        </label>
+        <app-email-input formControlName="email"></app-email-input>
         <mat-error *ngIf="email.hasError('required')">Informe um email</mat-error>
         <mat-error *ngIf="email.hasError('email')">Informe um email <strong>válido</strong></mat-error>
       </mat-form-field>
     </div>
 
     <div class="card-actions">
-      <button mat-flat-button class="main-card-action" color="accent" (click)="resendActivation()" [disabled]="resolving">Enviar</button>
+      <button mat-flat-button class="main-card-action" color="accent" [disabled]="resolving"
+              (click)="resendActivation()">
+        Enviar
+      </button>
     </div>
   </div>
 </div>

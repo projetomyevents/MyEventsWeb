@@ -37,4 +37,5 @@ import { EventPageListComponent } from './pages/event-page-list/event-page-list.
     MatSelectModule
   ]
 })
-export class EventModule { }
+export class EventModule {
+}

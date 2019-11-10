@@ -1,3 +1,5 @@
+@import "../../modules/core/components/password-strength-bar/password-strength-bar-mixins.component";
+
 .content {
   display: flex;
   min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
@@ -9,25 +11,7 @@
 
 // colorizar a barra de força da senha com base da sua complexibilidade
 .mat-progress-bar-fill::after {
-  .too-weak &{
-    background-color: hsl(0, 100%, 60%);
-  }
-
-  .weak &{
-    background-color: hsl(45, 100%, 60%);
-  }
-
-  .mediocre &{
-    background-color: hsl(90, 100%, 60%);
-  }
-
-  .strong &{
-    background-color: hsl(135, 100%, 60%);
-  }
-
-  .epic &{
-    background-color: hsl(180, 100%, 60%);
-  }
+  @include password-strength-bar-classes-colors;
 }
 
 // colorizar snack bar

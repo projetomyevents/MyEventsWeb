@@ -1,9 +1,13 @@
 <form [formGroup]="cep">
   <label>
-    <input matInput id="local" formControlName="local" maxlength="5" size="5" (input)="updateValue()" (blur)="onTouched()" #local>
+    <input matInput id="local" maxlength="5" size="5" formControlName="local"
+           (input)="onAnyInputChange()" (blur)="onTouched()"
+           #local>
   </label>
   <span>-</span>
   <label>
-    <input matInput id="distribution" formControlName="distribution" maxlength="3" size="3" (input)="updateValue()" (blur)="onTouched()" #distribution>
+    <input matInput id="distribution" maxlength="3" size="3" formControlName="distribution"
+           (input)="onAnyInputChange()" (blur)="onTouched()"
+           #distribution>
   </label>
 </form>

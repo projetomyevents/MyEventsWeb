@@ -1,6 +1,6 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
-import { AppConfig } from '../../../config/app.config';
 import { RoutesConfig } from '../../../config/routes.config';
+import { AppConfig } from '../../../config/app.config';
 import { AuthenticationService } from '../../../modules/core/shared/authentication.service';
 
 @Component({
@@ -10,13 +10,15 @@ import { AuthenticationService } from '../../../modules/core/shared/authenticati
 })
 export class NavbarComponent implements OnInit {
 
-  repositoryURL = AppConfig.repositoryURL;
   routes = RoutesConfig.routes;
   isDevMode = isDevMode();
+  repositoryURL = AppConfig.repositoryURL;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService) {
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   /**
    * Verifica se o usuário está autenticado.

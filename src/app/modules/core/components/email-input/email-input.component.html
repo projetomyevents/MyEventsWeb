@@ -1,0 +1,9 @@
+<label>
+  <input matInput type="email" [name]="name"
+         [matAutocomplete]="emailSuggestions" [formControl]="email"
+         (input)="onAnyInputChange()" (blur)="onTouched()"
+         #emailInput>
+</label>
+<mat-autocomplete autoActiveFirstOption #emailSuggestions="matAutocomplete">
+  <mat-option *ngFor="let suggestion of suggestions" [value]="suggestion">{{suggestion}}</mat-option>
+</mat-autocomplete>

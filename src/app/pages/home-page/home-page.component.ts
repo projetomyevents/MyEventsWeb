@@ -10,8 +10,10 @@ export class HomePageComponent implements OnInit {
 
   eventRegisterRoute = RoutesConfig.routes.event.register;
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
 }

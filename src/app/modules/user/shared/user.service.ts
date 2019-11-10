@@ -12,7 +12,8 @@ export class UserService {
   url = AppConfig.serverUrl;
   userEndpoint = EndpointsConfig.user;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   /**
    * Autentica um usuário.

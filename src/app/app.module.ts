@@ -43,4 +43,5 @@ import { EventModule } from './modules/event/event.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

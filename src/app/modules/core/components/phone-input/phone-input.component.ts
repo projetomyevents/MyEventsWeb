@@ -1,16 +1,19 @@
-import { Component, ElementRef, HostBinding, Input, OnDestroy, OnInit, Optional, Self, ViewChild } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  ElementRef,
+  HostBinding, Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Self,
+  ViewChild
+} from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroup, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { Subject } from 'rxjs';
-
-class Phone {
-  constructor(public area: string, public exchange: string, public subscriber: string) { }
-}
-
-Phone.prototype.toString = function() {
-  return this.area + this.exchange + this.subscriber;
-};
+import { Phone } from '../../shared/phone.model';
 
 @Component({
   selector: 'app-phone-input',
@@ -18,7 +21,7 @@ Phone.prototype.toString = function() {
   styleUrls: ['./phone-input.component.scss'],
   providers: [{provide: MatFormFieldControl, useExisting: PhoneInput}]
 })
-export class PhoneInput implements OnInit, OnDestroy, MatFormFieldControl<Phone>, ControlValueAccessor {
+export class PhoneInput implements OnInit, OnDestroy, DoCheck, ControlValueAccessor, MatFormFieldControl<Phone> {
 
   static nextId = 0;
 
@@ -28,68 +31,69 @@ export class PhoneInput implements OnInit, OnDestroy, MatFormFieldControl<Phone>
 
   phone: FormGroup;
 
+  focused: boolean;
   autofilled: boolean;
+  errorState: boolean;
 
-  private _placeholder: string;
-  private _required: boolean;
-  private _disabled: boolean;
-
-  @HostBinding() id = `app-phone-input-${PhoneInput.nextId++}`;
-  @HostBinding('class.floating')
-  get shouldLabelFloat() { return this.focused || !this.empty; }
-  @HostBinding('attr.aria-describedby') describedBy = '';
-
-  focused = false;
   controlType = 'phone-input';
   stateChanges = new Subject<void>();
 
-  onChange = (_: any) => {};
-  onTouched = () => {};
+  @HostBinding() id = `app-phone-input-${PhoneInput.nextId++}`;
+  @HostBinding('class.floating')
+  get shouldLabelFloat() {
+    return this.focused || !this.empty;
+  }
+  @HostBinding('attr.aria-describedby') describedBy = '';
+
+  @Input()
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(dis: boolean) {
+    this._disabled = dis;
+    if (dis) {
+      this.phone.disable();
+    } else {
+      this.phone.enable();
+    }
+    this.stateChanges.next();
+  }
+  private _disabled: boolean;
+
+  get empty(): boolean {
+    const {area, exchange, subscriber} = this.phone.value;
+    return area.length === 0 && exchange.length === 0 && subscriber.length === 0;
+  }
+
+  @Input()
+  get placeholder(): string {
+    return this._placeholder;
+  }
+  set placeholder(plh: string) {
+    this._placeholder = plh;
+    this.stateChanges.next();
+  }
+  private _placeholder: string;
+
+  @Input()
+  get required(): boolean {
+    return this._required;
+  }
+  set required(req: boolean) {
+    this._required = req;
+    this.stateChanges.next();
+  }
+  private _required: boolean;
 
   @Input()
   get value(): Phone | null {
     const {area, exchange, subscriber} = this.phone.value;
-    if (!!area || !!exchange || !!subscriber) { return new Phone(area, exchange, subscriber); }
-    return null;
+    return !!area || !!exchange || !!subscriber ? new Phone(area, exchange, subscriber) : null;
   }
   set value(phone: Phone | null) {
     phone = phone || new Phone('', '', '');
     this.phone.setValue({area: phone.area, exchange: phone.exchange, subscriber: phone.subscriber});
     this.stateChanges.next();
-  }
-
-  @Input()
-  get placeholder(): string { return this._placeholder; }
-  set placeholder(plh: string) {
-    this._placeholder = plh;
-    this.stateChanges.next();
-  }
-
-  @Input()
-  get required(): boolean { return this._required; }
-  set required(req: boolean) {
-    this._required = req;
-    this.stateChanges.next();
-  }
-
-  @Input()
-  get disabled(): boolean { return this._disabled; }
-  set disabled(value: boolean) {
-    this._disabled = value;
-    if (this._disabled) { this.phone.disable(); } else { this.phone.enable(); }
-    this.stateChanges.next();
-  }
-
-  get errorState(): boolean {
-    return  this.ngControl.errors !== null
-      && this.phone.get('area').touched
-      && this.phone.get('exchange').touched
-      && this.phone.get('subscriber').touched;
-  }
-
-  get empty(): boolean {
-    const {area, exchange, subscriber} = this.phone.value;
-    return area.length === 0 && exchange.length === 0 && subscriber.length === 0;
   }
 
   constructor(@Optional() @Self() public ngControl: NgControl,
@@ -101,38 +105,36 @@ export class PhoneInput implements OnInit, OnDestroy, MatFormFieldControl<Phone>
       subscriber: new FormControl({value: '', disabled: this.disabled})
     });
 
+    if (this.ngControl != null) {
+      this.ngControl.valueAccessor = this;
+    }
+
     this.focusMonitor.monitor(this.elRef.nativeElement, true).subscribe((origin: string) => {
       this.focused = !!origin;
       this.stateChanges.next();
     });
-
-    if (this.ngControl != null) { this.ngControl.valueAccessor = this; }
   }
 
-  ngOnInit(): void { }
+  onChange = (_: any) => {};
+  onTouched = () => {};
+
+  onAnyInputChange(): void {
+    this.onChange(this.value);
+  }
+
+  ngOnInit(): void {
+  }
 
   ngOnDestroy(): void {
     this.stateChanges.complete();
     this.focusMonitor.stopMonitoring(this.elRef.nativeElement);
   }
 
-  onContainerClick(event: MouseEvent): void {
-    if ((event.target as Element).tagName.toLowerCase() !== 'input') {
-      if (this.area.nativeElement.value.length !== 3) { this.area.nativeElement.focus(); }
-      else if (this.exchange.nativeElement.value.length !== 3) { this.exchange.nativeElement.focus(); }
-      else { this.subscriber.nativeElement.focus(); }
+  ngDoCheck(): void {
+    if (this.ngControl) {
+      this.errorState = this.ngControl.invalid && this.ngControl.touched;
+      this.stateChanges.next();
     }
-  }
-
-  updateValue(): void {
-    this.onChange(this.value);
-
-    // pequeno hack para mostrar erros, quem nunca
-    if (this.phone.untouched) { this.phone.markAllAsTouched(); }
-  }
-
-  setDescribedByIds(ids: string[]): void {
-    this.describedBy = ids.join(' ');
   }
 
   registerOnChange(fn: any): void {
@@ -147,8 +149,24 @@ export class PhoneInput implements OnInit, OnDestroy, MatFormFieldControl<Phone>
     this.disabled = isDisabled;
   }
 
-  writeValue(phone: Phone | null): void {
-    this.value = phone;
+  writeValue(value: any): void {
+    this.value = value;
+  }
+
+  onContainerClick(event: MouseEvent): void {
+    if ((event.target as Element).tagName.toLowerCase() !== 'input') {
+      if (this.area.nativeElement.value.length !== 3) {
+        this.area.nativeElement.focus();
+      } else if (this.exchange.nativeElement.value.length !== 3) {
+        this.exchange.nativeElement.focus();
+      } else {
+        this.subscriber.nativeElement.focus();
+      }
+    }
+  }
+
+  setDescribedByIds(ids: string[]): void {
+    this.describedBy = ids.join(' ');
   }
 
 }
