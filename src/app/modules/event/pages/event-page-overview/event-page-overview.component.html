@@ -1,76 +1,74 @@
-<div id="events">
+<div class="content">
+  <app-loading-spinner *ngIf="!event; else content"></app-loading-spinner>
+  <ng-template #content>
+    <h2 class="mat-headline">{{event.name}}</h2>
 
-  <h2> {{event.name}} </h2>
+    <mat-grid-list cols="4" rowHeight="1:1" gutterSize="15px">
+      <mat-grid-tile id="image">
+        <img src="{{'data:image/png;base64,' + event.image}}"
+             (error)="$event.target.src='../../../../assets/default-event-image.jpeg'"
+             alt="Imagem ilustrativa do evento.">
+      </mat-grid-tile>
 
+      <mat-grid-tile id="description" colspan="2">
+        <p>{{event.description}}</p>
+      </mat-grid-tile>
 
-  <mat-form-field class="card-row" >
-    <mat-label class="card-field" appearance="outline">
+      <mat-grid-tile rowspan="2">
+        <div id="schedule-actions">
+          <div id="schedule">
+            <p>{{event.schedule}}</p>
+          </div>
 
-      <mat-icon aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>
-      <h3> {{event.startDate}} </h3>
+          <div id="actions">
+            <button mat-flat-button color="accent" (click)="guests()">Convidados</button>
+            <button mat-flat-button color="warn" (click)="cancel()">Cancelar</button>
+          </div>
+        </div>
+      </mat-grid-tile>
 
-    </mat-label>
+      <mat-grid-tile colspan="3">
+        <div id="attributes">
+          <div class="attribute">
+            <mat-icon>date_range</mat-icon>
+            <span>{{event.startDate.toLocaleDateString()}}</span>
+          </div>
 
-    <mat-label class="card-field" appearance="outline">
+          <div class="attribute">
+            <mat-icon>person</mat-icon>
+            <span>{{event.user.name}}</span>
+          </div>
 
-      <mat-icon aria-hidden="false" aria-label="Example home icon">monetization_on</mat-icon>
-      <h3> {{event.admissionPrice}} </h3>
+          <div class="attribute">
+            <mat-icon>local_phone</mat-icon>
+            <span>{{event.user.phone}}</span>
+          </div>
 
-    </mat-label>
-  </mat-form-field>
+          <div class="attribute" [matTooltip]="event.complement">
+            <mat-icon>directions</mat-icon>
+            <div class="attribute-multiline">
+              <span><strong>CEP</strong>: {{event.cep}}</span>
+              <span><strong>Estado/Cidade</strong>: {{event.stateCity}}</span>
+              <span><strong>Local</strong>: {{event.local}}</span>
+            </div>
+          </div>
 
+          <div *ngIf="event.admissionPrice" class="attribute">
+            <mat-icon>check</mat-icon>
+            <span>{{event.admissionPrice}}</span>
+          </div>
 
+          <div *ngIf="event.attire" class="attribute">
+            <mat-icon>check</mat-icon>
+            <span>{{event.attire}}</span>
+          </div>
 
-  <mat-label class="card-row" >
-    <label class="card-field" appearance="outline">
-
-      <mat-icon aria-hidden="false" aria-label="Example home icon">assignment_ind</mat-icon>
-      <h3> {{event.user}} </h3>
-
-    </label>
-
-    <label class="card-field" appearance="outline">
-
-      <mat-icon aria-hidden="false" aria-label="Example home icon">face</mat-icon>
-      <h3> {{event.minAge}} </h3>
-
-    </label>
-  </mat-label>
-
-
-
-  <mat-label class="card-row" >
-    <label class="card-field" appearance="outline">
-
-      <mat-icon aria-hidden="false" aria-label="Example home icon">smartphone</mat-icon>
-      <h3> {{event.number}} </h3>
-
-    </label>
-
-    <label class="card-field" appearance="outline">
-
-      <mat-icon aria-hidden="false" aria-label="Example home icon">grade</mat-icon>
-      <h3> {{event.attire}} </h3>
-
-    </label>
-  </mat-label>
-
-
-
-  <mat-label class="card-row" >
-    <label class="card-field" appearance="outline">
-
-      <mat-icon aria-hidden="false" aria-label="Example home icon">contact_mail</mat-icon>
-      <h3> {{event.cep}} </h3>
-
-    </label>
-
-    <label class="card-field" appearance="outline">
-
-      <mat-icon aria-hidden="false" aria-label="Example home icon">people_outline</mat-icon>
-      <h3> {{event.companionLimit}} </h3>
-
-    </label>
-  </mat-label>
-
+          <div *ngIf="event.minAge" class="attribute">
+            <mat-icon>check</mat-icon>
+            <span>{{event.minAge}}</span>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </ng-template>
 </div>

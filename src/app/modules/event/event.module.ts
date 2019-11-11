@@ -6,10 +6,12 @@ import {
   MatCardModule,
   MatDatepickerModule,
   MatFormFieldModule,
+  MatGridListModule,
   MatInputModule,
   MatNativeDateModule,
   MatSelectModule,
-  MatStepperModule
+  MatStepperModule,
+  MatTooltipModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { EventRoutingModule } from './event-routing.module';
@@ -34,7 +36,9 @@ import { EventPageListComponent } from './pages/event-page-list/event-page-list.
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule,
+    MatTooltipModule
   ]
 })
 export class EventModule {
