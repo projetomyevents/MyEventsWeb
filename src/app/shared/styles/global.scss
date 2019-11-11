@@ -34,3 +34,8 @@
 .snack-bar-failure {
   background-color: hsl(4, 90%, 58%);
 }
+
+// centralizar o spinner de carregamento
+app-loading-spinner {
+  margin: auto;
+}
