@@ -1,1 +1,31 @@
+.content {
+  justify-content: start;
+}
+
+.mat-headline {
+  margin-top: 16px;
+}
+
+#events {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0 25px;
+}
+
+mat-card {
+  width: 300px;
+  margin: 25px;
+}
+
+mat-card-content {
+  text-align: left;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* TODO: @media para telas menores */
