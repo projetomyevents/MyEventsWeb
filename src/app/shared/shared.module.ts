@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule } from '@angular/material';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatButtonModule, MatDialogModule, MatIconModule, MatMenuModule, MatTooltipModule } from '@angular/material';
 import { AppRoutingModule } from '../app-routing.module';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, ConfirmationDialogComponent],
   exports: [
     NavbarComponent
   ],
@@ -16,7 +16,8 @@ import { AppRoutingModule } from '../app-routing.module';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ]
 })
 export class SharedModule {

@@ -15,6 +15,7 @@ import { ErrorInterceptor } from './modules/core/interceptors/error-interceptor'
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './modules/user/user.module';
 import { EventModule } from './modules/event/event.module';
+import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { EventModule } from './modules/event/event.module';
     {provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: {showDelay: 200, hideDelay: 200, touchendHideDelay: 200}},
     {provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}}
   ],
+  entryComponents: [ConfirmationDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
