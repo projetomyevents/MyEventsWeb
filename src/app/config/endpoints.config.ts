@@ -12,6 +12,9 @@ export const EndpointsConfig: any = {
     event: eventById,
     events: 'event/all'
   },
+  guest: {
+    guestList
+  },
   address: {
     cities: 'address/cities',
     states: 'address/states'
@@ -36,4 +39,8 @@ function sendPasswordReset(email: string) {
 
 function eventById(id: number) {
   return `event/${id}`;
+}
+
+function guestList(eventId: number) {
+  return `guest/list/${eventId}`;
 }

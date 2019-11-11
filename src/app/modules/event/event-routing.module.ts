@@ -11,7 +11,7 @@ const eventRoutes = RoutesConfig.routes.event;
 
 const routes: Routes = [
   {path: eventRoutes.register, component: EventPageRegisterComponent, canActivate: [AuthenticationGuardService]},
-  {path: eventRoutes.event, component: EventPageOverviewComponent},
+  {path: eventRoutes.event, component: EventPageOverviewComponent, pathMatch: 'full'},
   {path: eventRoutes.events, component: EventPageListComponent, canActivate: [AuthenticationGuardService]}
 ];
 

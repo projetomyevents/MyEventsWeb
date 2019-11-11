@@ -13,6 +13,10 @@ const routesNames = {
     register: 'register-new-event',
     event: 'event/:id',
     events: 'events'
+  },
+  guest: {
+    guests: 'event/:id/guests',
+    guestsOrganize: 'event/:id/guests/organize'
   }
 };
 
