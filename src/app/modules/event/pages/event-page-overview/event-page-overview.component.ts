@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Event } from '../../shared/event.model';
+import {Event, SimpleEvent} from '../../shared/event.model';
 import { EventService } from '../../shared/event.service';
-import { RoutesConfig } from '../../../../config/routes.config';
+import { RoutesConfig } from '../../../../config/routes.config'
 
 @Component({
   selector: 'app-event-page-overview',
@@ -12,6 +12,7 @@ import { RoutesConfig } from '../../../../config/routes.config';
 export class EventPageOverviewComponent implements OnInit {
 
   event: Event;
+  events: SimpleEvent[];
 
   constructor(
     private eventService: EventService,

@@ -1,1 +1,19 @@
+.content {
+  justify-content: start;
+}
+
+.mat-headline {
+  margin-top: 16px;
+}
+
+.card-row .card-field {
+  width: 45%;
+}
+
+#events {
+  flex-flow: row wrap;
+  padding: 0 40px;
+}
+
+
 /* TODO: @media para telas menores */
