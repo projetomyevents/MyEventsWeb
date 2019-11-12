@@ -13,7 +13,8 @@ export const EndpointsConfig: any = {
     events: 'event/all'
   },
   guest: {
-    guestList
+    guestList,
+    guestDetailedList
   },
   address: {
     cities: 'address/cities',
@@ -43,4 +44,8 @@ function eventById(id: number) {
 
 function guestList(eventId: number) {
   return `guest/list/${eventId}`;
+}
+
+function guestDetailedList(eventId: number) {
+  return `guest/list/detailed/${eventId}`;
 }
