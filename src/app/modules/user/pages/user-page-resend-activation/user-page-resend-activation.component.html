@@ -9,7 +9,7 @@
     <div class="card-content">
       <mat-form-field class="card-field" appearance="outline">
         <mat-label>Email</mat-label>
-        <app-email-input formControlName="email"></app-email-input>
+        <app-email-input [formControl]="email"></app-email-input>
         <mat-error *ngIf="email.hasError('required')">Informe um email</mat-error>
         <mat-error *ngIf="email.hasError('email')">Informe um email <strong>válido</strong></mat-error>
       </mat-form-field>

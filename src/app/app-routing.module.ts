@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: RoutesConfig.routes.error404, component: Error404PageComponent},
   {path: '', loadChildren: './modules/user/user.module#UserModule'},
   {path: '', loadChildren: './modules/event/event.module#EventModule'},
+  {path: '', loadChildren: './modules/guest/guest.module#GuestModule'},
 
   {path: '**', redirectTo: RoutesConfig.routes.error404}
 ];

@@ -103,7 +103,7 @@ export class CEPInput implements OnInit, OnDestroy, DoCheck, ControlValueAccesso
       distribution: new FormControl({value: '', disabled: this.disabled})
     });
 
-    if (this.ngControl != null) {
+    if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
 

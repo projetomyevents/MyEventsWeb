@@ -10,13 +10,13 @@ const routesNames = {
     sendPasswordReset: 'send-password-reset',
   },
   event: {
-    register: 'register-new-event',
+    create: 'create-event',
     event: 'event/:id',
     events: 'events'
   },
   guest: {
     guests: 'event/:id/guests',
-    guestsOrganize: 'event/:id/guests/organize'
+    guestsEdit: 'event/:id/guests/edit'
   }
 };
 

@@ -105,7 +105,7 @@ export class EmailInput implements OnInit, OnDestroy, DoCheck, ControlValueAcces
               private elRef: ElementRef<HTMLElement>) {
     this.email = new FormControl({value: '', disabled: this.disabled});
 
-    if (this.ngControl != null) {
+    if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
 

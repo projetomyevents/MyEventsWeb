@@ -3,15 +3,18 @@ import { SimpleUser } from '../../user/shared/user.model';
 export interface Event {
   id: number;
   name: string;
-  startDate: Date;
+  startDate: any;
   description: string;
   schedule: string;
   admissionPrice?: string;
-  minAge?: number;
+  minimumAge?: number;
   attire?: string;
   cep: string;
-  stateCity: string;
-  local: string;
+  stateName: string;
+  cityName: string;
+  neighborhood: string;
+  street: string;
+  number?: string;
   complement?: string;
   image?: string;
   attachments?: string[];
@@ -21,6 +24,7 @@ export interface Event {
 export interface SimpleEvent {
   id: string;
   name: string;
+  startDate: any;
   description: string;
   image?: string;
 }
@@ -32,7 +36,7 @@ export interface NewEvent {
   description: string;
   schedule: string;
   admissionPrice?: string;
-  minAge?: number;
+  minimumAge?: number;
   attire?: string;
   cep: string;
   cityId: number;

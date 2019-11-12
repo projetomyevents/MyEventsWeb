@@ -15,12 +15,21 @@ export class GuestService {
   constructor(private http: HttpClient) { }
 
   /**
-   * Retorna a lista de convidados do evento com identificador especificado.
+   * Retorna a lista de convidados de um evento.
    *
-   * @param eventId - O identificador do evento.
+   * @param id - O identificador do evento.
    */
-  getAll(eventId: number): Promise<Guest | SimpleGuest> {
-    return this.http.get<Guest | SimpleGuest>(`${this.url}/${this.guestEndpoint.guestList(eventId)}`).toPromise();
+  getAll(id: number): Promise<SimpleGuest> {
+    return this.http.get<SimpleGuest>(`${this.url}/${this.guestEndpoint.guests(id)}`).toPromise();
+  }
+
+  /**
+   * Retorna a lista de convidados de um evento para ser editada.
+   *
+   * @param id - O identificador do evento.
+   */
+  getAllEdit(id: number): Promise<Guest> {
+    return this.http.get<Guest>(`${this.url}/${this.guestEndpoint.guestsEdit(id)}`).toPromise();
   }
 
 }

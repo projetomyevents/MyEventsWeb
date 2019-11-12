@@ -17,12 +17,12 @@ export class EventService {
   }
 
   /**
-   * Registra um novo evento.
+   * Cria um novo evento.
    *
    * @param newEvent - O novo evento.
    */
-  register(newEvent: NewEvent): Promise<any> {
-    return this.http.post<any>(`${this.url}/${this.eventEndpoint.register}`, newEvent).toPromise();
+  create(newEvent: NewEvent): Promise<any> {
+    return this.http.post<any>(`${this.url}/${this.eventEndpoint.create}`, newEvent).toPromise();
   }
 
   /**

@@ -12,7 +12,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(private authenticationService: AuthenticationService) {
   }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any/*HttpEvent<any>*/> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
     return next.handle(request).pipe(ObservableCatchError(reason => {
       if (reason.status === 401) {
         // deslogar caso o usuário tente acessar uma rota bloqueada

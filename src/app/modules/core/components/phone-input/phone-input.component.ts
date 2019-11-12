@@ -105,7 +105,7 @@ export class PhoneInput implements OnInit, OnDestroy, DoCheck, ControlValueAcces
       subscriber: new FormControl({value: '', disabled: this.disabled})
     });
 
-    if (this.ngControl != null) {
+    if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
 

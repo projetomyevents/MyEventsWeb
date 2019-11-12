@@ -1,6 +1,6 @@
 <div class="content">
   <div class="card">
-    <h2 class="card-title mat-headline">Registre um novo evento</h2>
+    <h2 class="card-title mat-headline">Crie um evento</h2>
     <h4 class="card-header mat-subheading-2">{{info}}</h4>
     <h4 class="card-subheader mat-subheading-1">{{extraInfo}}</h4>
 
@@ -63,7 +63,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Idade mínima (opcional)</mat-label>
             <label>
-              <input matInput type="number" min="0" max="127" formControlName="minAge">
+              <input matInput type="number" min="0" max="127" formControlName="minimumAge">
             </label>
           </mat-form-field>
 
@@ -153,8 +153,8 @@
           <button mat-button color="primary" matStepperPrevious>Editar o local</button>
           <span></span>
           <button mat-flat-button class="form-main-action" color="primary" [disabled]="resolving"
-                  (click)="registerNewUserEvent()">
-            Registrar
+                  (click)="createNewEvent()">
+            Criar
           </button>
         </div>
       </mat-step>

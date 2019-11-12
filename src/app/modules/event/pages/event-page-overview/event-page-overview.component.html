@@ -48,8 +48,11 @@
             <mat-icon>directions</mat-icon>
             <div class="attribute-multiline">
               <span><strong>CEP</strong>: {{event.cep}}</span>
-              <span><strong>Estado/Cidade</strong>: {{event.stateCity}}</span>
-              <span><strong>Local</strong>: {{event.local}}</span>
+              <span><strong>Estado/Cidade</strong>: {{event.stateName}}/{{event.cityName}}</span>
+              <span>
+                <strong>Local</strong>: {{event.neighborhood}}, {{event.street}}
+                {{event.number ? ', ' + event.number : ''}}
+              </span>
             </div>
           </div>
 
@@ -63,9 +66,9 @@
             <span>{{event.attire}}</span>
           </div>
 
-          <div *ngIf="event.minAge" class="attribute">
+          <div *ngIf="event.minimumAge" class="attribute">
             <mat-icon>assignment_ind</mat-icon>
-            <span>{{event.minAge}}</span>
+            <span>{{event.minimumAge}}</span>
           </div>
         </div>
       </mat-grid-tile>

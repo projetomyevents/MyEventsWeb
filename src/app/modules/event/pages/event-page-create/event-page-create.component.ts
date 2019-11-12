@@ -10,11 +10,11 @@ import { EventService } from '../../shared/event.service';
 
 // TODO: implementar upload de arquivos
 @Component({
-  selector: 'app-event-page-register',
-  templateUrl: './event-page-register.component.html',
-  styleUrls: ['./event-page-register.component.scss']
+  selector: 'app-event-page-create',
+  templateUrl: './event-page-create.component.html',
+  styleUrls: ['./event-page-create.component.scss']
 })
-export class EventPageRegisterComponent implements OnInit {
+export class EventPageCreateComponent implements OnInit {
 
   event: FormGroup;
 
@@ -44,7 +44,7 @@ export class EventPageRegisterComponent implements OnInit {
       description: new FormControl('', Validators.required),
       schedule: new FormControl('', Validators.required),
       admissionPrice: new FormControl(''),
-      minAge: new FormControl(''),
+      minimumAge: new FormControl(''),
       attire: new FormControl(''),
       // step 2 - local
       cep: new FormControl('', [Validators.required, CustomValidators.cep]),
@@ -63,12 +63,10 @@ export class EventPageRegisterComponent implements OnInit {
     this.addressService.getAllCities().then((cities: City[]) => this.cities = cities);
 
     this.event.get('state').valueChanges.subscribe(
-      (stateId: number) => this.filteredCities = stateId == null
-        ? []
-        : this.cities.filter((city: City) => city.stateId === stateId));
+      (stateId: number) => this.filteredCities = this.cities.filter((city: City) => city.stateId === stateId));
   }
 
-  async registerNewUserEvent(): Promise<void> {
+  async createNewEvent(): Promise<void> {
     this.info = null;
     this.extraInfo = '';
     if (this.event.invalid) {
@@ -91,14 +89,14 @@ export class EventPageRegisterComponent implements OnInit {
           rawEvent.attachments = [];
         }
 
-        const response = await this.userEventService.register({
+        const response = await this.userEventService.create({
           name: rawEvent.name,
           startDate: rawEvent.startDate,
           companionLimit: rawEvent.companionLimit,
           description: rawEvent.description,
           schedule: rawEvent.schedule,
           admissionPrice: rawEvent.admissionPrice,
-          minAge: rawEvent.minAge,
+          minimumAge: rawEvent.minimumAge,
           attire: rawEvent.attire,
           cep: rawEvent.cep.toString(),
           cityId: rawEvent.city,

@@ -107,7 +107,7 @@ export class CPFInput implements OnInit, OnDestroy, DoCheck, ControlValueAccesso
       cv: new FormControl({value: '', disabled: this.disabled})
     });
 
-    if (this.ngControl != null) {
+    if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
 
