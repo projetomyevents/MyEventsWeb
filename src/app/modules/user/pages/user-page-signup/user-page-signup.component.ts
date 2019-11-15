@@ -3,14 +3,15 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { RoutesConfig } from '../../../../config/routes.config';
-import { CustomValidators } from '../../../core/shared/custom-validators';
 import { ParentErrorStateMatcher } from '../../../core/shared/custom-state-matchers';
+import { CustomValidators } from '../../../core/shared/custom-validators';
 import { UserService } from '../../shared/user.service';
+
 
 @Component({
   selector: 'app-user-page-signup',
   templateUrl: './user-page-signup.component.html',
-  styleUrls: ['./user-page-signup.component.scss']
+  styleUrls: ['./user-page-signup.component.scss'],
 })
 export class UserPageSignupComponent implements OnInit {
 
@@ -34,10 +35,10 @@ export class UserPageSignupComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       passwords: new FormGroup({
         password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-        confirmedPassword: new FormControl('')
+        confirmedPassword: new FormControl(''),
       }, CustomValidators.different),
       phone: new FormControl('', [Validators.required, CustomValidators.phone]),
-      cpf: new FormControl('', [Validators.required, CustomValidators.cpf])
+      cpf: new FormControl('', [Validators.required, CustomValidators.cpf]),
     });
   }
 
@@ -57,7 +58,7 @@ export class UserPageSignupComponent implements OnInit {
           confirmedPassword: rawUser.passwords.confirmedPassword,
           name: rawUser.name,
           cpf: rawUser.cpf.toString(),
-          phone: rawUser.phone.toString()
+          phone: rawUser.phone.toString(),
         });
 
         await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()

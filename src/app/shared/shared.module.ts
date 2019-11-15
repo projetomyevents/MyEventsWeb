@@ -5,10 +5,11 @@ import { AppRoutingModule } from '../app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
+
 @NgModule({
   declarations: [NavbarComponent, ConfirmationDialogComponent],
   exports: [
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     CommonModule,
@@ -17,8 +18,8 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     MatIconModule,
     MatMenuModule,
     MatTooltipModule,
-    MatDialogModule
-  ]
+    MatDialogModule,
+  ],
 })
 export class SharedModule {
 }

@@ -5,21 +5,21 @@ export const EndpointsConfig: any = {
     activate: activateUser,
     resendActivation: resendUserActivation,
     passwordReset,
-    sendPasswordReset
+    sendPasswordReset,
   },
   event: {
     create: 'event/create',
     event,
-    events: 'event/all'
+    events: 'event/all',
   },
   guest: {
     guests,
-    guestsEdit
+    guestsEdit,
   },
   address: {
     cities: 'address/cities',
-    states: 'address/states'
-  }
+    states: 'address/states',
+  },
 };
 
 function activateUser(token: string) {

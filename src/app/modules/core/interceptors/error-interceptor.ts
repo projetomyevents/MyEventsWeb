@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable, throwError as ObservableThrowError } from 'rxjs';
-import { AuthenticationService } from '../shared/authentication.service';
 import { catchError as ObservableCatchError } from 'rxjs/operators';
+import { AuthenticationService } from '../shared/authentication.service';
+
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ErrorInterceptor implements HttpInterceptor {
 

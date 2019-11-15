@@ -12,14 +12,14 @@ const routesNames = {
   event: {
     create: 'create-event',
     event: 'event/:id',
-    events: 'events'
+    events: 'events',
   },
   guest: {
     guests: 'event/:id/guests',
-    guestsEdit: 'event/:id/guests/edit'
-  }
+    guestsEdit: 'event/:id/guests/edit',
+  },
 };
 
 export const RoutesConfig: any = {
-  routes: routesNames
+  routes: routesNames,
 };

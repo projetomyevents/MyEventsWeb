@@ -4,10 +4,11 @@ import { MatSnackBar } from '@angular/material';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { UserService } from '../../shared/user.service';
 
+
 @Component({
   selector: 'app-user-page-confirmation',
   templateUrl: './user-page-activation.component.html',
-  styleUrls: ['./user-page-activation.component.scss']
+  styleUrls: ['./user-page-activation.component.scss'],
 })
 export class UserPageActivationComponent implements OnInit {
 
@@ -20,7 +21,7 @@ export class UserPageActivationComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
   }
 

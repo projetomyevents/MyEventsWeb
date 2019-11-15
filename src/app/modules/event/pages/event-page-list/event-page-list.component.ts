@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { EventService } from '../../shared/event.service';
 import { SimpleEvent } from '../../shared/event.model';
+import { EventService } from '../../shared/event.service';
 import { ConfirmationDialogComponent } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.component';
+
 
 @Component({
   selector: 'app-event-page-list',
   templateUrl: './event-page-list.component.html',
-  styleUrls: ['./event-page-list.component.scss']
+  styleUrls: ['./event-page-list.component.scss'],
 })
 export class EventPageListComponent implements OnInit {
 
@@ -18,7 +19,7 @@ export class EventPageListComponent implements OnInit {
     private eventService: EventService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
   }
 
@@ -50,8 +51,8 @@ export class EventPageListComponent implements OnInit {
           // TODO: this shit
           new Audio('../../../../assets/i-giorno-giovanna-have-a-dream.mp3').play();
         },
-        reject: () => null
-      }
+        reject: () => null,
+      },
     });
   }
 

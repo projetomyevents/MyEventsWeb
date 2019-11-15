@@ -3,6 +3,6 @@ export class CPF {
   }
 }
 
-CPF.prototype.toString = function() {
+CPF.prototype.toString = function () {
   return this.group1 + this.group2 + this.group3 + this.cv;
 };

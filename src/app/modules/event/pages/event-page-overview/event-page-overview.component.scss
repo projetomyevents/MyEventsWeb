@@ -13,6 +13,7 @@ mat-grid-list {
 
 mat-grid-tile {
   border: 1px solid hsla(0, 0%, 0%, 0.1);
+
   background: white;
   text-align: left;
 }
@@ -38,8 +39,8 @@ mat-grid-tile {
 
   #schedule {
     overflow: auto;
-    margin-bottom: auto ;
     justify-self: flex-start;
+    margin-bottom: auto;
   }
 
   #actions {
@@ -52,6 +53,7 @@ mat-grid-tile {
       width: 90%;
       margin-bottom: 16px;
       border-radius: 1em;
+
       font-size: 18px;
     }
   }
@@ -74,8 +76,9 @@ mat-grid-tile {
     .mat-icon {
       width: 42px;
       height: 42px;
-      font-size: 42px;
+
       color: hsl(0, 0%, 20%);
+      font-size: 42px;
     }
 
     span {

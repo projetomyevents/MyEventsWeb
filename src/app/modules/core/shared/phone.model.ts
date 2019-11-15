@@ -3,6 +3,6 @@ export class Phone {
   }
 }
 
-Phone.prototype.toString = function() {
+Phone.prototype.toString = function () {
   return this.area + this.exchange + this.subscriber;
 };

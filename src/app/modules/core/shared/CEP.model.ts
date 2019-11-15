@@ -3,6 +3,6 @@ export class CEP {
   }
 }
 
-CEP.prototype.toString = function() {
+CEP.prototype.toString = function () {
   return this.local + this.distribution;
 };

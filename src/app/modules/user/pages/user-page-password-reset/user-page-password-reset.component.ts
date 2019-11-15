@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { CustomValidators } from '../../../core/shared/custom-validators';
 import { ParentErrorStateMatcher } from '../../../core/shared/custom-state-matchers';
+import { CustomValidators } from '../../../core/shared/custom-validators';
 import { UserService } from '../../shared/user.service';
 import { RoutesConfig } from '../../../../config/routes.config';
+
 
 @Component({
   selector: 'app-user-page-password-reset',
   templateUrl: './user-page-password-reset.component.html',
-  styleUrls: ['./user-page-password-reset.component.scss']
+  styleUrls: ['./user-page-password-reset.component.scss'],
 })
 export class UserPagePasswordResetComponent implements OnInit {
 
@@ -26,14 +27,14 @@ export class UserPagePasswordResetComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
   }
 
   ngOnInit(): void {
     this.passwords = new FormGroup({
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      confirmedPassword: new FormControl('')
+      confirmedPassword: new FormControl(''),
     }, CustomValidators.different);
   }
 
@@ -48,7 +49,7 @@ export class UserPagePasswordResetComponent implements OnInit {
         const rawPassword = this.passwords.getRawValue();
         const response = await this.userService.resetPassword(this.route.snapshot.paramMap.get('token'), {
           password: rawPassword.password,
-          confirmedPassword: rawPassword.confirmedPassword
+          confirmedPassword: rawPassword.confirmedPassword,
         });
 
         await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()

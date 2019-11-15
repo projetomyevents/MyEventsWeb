@@ -3,8 +3,9 @@ import { BehaviorSubject } from 'rxjs';
 import { SimpleUser } from '../../user/shared/user.model';
 import { UserService } from '../../user/shared/user.service';
 
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
 
@@ -30,7 +31,7 @@ export class AuthenticationService {
   async login(email: string, password: string): Promise<any> {
     try {
       const response = await this.userService.login(email, password);
-      const token = response.headers.get('authorization');
+      const token = response.headers.get('Authorization');
 
       // resgatar as informações do usuário
       const user = response.body;

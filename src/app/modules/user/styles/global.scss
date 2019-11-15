@@ -6,7 +6,8 @@
   padding: 25px;
   border: 1px solid hsla(0, 0%, 0%, 0.1);
   box-shadow: 3px 3px 1.5px hsla(0, 0%, 0%, 0.1);
-  background-color: white;
+
+  background: white;
 }
 
 .card-title, .card-header, .card-subheader {
@@ -22,18 +23,18 @@
 
 .card-actions {
   display: flex;
-  width: 100%;
-  margin-top: 16px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  margin-top: 16px;
 }
 
 .card-row {
   display: flex;
-  width: 100%;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .card-field {

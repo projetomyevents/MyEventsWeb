@@ -2,10 +2,11 @@
 
 .content {
   display: flex;
-  min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
+
   text-align: center;
 }
 
@@ -24,15 +25,15 @@
 }
 
 .snack-bar-success {
-  background-color: hsl(88, 50%, 53%);
+  background: hsl(88, 50%, 53%);
 }
 
 .snack-bar-problematic {
-  background-color: hsl(36, 100%, 57%);
+  background: hsl(36, 100%, 57%);
 }
 
 .snack-bar-failure {
-  background-color: hsl(4, 90%, 58%);
+  background: hsl(4, 90%, 58%);
 }
 
 // centralizar o spinner de carregamento

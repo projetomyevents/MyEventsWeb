@@ -4,10 +4,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { AuthenticationService } from '../../../core/shared/authentication.service';
 
+
 @Component({
   selector: 'app-user-page-signin',
   templateUrl: './user-page-signin.component.html',
-  styleUrls: ['./user-page-signin.component.scss']
+  styleUrls: ['./user-page-signin.component.scss'],
 })
 export class UserPageSigninComponent implements OnInit {
 
@@ -22,14 +23,14 @@ export class UserPageSigninComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
   }
 
   ngOnInit(): void {
     this.user = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', Validators.required),
     });
   }
 

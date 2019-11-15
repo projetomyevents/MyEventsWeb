@@ -2,12 +2,13 @@ import {
   Component,
   DoCheck,
   ElementRef,
-  HostBinding, Input,
+  HostBinding,
+  Input,
   OnDestroy,
   OnInit,
   Optional,
   Self,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroup, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material';
@@ -15,11 +16,12 @@ import { FocusMonitor } from '@angular/cdk/a11y';
 import { Subject } from 'rxjs';
 import { CPF } from '../../shared/CPF.model';
 
+
 @Component({
   selector: 'app-cpf-input',
   templateUrl: './cpf-input.component.html',
   styleUrls: ['./cpf-input.component.scss'],
-  providers: [{provide: MatFormFieldControl, useExisting: CPFInput}]
+  providers: [{provide: MatFormFieldControl, useExisting: CPFInput}],
 })
 export class CPFInput implements OnInit, OnDestroy, DoCheck, ControlValueAccessor, MatFormFieldControl<CPF> {
 
@@ -38,6 +40,28 @@ export class CPFInput implements OnInit, OnDestroy, DoCheck, ControlValueAccesso
 
   controlType = 'cpf-input';
   stateChanges = new Subject<void>();
+
+  constructor(
+    @Optional() @Self() public ngControl: NgControl,
+    private focusMonitor: FocusMonitor,
+    private elRef: ElementRef<HTMLElement>,
+  ) {
+    this.cpf = new FormGroup({
+      group1: new FormControl({value: '', disabled: this.disabled}),
+      group2: new FormControl({value: '', disabled: this.disabled}),
+      group3: new FormControl({value: '', disabled: this.disabled}),
+      cv: new FormControl({value: '', disabled: this.disabled}),
+    });
+
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
+
+    this.focusMonitor.monitor(this.elRef.nativeElement, true).subscribe((origin: string) => {
+      this.focused = !!origin;
+      this.stateChanges.next();
+    });
+  }
 
   @HostBinding() id = `app-cpf-input-${CPFInput.nextId++}`;
   @HostBinding('class.floating')
@@ -95,26 +119,6 @@ export class CPFInput implements OnInit, OnDestroy, DoCheck, ControlValueAccesso
     cpf = cpf || new CPF('', '', '', '');
     this.cpf.setValue({group1: cpf.group1, group2: cpf.group2, group3: cpf.group3, cv: cpf.cv});
     this.stateChanges.next();
-  }
-
-  constructor(@Optional() @Self() public ngControl: NgControl,
-              private focusMonitor: FocusMonitor,
-              private elRef: ElementRef<HTMLElement>) {
-    this.cpf = new FormGroup({
-      group1: new FormControl({value: '', disabled: this.disabled}),
-      group2: new FormControl({value: '', disabled: this.disabled}),
-      group3: new FormControl({value: '', disabled: this.disabled}),
-      cv: new FormControl({value: '', disabled: this.disabled})
-    });
-
-    if (this.ngControl) {
-      this.ngControl.valueAccessor = this;
-    }
-
-    this.focusMonitor.monitor(this.elRef.nativeElement, true).subscribe((origin: string) => {
-      this.focused = !!origin;
-      this.stateChanges.next();
-    });
   }
 
   onChange = (_: any) => {};

@@ -8,11 +8,12 @@ import { AddressService } from '../../shared/address.service';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { EventService } from '../../shared/event.service';
 
+
 // TODO: implementar upload de arquivos
 @Component({
   selector: 'app-event-page-create',
   templateUrl: './event-page-create.component.html',
-  styleUrls: ['./event-page-create.component.scss']
+  styleUrls: ['./event-page-create.component.scss'],
 })
 export class EventPageCreateComponent implements OnInit {
 
@@ -31,11 +32,11 @@ export class EventPageCreateComponent implements OnInit {
     private addressService: AddressService,
     private userEventService: EventService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.event = new FormGroup({
       // step 1 - informações básicas
       name: new FormControl('', Validators.required),
@@ -56,7 +57,7 @@ export class EventPageCreateComponent implements OnInit {
       complement: new FormControl(''),
       // setp 3 - anexos
       image: new FormControl(''),
-      attachments: new FormControl('')
+      attachments: new FormControl(''),
     });
 
     this.addressService.getAllStates().then((states: State[]) => this.states = states);
@@ -105,7 +106,7 @@ export class EventPageCreateComponent implements OnInit {
           number: rawEvent.number,
           complement: rawEvent.complement,
           image: rawEvent.image,
-          attachments: rawEvent.attachments
+          attachments: rawEvent.attachments,
         });
 
         await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()

@@ -6,10 +6,11 @@ import { EventService } from '../../shared/event.service';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { ConfirmationDialogComponent } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 
+
 @Component({
   selector: 'app-event-page-overview',
   templateUrl: './event-page-overview.component.html',
-  styleUrls: ['./event-page-overview.component.scss']
+  styleUrls: ['./event-page-overview.component.scss'],
 })
 export class EventPageOverviewComponent implements OnInit {
 
@@ -19,7 +20,7 @@ export class EventPageOverviewComponent implements OnInit {
     private eventService: EventService,
     private router: Router,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
   }
 
@@ -47,8 +48,8 @@ export class EventPageOverviewComponent implements OnInit {
           // TODO: this shit
           new Audio('../../../../assets/i-giorno-giovanna-have-a-dream.mp3').play();
         },
-        reject: () => null
-      }
+        reject: () => null,
+      },
     });
   }
 

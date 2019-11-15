@@ -8,23 +8,23 @@ import {
   MatProgressSpinnerModule,
   MatTooltipModule
 } from '@angular/material';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { EmailInput } from './components/email-input/email-input.component';
 import { CPFInput } from './components/cpf-input/cpf-input.component';
 import { PhoneInput } from './components/phone-input/phone-input.component';
 import { PasswordStrengthBar } from './components/password-strength-bar/password-strength-bar.component';
 import { CEPInput } from './components/cep-input/cep-input.component';
-import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
-  declarations: [EmailInput, CPFInput, PhoneInput, PasswordStrengthBar, CEPInput, LoadingSpinnerComponent],
+  declarations: [LoadingSpinnerComponent, EmailInput, CPFInput, PhoneInput, PasswordStrengthBar, CEPInput],
   exports: [
+    LoadingSpinnerComponent,
     EmailInput,
     CPFInput,
     PhoneInput,
     PasswordStrengthBar,
     CEPInput,
-    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -33,8 +33,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     MatAutocompleteModule,
     MatTooltipModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
-  ]
+    MatProgressSpinnerModule,
+  ],
 })
 export class CoreModule {
 }

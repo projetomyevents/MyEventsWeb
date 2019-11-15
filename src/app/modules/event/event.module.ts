@@ -14,19 +14,19 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
-import { EventRoutingModule } from './event-routing.module';
 import { CoreModule } from '../core/core.module';
+import { EventRoutingModule } from './event-routing.module';
 import { EventPageCreateComponent } from './pages/event-page-create/event-page-create.component';
-import { EventPageOverviewComponent } from './pages/event-page-overview/event-page-overview.component';
 import { EventPageListComponent } from './pages/event-page-list/event-page-list.component';
+import { EventPageOverviewComponent } from './pages/event-page-overview/event-page-overview.component';
 
 
 @NgModule({
-  declarations: [EventPageCreateComponent, EventPageOverviewComponent, EventPageListComponent],
+  declarations: [EventPageCreateComponent, EventPageListComponent, EventPageOverviewComponent],
   imports: [
     CommonModule,
-    EventRoutingModule,
     ReactiveFormsModule,
+    EventRoutingModule,
     CoreModule,
     MatFormFieldModule,
     MatButtonModule,
@@ -38,8 +38,8 @@ import { EventPageListComponent } from './pages/event-page-list/event-page-list.
     MatNativeDateModule,
     MatSelectModule,
     MatGridListModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class EventModule {
 }

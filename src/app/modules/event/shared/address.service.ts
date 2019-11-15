@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { City, State } from './address.model';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../../../config/app.config';
 import { EndpointsConfig } from '../../../config/endpoints.config';
+import { City, State } from './address.model';
+
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AddressService {
 

@@ -15,6 +15,7 @@ import { ErrorInterceptor } from './modules/core/interceptors/error-interceptor'
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './modules/user/user.module';
 import { EventModule } from './modules/event/event.module';
+import { GuestModule } from './modules/guest/guest.module';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 
 
@@ -22,28 +23,29 @@ import { ConfirmationDialogComponent } from './shared/components/confirmation-di
   declarations: [
     AppComponent,
     HomePageComponent,
-    Error404PageComponent
+    Error404PageComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     HttpClientModule,
     MatButtonModule,
-    AppRoutingModule,
     CoreModule,
     SharedModule,
     UserModule,
-    EventModule
+    EventModule,
+    GuestModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000}},
     {provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: {showDelay: 200, hideDelay: 200, touchendHideDelay: 200}},
-    {provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}}
+    {provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}},
   ],
   entryComponents: [ConfirmationDialogComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

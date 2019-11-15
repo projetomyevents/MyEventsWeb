@@ -2,12 +2,13 @@ import {
   Component,
   DoCheck,
   ElementRef,
-  HostBinding, Input,
+  HostBinding,
+  Input,
   OnDestroy,
   OnInit,
   Optional,
   Self,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material';
@@ -18,7 +19,7 @@ import { Subject } from 'rxjs';
   selector: 'app-email-input',
   templateUrl: './email-input.component.html',
   styleUrls: ['./email-input.component.scss'],
-  providers: [{provide: MatFormFieldControl, useExisting: EmailInput}]
+  providers: [{provide: MatFormFieldControl, useExisting: EmailInput}],
 })
 export class EmailInput implements OnInit, OnDestroy, DoCheck, ControlValueAccessor, MatFormFieldControl<string> {
 
@@ -27,7 +28,7 @@ export class EmailInput implements OnInit, OnDestroy, DoCheck, ControlValueAcces
     'gmail.com',
     'outlook.com',
     'hotmail.com',
-    'yahoo.com'
+    'yahoo.com',
   ];
 
   @ViewChild('emailInput', {static: false, read: ElementRef}) emailInput: ElementRef;
@@ -43,12 +44,31 @@ export class EmailInput implements OnInit, OnDestroy, DoCheck, ControlValueAcces
   controlType = 'email-input';
   stateChanges = new Subject<void>();
 
+  constructor(
+    @Optional() @Self() public ngControl: NgControl,
+    private focusMonitor: FocusMonitor,
+    private elRef: ElementRef<HTMLElement>,
+  ) {
+    this.email = new FormControl({value: '', disabled: this.disabled});
+
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
+
+    this.focusMonitor.monitor(this.elRef.nativeElement, true).subscribe((origin: string) => {
+      this.focused = !!origin;
+      this.stateChanges.next();
+    });
+  }
+
   @HostBinding() id = `app-email-input-${EmailInput.nextId++}`;
   @HostBinding('class.floating')
   get shouldLabelFloat() {
     return this.focused || !this.empty;
   }
   @HostBinding('attr.aria-describedby') describedBy = '';
+
+  @Input() name: string;
 
   @Input()
   get disabled(): boolean {
@@ -96,23 +116,6 @@ export class EmailInput implements OnInit, OnDestroy, DoCheck, ControlValueAcces
   set value(email: string | null) {
     this.email.setValue(email);
     this.stateChanges.next();
-  }
-
-  @Input() name: string;
-
-  constructor(@Optional() @Self() public ngControl: NgControl,
-              private focusMonitor: FocusMonitor,
-              private elRef: ElementRef<HTMLElement>) {
-    this.email = new FormControl({value: '', disabled: this.disabled});
-
-    if (this.ngControl) {
-      this.ngControl.valueAccessor = this;
-    }
-
-    this.focusMonitor.monitor(this.elRef.nativeElement, true).subscribe((origin: string) => {
-      this.focused = !!origin;
-      this.stateChanges.next();
-    });
   }
 
   onChange = (_: any) => {};

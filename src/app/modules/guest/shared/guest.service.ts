@@ -4,15 +4,17 @@ import { AppConfig } from '../../../config/app.config';
 import { EndpointsConfig } from '../../../config/endpoints.config';
 import { Guest, SimpleGuest } from './guest.model';
 
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GuestService {
 
   url = AppConfig.serverUrl;
   guestEndpoint = EndpointsConfig.guest;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   /**
    * Retorna a lista de convidados de um evento.

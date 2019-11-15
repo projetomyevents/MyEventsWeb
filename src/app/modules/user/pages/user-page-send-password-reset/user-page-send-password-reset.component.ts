@@ -6,10 +6,11 @@ import { AuthenticationService } from '../../../core/shared/authentication.servi
 import { UserService } from '../../shared/user.service';
 import { RoutesConfig } from '../../../../config/routes.config';
 
+
 @Component({
   selector: 'app-user-page-send-password-reset',
   templateUrl: './user-page-send-password-reset.component.html',
-  styleUrls: ['./user-page-send-password-reset.component.scss']
+  styleUrls: ['./user-page-send-password-reset.component.scss'],
 })
 export class UserPageSendPasswordResetComponent implements OnInit {
 
@@ -22,7 +23,7 @@ export class UserPageSendPasswordResetComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
   }
 

@@ -2,12 +2,13 @@ import {
   Component,
   DoCheck,
   ElementRef,
-  HostBinding, Input,
+  HostBinding,
+  Input,
   OnDestroy,
   OnInit,
   Optional,
   Self,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroup, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material';
@@ -15,11 +16,12 @@ import { FocusMonitor } from '@angular/cdk/a11y';
 import { Subject } from 'rxjs';
 import { Phone } from '../../shared/phone.model';
 
+
 @Component({
   selector: 'app-phone-input',
   templateUrl: './phone-input.component.html',
   styleUrls: ['./phone-input.component.scss'],
-  providers: [{provide: MatFormFieldControl, useExisting: PhoneInput}]
+  providers: [{provide: MatFormFieldControl, useExisting: PhoneInput}],
 })
 export class PhoneInput implements OnInit, OnDestroy, DoCheck, ControlValueAccessor, MatFormFieldControl<Phone> {
 
@@ -44,6 +46,26 @@ export class PhoneInput implements OnInit, OnDestroy, DoCheck, ControlValueAcces
     return this.focused || !this.empty;
   }
   @HostBinding('attr.aria-describedby') describedBy = '';
+
+  constructor(@Optional() @Self() public ngControl: NgControl,
+              private focusMonitor: FocusMonitor,
+              private elRef: ElementRef<HTMLElement>) {
+    this.phone = new FormGroup({
+      area: new FormControl({value: '', disabled: this.disabled}),
+      exchange: new FormControl({value: '', disabled: this.disabled}),
+      subscriber: new FormControl({value: '', disabled: this.disabled}),
+    });
+
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
+
+    this.focusMonitor.monitor(this.elRef.nativeElement, true).subscribe((origin: string) => {
+      this.focused = !!origin;
+      this.stateChanges.next();
+    });
+  }
+
 
   @Input()
   get disabled(): boolean {
@@ -94,25 +116,6 @@ export class PhoneInput implements OnInit, OnDestroy, DoCheck, ControlValueAcces
     phone = phone || new Phone('', '', '');
     this.phone.setValue({area: phone.area, exchange: phone.exchange, subscriber: phone.subscriber});
     this.stateChanges.next();
-  }
-
-  constructor(@Optional() @Self() public ngControl: NgControl,
-              private focusMonitor: FocusMonitor,
-              private elRef: ElementRef<HTMLElement>) {
-    this.phone = new FormGroup({
-      area: new FormControl({value: '', disabled: this.disabled}),
-      exchange: new FormControl({value: '', disabled: this.disabled}),
-      subscriber: new FormControl({value: '', disabled: this.disabled})
-    });
-
-    if (this.ngControl) {
-      this.ngControl.valueAccessor = this;
-    }
-
-    this.focusMonitor.monitor(this.elRef.nativeElement, true).subscribe((origin: string) => {
-      this.focused = !!origin;
-      this.stateChanges.next();
-    });
   }
 
   onChange = (_: any) => {};

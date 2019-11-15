@@ -2,12 +2,13 @@ import {
   Component,
   DoCheck,
   ElementRef,
-  HostBinding, Input,
+  HostBinding,
+  Input,
   OnDestroy,
   OnInit,
   Optional,
   Self,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroup, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material';
@@ -15,11 +16,12 @@ import { FocusMonitor } from '@angular/cdk/a11y';
 import { Subject } from 'rxjs';
 import { CEP } from '../../shared/CEP.model';
 
+
 @Component({
   selector: 'app-cep-input',
   templateUrl: './cep-input.component.html',
   styleUrls: ['./cep-input.component.scss'],
-  providers: [{provide: MatFormFieldControl, useExisting: CEPInput}]
+  providers: [{provide: MatFormFieldControl, useExisting: CEPInput}],
 })
 export class CEPInput implements OnInit, OnDestroy, DoCheck, ControlValueAccessor, MatFormFieldControl<CEP> {
 
@@ -36,6 +38,26 @@ export class CEPInput implements OnInit, OnDestroy, DoCheck, ControlValueAccesso
 
   controlType = 'cep-input';
   stateChanges = new Subject<void>();
+
+  constructor(
+    @Optional() @Self() public ngControl: NgControl,
+    private focusMonitor: FocusMonitor,
+    private elRef: ElementRef<HTMLElement>,
+  ) {
+    this.cep = new FormGroup({
+      local: new FormControl({value: '', disabled: this.disabled}),
+      distribution: new FormControl({value: '', disabled: this.disabled}),
+    });
+
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
+
+    this.focusMonitor.monitor(this.elRef.nativeElement, true).subscribe((origin: string) => {
+      this.focused = !!origin;
+      this.stateChanges.next();
+    });
+  }
 
   @HostBinding() id = `app-cep-input-${CEPInput.nextId++}`;
   @HostBinding('class.floating')
@@ -93,24 +115,6 @@ export class CEPInput implements OnInit, OnDestroy, DoCheck, ControlValueAccesso
     cep = cep || new CEP('', '');
     this.cep.setValue({local: cep.local, distribution: cep.distribution});
     this.stateChanges.next();
-  }
-
-  constructor(@Optional() @Self() public ngControl: NgControl,
-              private focusMonitor: FocusMonitor,
-              private elRef: ElementRef<HTMLElement>) {
-    this.cep = new FormGroup({
-      local: new FormControl({value: '', disabled: this.disabled}),
-      distribution: new FormControl({value: '', disabled: this.disabled})
-    });
-
-    if (this.ngControl) {
-      this.ngControl.valueAccessor = this;
-    }
-
-    this.focusMonitor.monitor(this.elRef.nativeElement, true).subscribe((origin: string) => {
-      this.focused = !!origin;
-      this.stateChanges.next();
-    });
   }
 
   onChange = (_: any) => {};

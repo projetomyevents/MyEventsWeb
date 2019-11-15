@@ -3,10 +3,11 @@ import { AbstractControl } from '@angular/forms';
 
 import zxcvbn from './zxcvbn.js';
 
+
 @Component({
   selector: 'app-password-strength-bar',
   templateUrl: './password-strength-bar.component.html',
-  styleUrls: ['./password-strength-bar.component.scss']
+  styleUrls: ['./password-strength-bar.component.scss'],
 })
 export class PasswordStrengthBar implements OnInit {
 
@@ -15,7 +16,7 @@ export class PasswordStrengthBar implements OnInit {
     1: 'weak',
     2: 'mediocre',
     3: 'strong',
-    4: 'epic'
+    4: 'epic',
   };
 
   strengthPercentage: number;

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { EndpointsConfig } from '../../../config/endpoints.config';
 import { AppConfig } from '../../../config/app.config';
+import { EndpointsConfig } from '../../../config/endpoints.config';
 import { NewPassword, NewUser, SimpleUser } from './user.model';
 
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
 

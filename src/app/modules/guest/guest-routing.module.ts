@@ -9,13 +9,13 @@ const guestRoutes = RoutesConfig.routes.guest;
 
 const routes: Routes = [
   {path: guestRoutes.guests, component: GuestPageListComponent, pathMatch: 'full'},
-  {path: guestRoutes.guestsEdit, component: GuestPageListEditComponent, pathMatch: 'full'}
+  {path: guestRoutes.guestsEdit, component: GuestPageListEditComponent, pathMatch: 'full'},
 ];
 
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class GuestRoutingModule {
 }

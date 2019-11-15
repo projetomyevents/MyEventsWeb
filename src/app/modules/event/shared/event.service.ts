@@ -6,7 +6,7 @@ import { Event, NewEvent, SimpleEvent } from './event.model';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventService {
 

@@ -3,8 +3,9 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../shared/authentication.service';
 
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TokenInterceptor implements HttpInterceptor {
 
@@ -18,8 +19,8 @@ export class TokenInterceptor implements HttpInterceptor {
     if (user && user.token) {
       request = request.clone({
         setHeaders: {
-          Authorization: user.token
-        }
+          Authorization: user.token,
+        },
       });
     }
 

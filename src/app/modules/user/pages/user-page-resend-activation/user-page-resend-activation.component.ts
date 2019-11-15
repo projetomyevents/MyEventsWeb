@@ -5,10 +5,11 @@ import { MatSnackBar } from '@angular/material';
 import { UserService } from '../../shared/user.service';
 import { RoutesConfig } from '../../../../config/routes.config';
 
+
 @Component({
   selector: 'app-user-page-resend-activation',
   templateUrl: './user-page-resend-activation.component.html',
-  styleUrls: ['./user-page-resend-activation.component.scss']
+  styleUrls: ['./user-page-resend-activation.component.scss'],
 })
 export class UserPageResendActivationComponent implements OnInit {
 
@@ -20,7 +21,7 @@ export class UserPageResendActivationComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
   }
 

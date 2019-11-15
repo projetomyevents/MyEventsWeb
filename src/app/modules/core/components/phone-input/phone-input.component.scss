@@ -6,8 +6,9 @@ form {
 input {
   padding: 0;
   border: none;
-  outline: none;
+
   background: none;
+  outline: none;
   font: inherit;
   text-align: center;
 }
@@ -26,8 +27,8 @@ input {
 
 span {
   opacity: 0;
-  line-height: 1em;
   transition: opacity 200ms;
+  line-height: 1em;
 }
 
 :host.floating span {

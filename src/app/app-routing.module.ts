@@ -12,13 +12,13 @@ const routes: Routes = [
   {path: '', loadChildren: './modules/event/event.module#EventModule'},
   {path: '', loadChildren: './modules/guest/guest.module#GuestModule'},
 
-  {path: '**', redirectTo: RoutesConfig.routes.error404}
+  {path: '**', redirectTo: RoutesConfig.routes.error404},
 ];
 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
 }
