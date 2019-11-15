@@ -16,12 +16,18 @@ export class AddressService {
   constructor(private http: HttpClient) {
   }
 
+  /**
+   * Retorna todos as cidades do Brasil.
+   */
   getAllCities(): Promise<City[]> {
-    return this.http.get<City[]>(`${this.url}/${this.addressEndpoint.cities}`).toPromise();
+    return this.http.get<City[]>(`${this.url}/${this.addressEndpoint.getCities}`).toPromise();
   }
 
+  /**
+   * Retorna todos os estados do Brasil.
+   */
   getAllStates(): Promise<State[]> {
-    return this.http.get<State[]>(`${this.url}/${this.addressEndpoint.states}`).toPromise();
+    return this.http.get<State[]>(`${this.url}/${this.addressEndpoint.getStates}`).toPromise();
   }
 
 }
