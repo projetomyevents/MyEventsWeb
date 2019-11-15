@@ -2,6 +2,7 @@ import { Component, isDevMode, OnInit } from '@angular/core';
 import { AppConfig } from '../../../config/app.config';
 import { RoutesConfig } from '../../../config/routes.config';
 import { AuthenticationService } from '../../../modules/core/shared/authentication.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class NavbarComponent implements OnInit {
   routes = RoutesConfig.routes;
   isDevMode = isDevMode();
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -31,8 +32,9 @@ export class NavbarComponent implements OnInit {
   /**
    * Desconecta o usuário.
    */
-  logout(): void {
+  async logout(): Promise<void> {
     this.authenticationService.logout();
+    await this.router.navigateByUrl(this.routes.home);
   }
 
 }
