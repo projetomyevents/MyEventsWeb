@@ -29,7 +29,7 @@ export class UserPageActivationComponent implements OnInit {
     this.userService.activate(this.route.snapshot.paramMap.get('token')).then(
       async (response: any) => {
         this.snackBar.open(response.message, 'OK', {panelClass: 'snack-bar-success'});
-        await this.router.navigateByUrl(RoutesConfig.routesNames.home);
+        await this.router.navigateByUrl(RoutesConfig.routes.home);
       },
       (err: any) => {
         this.info = err.message;

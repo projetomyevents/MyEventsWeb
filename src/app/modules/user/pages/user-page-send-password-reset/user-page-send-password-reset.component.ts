@@ -49,7 +49,7 @@ export class UserPageSendPasswordResetComponent implements OnInit {
         await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()
           .toPromise();
 
-        await this.router.navigateByUrl(RoutesConfig.routesNames.home);
+        await this.router.navigateByUrl(RoutesConfig.routes.home);
       } catch (err) {
         this.snackBar.open(err.message, 'OK', {panelClass: 'snack-bar-failure'});
         this.info = err.message;

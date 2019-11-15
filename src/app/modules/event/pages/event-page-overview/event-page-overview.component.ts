@@ -31,7 +31,7 @@ export class EventPageOverviewComponent implements OnInit {
         this.event = response;
       },
       async () => {
-        await this.router.navigateByUrl(RoutesConfig.routesNames.error404);
+        await this.router.navigateByUrl(RoutesConfig.routes.error404);
       });
   }
 

@@ -15,7 +15,7 @@ import { UserService } from '../../shared/user.service';
 })
 export class UserPageSignupComponent implements OnInit {
 
-  userRoutes = RoutesConfig.routesNames.user;
+  userRoutes = RoutesConfig.routes.user;
 
   user: FormGroup;
 

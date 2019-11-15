@@ -12,7 +12,7 @@ import { AuthenticationService } from '../../../modules/core/shared/authenticati
 export class NavbarComponent implements OnInit {
 
   repositoryURL = AppConfig.repositoryURL;
-  routes = RoutesConfig.routesNames;
+  routes = RoutesConfig.routes;
   isDevMode = isDevMode();
 
   constructor(private authenticationService: AuthenticationService) {

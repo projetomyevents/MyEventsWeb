@@ -112,7 +112,7 @@ export class EventPageCreateComponent implements OnInit {
         await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()
           .toPromise();
 
-        await this.router.navigateByUrl(RoutesConfig.routesNames.event.list);
+        await this.router.navigateByUrl(RoutesConfig.routes.event.events);
       } catch (err) {
         this.snackBar.open(err.message, 'OK', {panelClass: 'snack-bar-failure'});
         this.info = err.message;
