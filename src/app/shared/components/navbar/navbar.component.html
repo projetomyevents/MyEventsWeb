@@ -57,9 +57,13 @@
           </button>
           <button mat-menu-item [routerLink]="routes.user.resendActivation">
             <mat-icon>confirmation_number</mat-icon>
-            Reenviar confirmação de conta
+            Reenviar ativação de conta
           </button>
         </ng-template>
+        <button mat-menu-item [routerLink]="routes.user.sendPasswordReset">
+          <mat-icon>lock_open</mat-icon>
+          Redefinir senha
+        </button>
       </mat-menu>
     </a>
 
