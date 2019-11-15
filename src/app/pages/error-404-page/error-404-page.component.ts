@@ -8,7 +8,7 @@ import { RoutesConfig } from '../../config/routes.config';
 })
 export class Error404PageComponent implements OnInit {
 
-  homeRoute = RoutesConfig.routes.home;
+  homeRoute = RoutesConfig.routesNames.home;
 
   constructor() {
   }

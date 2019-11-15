@@ -5,11 +5,11 @@ import { GuestPageListComponent } from './pages/guest-page-list/guest-page-list.
 import { GuestPageListEditComponent } from './pages/guest-page-list-edit/guest-page-list-edit.component';
 
 
-const guestRoutes = RoutesConfig.routes.guest;
+const guestRoutesNames = RoutesConfig.routesNames.guest;
 
 const routes: Routes = [
-  {path: guestRoutes.guests, component: GuestPageListComponent, pathMatch: 'full'},
-  {path: guestRoutes.guestsEdit, component: GuestPageListEditComponent, pathMatch: 'full'},
+  {path: guestRoutesNames.guests, component: GuestPageListComponent, pathMatch: 'full'},
+  {path: guestRoutesNames.guestsEdit, component: GuestPageListEditComponent, pathMatch: 'full'},
 ];
 
 

@@ -21,5 +21,5 @@ const routesNames = {
 };
 
 export const RoutesConfig: any = {
-  routes: routesNames,
+  routesNames,
 };

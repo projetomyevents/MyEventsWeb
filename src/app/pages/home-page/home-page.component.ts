@@ -8,7 +8,7 @@ import { RoutesConfig } from '../../config/routes.config';
 })
 export class HomePageComponent implements OnInit {
 
-  eventRegisterRoute = RoutesConfig.routes.event.create;
+  eventRegisterRoute = RoutesConfig.routesNames.event.create;
 
   constructor() {
   }

@@ -6,13 +6,13 @@ import { Error404PageComponent } from './pages/error-404-page/error-404-page.com
 
 
 const routes: Routes = [
-  {path: RoutesConfig.routes.home, component: HomePageComponent},
-  {path: RoutesConfig.routes.error404, component: Error404PageComponent},
+  {path: RoutesConfig.routesNames.home, component: HomePageComponent},
+  {path: RoutesConfig.routesNames.error404, component: Error404PageComponent},
   {path: '', loadChildren: './modules/user/user.module#UserModule'},
   {path: '', loadChildren: './modules/event/event.module#EventModule'},
   {path: '', loadChildren: './modules/guest/guest.module#GuestModule'},
 
-  {path: '**', redirectTo: RoutesConfig.routes.error404},
+  {path: '**', redirectTo: RoutesConfig.routesNames.error404},
 ];
 
 

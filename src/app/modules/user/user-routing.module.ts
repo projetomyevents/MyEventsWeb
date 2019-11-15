@@ -13,15 +13,15 @@ import {
 } from './pages/user-page-send-password-reset/user-page-send-password-reset.component';
 
 
-const userRoutes = RoutesConfig.routes.user;
+const userRoutesNames = RoutesConfig.routesNames.user;
 
 const routes: Routes = [
-  {path: userRoutes.signup, component: UserPageSignupComponent},
-  {path: userRoutes.signin, component: UserPageSigninComponent},
-  {path: userRoutes.activate, component: UserPageActivationComponent},
-  {path: userRoutes.resendActivation, component: UserPageResendActivationComponent},
-  {path: userRoutes.passwordReset, component: UserPagePasswordResetComponent},
-  {path: userRoutes.sendPasswordReset, component: UserPageSendPasswordResetComponent},
+  {path: userRoutesNames.signup, component: UserPageSignupComponent},
+  {path: userRoutesNames.signin, component: UserPageSigninComponent},
+  {path: userRoutesNames.activate, component: UserPageActivationComponent},
+  {path: userRoutesNames.resendActivation, component: UserPageResendActivationComponent},
+  {path: userRoutesNames.passwordReset, component: UserPagePasswordResetComponent},
+  {path: userRoutesNames.sendPasswordReset, component: UserPageSendPasswordResetComponent},
 ];
 
 

@@ -12,7 +12,7 @@ import { AuthenticationService } from '../../../core/shared/authentication.servi
 })
 export class UserPageSigninComponent implements OnInit {
 
-  userRoutes = RoutesConfig.routes.user;
+  userRoutes = RoutesConfig.routesNames.user;
 
   user: FormGroup;
 
@@ -46,7 +46,7 @@ export class UserPageSigninComponent implements OnInit {
         await this.authenticationService.login(rawUser.email, rawUser.password);
 
         await this.router.navigateByUrl(
-          this.route.snapshot.queryParamMap.get('redirect') || RoutesConfig.routes.event.events);
+          this.route.snapshot.queryParamMap.get('redirect') || RoutesConfig.routesNames.event.events);
       } catch (err) {
         this.info = err.message;
         this.resolving = false;

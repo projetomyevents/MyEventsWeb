@@ -7,12 +7,12 @@ import { EventPageListComponent } from './pages/event-page-list/event-page-list.
 import { EventPageOverviewComponent } from './pages/event-page-overview/event-page-overview.component';
 
 
-const eventRoutes = RoutesConfig.routes.event;
+const eventRoutesNames = RoutesConfig.routesNames.event;
 
 const routes: Routes = [
-  {path: eventRoutes.create, component: EventPageCreateComponent, canActivate: [AuthenticationGuardService]},
-  {path: eventRoutes.event, component: EventPageOverviewComponent, pathMatch: 'full'},
-  {path: eventRoutes.events, component: EventPageListComponent, canActivate: [AuthenticationGuardService]},
+  {path: eventRoutesNames.create, component: EventPageCreateComponent, canActivate: [AuthenticationGuardService]},
+  {path: eventRoutesNames.event, component: EventPageOverviewComponent, pathMatch: 'full'},
+  {path: eventRoutesNames.events, component: EventPageListComponent, canActivate: [AuthenticationGuardService]},
 ];
 
 
