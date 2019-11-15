@@ -17,12 +17,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { CoreModule } from '../core/core.module';
 import { EventRoutingModule } from './event-routing.module';
 import { EventPageCreateComponent } from './pages/event-page-create/event-page-create.component';
-import { EventPageListComponent } from './pages/event-page-list/event-page-list.component';
 import { EventPageOverviewComponent } from './pages/event-page-overview/event-page-overview.component';
+import { EventPageGuestsComponent } from './pages/event-page-guests/event-page-guests.component';
+import { EventPageGuestsEditComponent } from './pages/event-page-guests-edit/event-page-guests-edit.component';
+import { EventPageListComponent } from './pages/event-page-list/event-page-list.component';
 
 
 @NgModule({
-  declarations: [EventPageCreateComponent, EventPageListComponent, EventPageOverviewComponent],
+  declarations: [
+    EventPageCreateComponent,
+    EventPageOverviewComponent,
+    EventPageGuestsComponent,
+    EventPageGuestsEditComponent,
+    EventPageListComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

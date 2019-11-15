@@ -12,11 +12,11 @@ const routesNames = {
   event: {
     create: 'create-event',
     event: 'event/:id',
+    eventGuests: 'event/:id/guests',
+    eventGuestsEdit: 'event/:id/guests/edit',
     events: 'events',
   },
   guest: {
-    guests: 'event/:id/guests',
-    guestsEdit: 'event/:id/guests/edit',
   },
 };
 
@@ -36,11 +36,11 @@ export const RoutesConfig: any = {
     event: {
       create: `/${routesNames.event.create}`,
       event: `/${routesNames.event.event}`,
+      eventGuests: `/${routesNames.event.eventGuests}`,
+      eventGuestsEdit: `/${routesNames.event.eventGuestsEdit}`,
       events: `/${routesNames.event.events}`,
     },
     guest: {
-      guests: `/${routesNames.guest.guests}`,
-      guestsEdit: `/${routesNames.guest.guestsEdit}`,
     },
   },
 };
