@@ -50,7 +50,7 @@ export class EventPageListComponent implements OnInit {
   }
 
   async details(id: any): Promise<void> {
-    await this.router.navigateByUrl(`event/${id}`);
+    await this.router.navigateByUrl(RoutesConfig.routes.event.event(id));
   }
 
   async cancel(event: SimpleEvent): Promise<void> {

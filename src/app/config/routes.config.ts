@@ -35,9 +35,9 @@ export const RoutesConfig: any = {
     },
     event: {
       create: `/${routesNames.event.create}`,
-      event: `/${routesNames.event.event}`,
-      eventGuests: `/${routesNames.event.eventGuests}`,
-      eventGuestsEdit: `/${routesNames.event.eventGuestsEdit}`,
+      event: (id: number) => routesNames.event.event.replace(':id', String(id)),
+      eventGuests: (id: number) => routesNames.event.eventGuests.replace(':id', String(id)),
+      eventGuestsEdit: (id: number) => routesNames.event.eventGuestsEdit.replace(':id', String(id)),
       events: `/${routesNames.event.events}`,
     },
     guest: {

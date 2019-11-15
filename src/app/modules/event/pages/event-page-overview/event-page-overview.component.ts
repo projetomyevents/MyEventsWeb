@@ -41,8 +41,8 @@ export class EventPageOverviewComponent implements OnInit {
 
   async guests(): Promise<void> {
     await this.router.navigateByUrl(this.event.user.email === this.authenticationService.userValue.email
-      ? `event/${this.event.id}/guests/edit`
-      : `event/${this.event.id}/guests`);
+      ? RoutesConfig.routes.event.eventGuestsEdit(this.event.id)
+      : RoutesConfig.routes.event.eventGuests(this.event.id));
   }
 
   async cancel(): Promise<void> {
