@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { AuthenticationService } from '../../../core/shared/authentication.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class UserPageSigninComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private router: Router,
     private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -48,8 +50,10 @@ export class UserPageSigninComponent implements OnInit {
         await this.router.navigateByUrl(
           this.route.snapshot.queryParamMap.get('redirect') || RoutesConfig.routes.event.events);
       } catch (err) {
-        this.info = err.message;
         this.resolving = false;
+        const message = err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.';
+        this.info = message;
+        this.snackBar.open(message, 'OK', {panelClass: 'snack-bar-failure'});
       }
     }
   }

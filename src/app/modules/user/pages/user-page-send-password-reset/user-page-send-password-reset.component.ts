@@ -51,9 +51,10 @@ export class UserPageSendPasswordResetComponent implements OnInit {
 
         await this.router.navigateByUrl(RoutesConfig.routes.home);
       } catch (err) {
-        this.snackBar.open(err.message, 'OK', {panelClass: 'snack-bar-failure'});
-        this.info = err.message;
         this.resolving = false;
+        const message = err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.';
+        this.info = message;
+        this.snackBar.open(message, 'OK', {panelClass: 'snack-bar-failure'});
       }
     }
   }

@@ -2,7 +2,7 @@
   <div class="card">
     <h2 class="card-title mat-headline">Crie um evento</h2>
     <h4 class="card-header mat-subheading-2">{{info}}</h4>
-    <h4 class="card-subheader mat-subheading-1">{{extraInfo}}</h4>
+    <h4 class="card-subheader mat-subheading-1" *ngFor="let xInfo of extraInfo">- {{xInfo}}</h4>
 
     <mat-horizontal-stepper [formGroup]="event">
       <mat-step label="Informações básicas" state="subject" [completed]="infoIsValid()">

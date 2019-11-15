@@ -1,26 +1,32 @@
 <div class="content">
-  <h1 class="mat-headline">Lista de eventos</h1>
+  <app-loading-spinner *ngIf="!resolved; else content"></app-loading-spinner>
+  <ng-template #content>
+    <h1 class="mat-headline" id="page-header">Lista de eventos</h1>
+    <h2 class="mat-title" id="empty-message" *ngIf="!hasEvents(); else list">Nenhum evento criado.</h2>
 
-  <div id="events">
-    <ng-container *ngFor="let event of events">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>{{event.name}}</mat-card-title>
-        </mat-card-header>
+    <ng-template #list>
+      <div id="events">
+        <ng-container *ngFor="let event of events">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>{{event.name}}</mat-card-title>
+            </mat-card-header>
 
-        <img mat-card-image src="{{'data:image/png;base64,' + event.image}}"
-             (error)="$event.target.src='../../../../assets/default-event-image.jpeg'"
-             alt="Imagem ilustrativa do evento.">
+            <img mat-card-image src="{{'data:image/png;base64,' + event.image}}"
+                 (error)="$event.target.src='../../../../assets/default-event-image.jpeg'"
+                 alt="Imagem ilustrativa do evento.">
 
-        <mat-card-content>
-          <p>{{event.description}}</p>
-        </mat-card-content>
+            <mat-card-content>
+              <p>{{event.description}}</p>
+            </mat-card-content>
 
-        <mat-card-actions>
-          <button mat-flat-button (click)="details(event.id)">Detalhes</button>
-          <button mat-flat-button color="warn" (click)="cancel(event)">Cancelar</button>
-        </mat-card-actions>
-      </mat-card>
-    </ng-container>
-  </div>
+            <mat-card-actions>
+              <button mat-flat-button (click)="details(event.id)">Detalhes</button>
+              <button mat-flat-button color="warn" (click)="cancel(event)">Cancelar</button>
+            </mat-card-actions>
+          </mat-card>
+        </ng-container>
+      </div>
+    </ng-template>
+  </ng-template>
 </div>

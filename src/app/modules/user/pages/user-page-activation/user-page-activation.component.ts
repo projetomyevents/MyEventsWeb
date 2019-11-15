@@ -12,10 +12,10 @@ import { UserService } from '../../shared/user.service';
 })
 export class UserPageActivationComponent implements OnInit {
 
-  userRoutes = RoutesConfig.routesNames.user;
+  userRoutes = RoutesConfig.routes.user;
 
   info: string;
-  confirmed: boolean;
+  resolved: boolean;
 
   constructor(
     private userService: UserService,
@@ -32,10 +32,10 @@ export class UserPageActivationComponent implements OnInit {
         await this.router.navigateByUrl(RoutesConfig.routes.home);
       },
       (err: any) => {
-        this.info = err.message;
-        this.confirmed = true;
-        this.snackBar.open(err.message, 'OK', {panelClass: 'snack-bar-failure'});
-      });
+        const message = err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.';
+        this.info = message;
+        this.snackBar.open(message, 'OK', {panelClass: 'snack-bar-failure'});
+      }).finally(() => this.resolved = true);
   }
 
 }

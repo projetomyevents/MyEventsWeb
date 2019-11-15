@@ -20,7 +20,7 @@ export class UserPageSignupComponent implements OnInit {
   user: FormGroup;
 
   info: string;
-  extraInfo: string;
+  extraInfo: string[];
   resolving: boolean;
 
   hidePassword = true;
@@ -32,9 +32,9 @@ export class UserPageSignupComponent implements OnInit {
   ngOnInit(): void {
     this.user = new FormGroup({
       name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required/*, Validators.email*/]),
       passwords: new FormGroup({
-        password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+        password: new FormControl('', [Validators.required/*, Validators.minLength(6)*/]),
         confirmedPassword: new FormControl(''),
       }, CustomValidators.different),
       phone: new FormControl('', [Validators.required, CustomValidators.phone]),
@@ -44,7 +44,7 @@ export class UserPageSignupComponent implements OnInit {
 
   async signup(): Promise<void> {
     this.info = null;
-    this.extraInfo = '';
+    this.extraInfo = null;
     if (this.user.invalid) {
       this.info = 'Preencha os campos requeridos.';
       this.user.markAllAsTouched();
@@ -66,12 +66,13 @@ export class UserPageSignupComponent implements OnInit {
 
         await this.router.navigateByUrl(this.userRoutes.signin);
       } catch (err) {
-        this.snackBar.open(err.message, 'OK', {panelClass: 'snack-bar-failure'});
-        this.info = err.message;
-        if (err.errors) {
-          err.errors.forEach(subErr => this.extraInfo += subErr.message);
-        }
         this.resolving = false;
+        const message = err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.';
+        if (err.subErrors) {
+          this.extraInfo = err.subErrors.map((subErr: any) => subErr.message);
+        }
+        this.info = message;
+        this.snackBar.open(message, 'OK', {panelClass: 'snack-bar-failure'});
       }
     }
   }

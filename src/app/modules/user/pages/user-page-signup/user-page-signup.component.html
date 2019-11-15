@@ -2,7 +2,7 @@
   <div class="card">
     <h1 class="card-title mat-headline">Crie sua conta</h1>
     <h3 class="card-header mat-subheading-2">{{info}}</h3>
-    <h4 class="card-subheader mat-subheading-1">{{extraInfo}}</h4>
+    <h4 class="card-subheader mat-subheading-1" *ngFor="let xInfo of extraInfo">- {{xInfo}}</h4>
 
     <form class="card-content" [formGroup]="user">
       <mat-form-field class="card-field" appearance="outline">

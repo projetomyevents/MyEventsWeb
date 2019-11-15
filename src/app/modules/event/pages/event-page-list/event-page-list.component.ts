@@ -4,6 +4,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { SimpleEvent } from '../../shared/event.model';
 import { EventService } from '../../shared/event.service';
 import { ConfirmationDialogComponent } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { RoutesConfig } from '../../../../config/routes.config';
 
 
 @Component({
@@ -15,6 +16,8 @@ export class EventPageListComponent implements OnInit {
 
   events: SimpleEvent[];
 
+  resolved: boolean;
+
   constructor(
     private eventService: EventService,
     private router: Router,
@@ -23,6 +26,8 @@ export class EventPageListComponent implements OnInit {
   ) {
   }
 
+  hasEvents = () => Array.isArray(this.events) && this.events.length;
+
   ngOnInit(): void {
     this.updateEvents();
   }
@@ -30,10 +35,17 @@ export class EventPageListComponent implements OnInit {
   updateEvents(): void {
     this.eventService.getAll().then(
       (response: any) => {
-        this.events = response;
+        this.resolved = true;
+        this.events = response.map((simpleEvent: SimpleEvent) => {
+          simpleEvent.startDate = new Date(simpleEvent.startDate);
+          return simpleEvent;
+        });
       },
-      (err: any) => {
-        this.snackBar.open(err.message, 'OK', {panelClass: 'snack-bar-failure'});
+      async (err: any) => {
+        await this.snackBar.open(err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.', 'OK',
+          {duration: -1, panelClass: 'snack-bar-failure'}).onAction().toPromise();
+
+        await this.router.navigateByUrl(RoutesConfig.routes.home);
       });
   }
 

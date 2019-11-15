@@ -1,9 +1,15 @@
 .content {
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .mat-headline {
   margin-top: 16px;
+}
+
+.mat-title {
+  margin: auto;
+
+  font-weight: normal;
 }
 
 #events {

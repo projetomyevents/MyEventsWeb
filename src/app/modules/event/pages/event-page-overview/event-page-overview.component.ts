@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { Event } from '../../shared/event.model';
+import { AuthenticationService } from '../../../core/shared/authentication.service';
 import { EventService } from '../../shared/event.service';
+import { Event } from '../../shared/event.model';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { ConfirmationDialogComponent } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 
@@ -16,7 +17,10 @@ export class EventPageOverviewComponent implements OnInit {
 
   event: Event;
 
+  resolving: boolean;
+
   constructor(
+    private authenticationService: AuthenticationService,
     private eventService: EventService,
     private router: Router,
     private route: ActivatedRoute,
@@ -36,6 +40,9 @@ export class EventPageOverviewComponent implements OnInit {
   }
 
   async guests(): Promise<void> {
+    await this.router.navigateByUrl(this.event.user.email === this.authenticationService.userValue.email
+      ? `event/${this.event.id}/guests/edit`
+      : `event/${this.event.id}/guests`);
   }
 
   async cancel(): Promise<void> {

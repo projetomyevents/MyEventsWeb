@@ -20,7 +20,7 @@ export class EventPageCreateComponent implements OnInit {
   event: FormGroup;
 
   info: string;
-  extraInfo: string;
+  extraInfo: string[];
   resolving: boolean;
 
   today = new Date(Date.now());
@@ -69,7 +69,7 @@ export class EventPageCreateComponent implements OnInit {
 
   async createNewEvent(): Promise<void> {
     this.info = null;
-    this.extraInfo = '';
+    this.extraInfo = null;
     if (this.event.invalid) {
       this.info = 'Preencha os campos requeridos.';
       this.event.markAllAsTouched();
@@ -114,12 +114,13 @@ export class EventPageCreateComponent implements OnInit {
 
         await this.router.navigateByUrl(RoutesConfig.routes.event.events);
       } catch (err) {
-        this.snackBar.open(err.message, 'OK', {panelClass: 'snack-bar-failure'});
-        this.info = err.message;
-        if (err.errors) {
-          err.errors.forEach(subErr => this.extraInfo += subErr.message);
-        }
         this.resolving = false;
+        const message = err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.';
+        if (err.subErrors) {
+          this.extraInfo = err.subErrors.map((subErr: any) => subErr.message);
+        }
+        this.info = message;
+        this.snackBar.open(message, 'OK', {panelClass: 'snack-bar-failure'});
       }
     }
   }

@@ -46,20 +46,18 @@ export class UserPagePasswordResetComponent implements OnInit {
     } else {
       this.resolving = true;
       try {
-        const rawPassword = this.passwords.getRawValue();
-        const response = await this.userService.resetPassword(this.route.snapshot.paramMap.get('token'), {
-          password: rawPassword.password,
-          confirmedPassword: rawPassword.confirmedPassword,
-        });
+        const response = await this.userService.resetPassword(this.route.snapshot.paramMap.get('token'),
+          this.passwords.getRawValue());
 
         await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()
           .toPromise();
 
         await this.router.navigateByUrl(RoutesConfig.routes.home);
       } catch (err) {
-        this.info = err.message;
-        this.snackBar.open(err.message, 'OK', {duration: -1, panelClass: 'snack-bar-failure'});
         this.resolving = false;
+        const message = err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.';
+        this.info = message;
+        this.snackBar.open(message, 'OK', {panelClass: 'snack-bar-failure'});
       }
     }
   }
