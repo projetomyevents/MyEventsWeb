@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
+  MatBadgeModule,
   MatButtonModule,
   MatCardModule,
   MatDatepickerModule,
@@ -11,7 +12,8 @@ import {
   MatNativeDateModule,
   MatSelectModule,
   MatStepperModule,
-  MatTooltipModule
+  MatTableModule,
+  MatTooltipModule,
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { CoreModule } from '../core/core.module';
@@ -47,6 +49,8 @@ import { EventPageListComponent } from './pages/event-page-list/event-page-list.
     MatSelectModule,
     MatGridListModule,
     MatTooltipModule,
+    MatTableModule,
+    MatBadgeModule,
   ],
 })
 export class EventModule {

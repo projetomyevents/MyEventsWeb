@@ -1,16 +1,14 @@
-import { PresenceStatus } from './presence-status.enum';
-
 export interface Guest {
   id: number;
   name: string;
   email: string;
-  presenceStatus?: PresenceStatus;
+  presenceStatus?: any;
   companionLimit: number;
   confirmedCompanions?: number;
 }
 
 export interface SimpleGuest {
   name: string;
-  presenceStatus: PresenceStatus;
+  presenceStatus: any;
   confirmedCompanions: number;
 }
