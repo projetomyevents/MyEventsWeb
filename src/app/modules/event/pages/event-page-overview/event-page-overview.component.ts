@@ -28,6 +28,8 @@ export class EventPageOverviewComponent implements OnInit {
   ) {
   }
 
+  isOwner = () => this.authenticationService.logged() && this.event.user.email === this.authenticationService.userValue.email;
+
   ngOnInit(): void {
     this.eventService.get(Number(this.route.snapshot.paramMap.get('id'))).then(
       (response: any) => {
@@ -41,10 +43,11 @@ export class EventPageOverviewComponent implements OnInit {
   }
 
   async guests(): Promise<void> {
-    await this.router.navigateByUrl(
-      this.authenticationService.logged() && this.event.user.email === this.authenticationService.userValue.email
-        ? RoutesConfig.routes.event.eventGuestsEdit(this.event.id)
-        : RoutesConfig.routes.event.eventGuests(this.event.id));
+    await this.router.navigateByUrl(RoutesConfig.routes.event.eventGuests(this.event.id));
+  }
+
+  async guestsEdit(): Promise<void> {
+    await this.router.navigateByUrl(RoutesConfig.routes.event.eventGuestsEdit(this.event.id));
   }
 
   async cancel(): Promise<void> {

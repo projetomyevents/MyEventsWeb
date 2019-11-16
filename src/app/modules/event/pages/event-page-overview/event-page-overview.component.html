@@ -21,6 +21,7 @@
           </div>
 
           <div id="actions">
+            <button mat-flat-button *ngIf="isOwner()" color="primary" (click)="guestsEdit()">Editar convidados</button>
             <button mat-flat-button color="accent" (click)="guests()">Convidados</button>
             <button mat-flat-button color="warn" (click)="cancel()">Cancelar</button>
           </div>
