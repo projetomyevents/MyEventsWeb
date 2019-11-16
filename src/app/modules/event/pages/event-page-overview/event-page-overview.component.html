@@ -1,5 +1,5 @@
 <div class="content">
-  <app-loading-spinner *ngIf="resolving; else content"></app-loading-spinner>
+  <app-loading-spinner *ngIf="!resolved; else content"></app-loading-spinner>
   <ng-template #content>
     <h2 class="mat-headline">{{event.name}}</h2>
 
