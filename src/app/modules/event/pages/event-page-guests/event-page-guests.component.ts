@@ -42,16 +42,14 @@ export class EventPageGuestsComponent implements OnInit {
             this.resolved = true;
             this.guests = new MatTableDataSource(guestsResponse);
           },
-          async (err: any) => this.bruh(err));
+          async (err: any) => {
+            await this.snackBar.open(err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.', 'OK',
+              {duration: -1, panelClass: 'snack-bar-failure'}).onAction().toPromise();
+
+            await this.router.navigateByUrl(RoutesConfig.routes.home);
+          });
       },
-      async (err: any) => this.bruh(err));
-  }
-
-  async bruh(err: any): Promise<void> {
-    await this.snackBar.open(err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.', 'OK',
-      {duration: -1, panelClass: 'snack-bar-failure'}).onAction().toPromise();
-
-    await this.router.navigateByUrl(RoutesConfig.routes.home);
+      async (err: any) => await this.router.navigateByUrl(RoutesConfig.routes.error404));
   }
 
 }

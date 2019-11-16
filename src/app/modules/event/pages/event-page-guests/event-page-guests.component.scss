@@ -1,25 +1,5 @@
-.content {
-  justify-content: flex-start;
-}
+@import "../../styles/guests";
 
-.mat-headline {
-  margin-top: 16px;
-}
-
-.mat-title {
-  margin: auto;
-
-  font-weight: normal;
-}
-
-table {
-  width: 80%;
-  margin: 25px 0;
-  border: 1px solid hsla(0, 0%, 0%, 0.1);
-  box-shadow: 2px 2px 1px hsla(0, 0%, 0%, 0.1);
-}
-
-th.mat-header-cell {
-  font-size: 14px;
-  text-align: center;
+td.mat-column-presenceStatus {
+  width: 100px;
 }
