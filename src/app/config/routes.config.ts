@@ -17,6 +17,7 @@ const routesNames = {
     events: 'events',
   },
   guest: {
+    status: 'guest',
   },
 };
 
@@ -41,6 +42,7 @@ export const RoutesConfig: any = {
       events: `/${routesNames.event.events}`,
     },
     guest: {
+      status: `/${routesNames.guest.status}`,
     },
   },
 };

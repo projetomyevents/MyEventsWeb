@@ -17,3 +17,8 @@ export interface GuestEdit {
   email: string;
   companionLimit: number;
 }
+
+export interface GuestUpdate {
+  presenceStatus: any;
+  confirmedCompanions: number;
+}

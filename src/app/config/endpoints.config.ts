@@ -15,6 +15,7 @@ export const EndpointsConfig: any = {
     getEventGuestsToEdit: (id: number) => `event/${id}/guests/edit`,
   },
   guest: {
+    getGuestStatus: (token: string) => `guest/?token=${token}`,
   },
   address: {
     getCities: 'address/cities',

@@ -1,0 +1,37 @@
+<div class="content">
+  <app-loading-spinner *ngIf="!resolved; else content"></app-loading-spinner>
+  <ng-template #content>
+    <div class="card">
+      <h1 class="card-title mat-headline">Status de Presença</h1>
+      <h3 class="card-header mat-subheading-2">{{info}}</h3>
+      <h4 class="card-subheader mat-subheading-1" *ngFor="let xInfo of extraInfo">- {{xInfo}}</h4>
+
+      <form class="card-content" [formGroup]="guest">
+        <mat-form-field class="card-field" appearance="outline">
+          <mat-label>Acompanhantes confirmados</mat-label>
+          <label>
+            <input matInput type="number" min="0" [max]="rawGuest.companionLimit" formControlName="confirmedCompanions">
+          </label>
+          <mat-error *ngIf="guest.get('confirmedCompanions').hasError('required')">
+            Digite seus acompanhantes confirmados
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="card-field" appearance="outline">
+          <mat-label>Presença</mat-label>
+          <mat-select formControlName="presenceStatus">
+            <mat-option value="PENDING">Pendente</mat-option>
+            <mat-option value="ACCEPTED">Confirmar</mat-option>
+            <mat-option value="DENIED">Recusar</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+
+      <div class="card-actions">
+        <button mat-flat-button class="main-card-action" color="accent" [disabled]="resolving" (click)="update()">
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</div>
