@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { SimpleEvent } from '../../shared/event.model';
 import { EventService } from '../../shared/event.service';
-import { ConfirmationDialogComponent } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { RoutesConfig } from '../../../../config/routes.config';
 
 
@@ -22,17 +21,12 @@ export class EventPageListComponent implements OnInit {
     private eventService: EventService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog,
   ) {
   }
 
   hasEvents = () => Array.isArray(this.events) && this.events.length;
 
   ngOnInit(): void {
-    this.updateEvents();
-  }
-
-  updateEvents(): void {
     this.eventService.getAll().then(
       (response: any) => {
         this.resolved = true;
@@ -51,32 +45,6 @@ export class EventPageListComponent implements OnInit {
 
   async details(id: any): Promise<void> {
     await this.router.navigateByUrl(RoutesConfig.routes.event.event(id));
-  }
-
-  async cancel(event: SimpleEvent): Promise<void> {
-    this.dialog.open(ConfirmationDialogComponent, {
-      width: '400px',
-      data: {
-        title: 'Cancelar evento',
-        message: `Tem certeza que deseja CANCELAR o evento '${event.name}'?`,
-        accept: async () => {
-          // TODO: this shit
-          new Audio('../../../../assets/i-giorno-giovanna-have-a-dream.mp3').play();
-          try {
-            const response = await this.eventService.cancel(Number(event.id));
-
-            await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()
-              .toPromise();
-
-            location.reload();
-          } catch (err) {
-            this.snackBar.open(err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.', 'OK',
-              {panelClass: 'snack-bar-failure'});
-          }
-        },
-        reject: () => null,
-      },
-    });
   }
 
 }
