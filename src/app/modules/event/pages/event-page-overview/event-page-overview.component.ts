@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { AuthenticationService } from '../../../core/shared/authentication.service';
 import { EventService } from '../../shared/event.service';
 import { Event } from '../../shared/event.model';
@@ -15,6 +15,8 @@ import { ConfirmationDialogComponent } from '../../../../shared/components/confi
 })
 export class EventPageOverviewComponent implements OnInit {
 
+  eventRoutes = RoutesConfig.routes.event;
+
   event: Event;
 
   resolved: boolean;
@@ -24,6 +26,7 @@ export class EventPageOverviewComponent implements OnInit {
     private eventService: EventService,
     private router: Router,
     private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
     private dialog: MatDialog,
   ) {
   }
@@ -56,9 +59,20 @@ export class EventPageOverviewComponent implements OnInit {
       data: {
         title: 'Cancelar evento',
         message: `Tem certeza que deseja CANCELAR o evento '${this.event.name}'?`,
-        accept: () => {
+        accept: async () => {
           // TODO: this shit
           new Audio('../../../../assets/i-giorno-giovanna-have-a-dream.mp3').play();
+          try {
+            const response = await this.eventService.cancel(this.event.id);
+
+            await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()
+              .toPromise();
+
+            await this.router.navigateByUrl(this.eventRoutes.events);
+          } catch (err) {
+            this.snackBar.open(err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.', 'OK',
+              {panelClass: 'snack-bar-failure'});
+          }
         },
         reject: () => null,
       },

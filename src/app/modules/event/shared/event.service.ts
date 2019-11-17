@@ -36,6 +36,15 @@ export class EventService {
   }
 
   /**
+   * Cancela um evento.
+   *
+   * @param id - O identificador do evento.
+   */
+  cancel(id: number): Promise<any> {
+    return this.http.delete<any>(`${this.url}/${this.eventEndpoint.getEvent(id)}`).toPromise();
+  }
+
+  /**
    * Retorna todos os eventos do usuário logado.
    */
   getAll(): Promise<SimpleEvent[]> {
