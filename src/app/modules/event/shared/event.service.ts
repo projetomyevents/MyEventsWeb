@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../../../config/app.config';
 import { EndpointsConfig } from '../../../config/endpoints.config';
 import { Event, NewEvent, SimpleEvent } from './event.model';
-import { Guest, SimpleGuest } from '../../guest/shared/guest.model';
+import { Guest, GuestEdit, SimpleGuest } from '../../guest/shared/guest.model';
 
 
 @Injectable({
@@ -42,8 +42,6 @@ export class EventService {
     return this.http.get<SimpleEvent[]>(`${this.url}/${this.eventEndpoint.getEvents}`).toPromise();
   }
 
-
-
   /**
    * Retorna a lista de convidados de um evento.
    *
@@ -60,6 +58,16 @@ export class EventService {
    */
   getGuestsEdit(id: number): Promise<Guest> {
     return this.http.get<Guest>(`${this.url}/${this.eventEndpoint.getEventGuestsToEdit(id)}`).toPromise();
+  }
+
+  /**
+   * Atualiza a lista de convidados de um.
+   *
+   * @param id - O identificador do evento.
+   * @param guests - Os convidados atualizados do evento.
+   */
+  putGuestsEdit(id: number, guests: GuestEdit[]): Promise<any> {
+    return this.http.put<any>(`${this.url}/${this.eventEndpoint.getEventGuestsToEdit(id)}`, guests).toPromise();
   }
 
 }

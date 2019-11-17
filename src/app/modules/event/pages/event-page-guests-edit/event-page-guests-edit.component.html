@@ -1,1 +1,91 @@
-<p>event-page-guests-edit works!</p>
+<div class="content">
+  <app-loading-spinner *ngIf="!resolved; else content"></app-loading-spinner>
+  <ng-template #content>
+    <h1 class="mat-headline" id="page-header">Lista de convidados do evento: {{event.name}}</h1>
+
+    <div id="action-bar">
+      <button mat-flat-button color="primary" (click)="add()">
+        <mat-icon>add</mat-icon>
+        Adicionar convidado
+      </button>
+
+      <button mat-flat-button (click)="refresh()">
+        <mat-icon>replay</mat-icon>
+        Desfazer alterações
+      </button>
+
+      <button mat-flat-button color="primary" (click)="save()">
+        <mat-icon>done</mat-icon>
+        Salvar alterações
+      </button>
+    </div>
+
+    <table mat-table [dataSource]="guestsId">
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let guestId">
+          <mat-form-field *ngIf="guests[guestId]['status'] === 'added'; else plainText" appearance="outline">
+            <app-email-input [formControl]="guests[guestId]['data']['controls']['email']"></app-email-input>
+          </mat-form-field>
+          <ng-template #plainText>
+            <span matBadge="{{guests[guestId]['original']['confirmedCompanions']}}" matBadgeOverlap="false"
+                  [matBadgeHidden]="guests[guestId]['original']['presenceStatus'] !== 'ACCEPTED'"
+                  [ngClass]="guests[guestId]['status']">
+              {{guests[guestId]['original']['email']}}
+            </span>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let guestId">
+          <mat-form-field appearance="outline">
+            <label>
+              <input matInput [formControl]="guests[guestId]['data']['controls']['name']">
+            </label>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="companionLimit">
+        <th mat-header-cell *matHeaderCellDef>Limite de acompanhantes</th>
+        <td mat-cell *matCellDef="let guestId">
+          <mat-form-field appearance="outline">
+            <label>
+              <input matInput min="0" [formControl]="guests[guestId]['data']['controls']['companionLimit']">
+            </label>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="presenceStatus">
+        <th mat-header-cell *matHeaderCellDef>Presença</th>
+        <td mat-cell *matCellDef="let guestId">
+          <span *ngIf="guests[guestId]['status'] !== 'added'">{{getPresenceStatus(guests[guestId]['original']['presenceStatus'])}}</span>
+          <ng-template>
+            <span>---</span>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="operations">
+        <th mat-header-cell *matHeaderCellDef>Operações</th>
+        <td mat-cell *matCellDef="let guestId">
+          <button *ngIf="guests[guestId]['status'] !== 'added'" mat-icon-button (click)="revert(guestId)"
+                  matTooltip="Reverter alterações no convidado." matTooltipPosition="above">
+            <mat-icon>replay</mat-icon>
+          </button>
+
+          <button mat-icon-button color="warn" (click)="remove(guestId)"
+                  matTooltip="Remover o convidado." matTooltipPosition="above">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="headers"></tr>
+      <tr mat-row *matRowDef="let guestId; columns: headers"></tr>
+    </table>
+  </ng-template>
+</div>

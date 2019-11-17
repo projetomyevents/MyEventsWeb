@@ -76,3 +76,18 @@
 .mat-simple-snackbar {
   font-size: 16px;
 }
+
+// ajustar inputs de forma em linhas de tabelas
+tr {
+  .mat-form-field-appearance-outline {
+    width: 80%;
+  }
+
+  .mat-form-field-wrapper {
+    padding: 0;
+
+    .mat-form-field-infix {
+      font-size: 14px;
+    }
+  }
+}

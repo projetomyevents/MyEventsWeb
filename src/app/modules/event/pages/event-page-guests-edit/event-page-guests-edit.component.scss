@@ -1,0 +1,38 @@
+@import "../../styles/guests";
+
+#action-bar {
+  display: flex;
+  justify-content: space-evenly;
+  width: 95%;
+
+  button {
+    height: 48px;
+  }
+}
+
+td.mat-column-presenceStatus {
+  width: 120px;
+}
+
+td.mat-column-operations {
+  width: 144px;
+
+  button {
+    margin: 0 2px;
+  }
+}
+
+td.mat-column-companionLimit {
+  width: 72px;
+}
+
+span {
+  &.modified {
+    color: tan;
+  }
+
+  &.removed {
+    color: red;
+    text-decoration: line-through;
+  }
+}

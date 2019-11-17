@@ -1,5 +1,4 @@
 export interface Guest {
-  id: number;
   name: string;
   email: string;
   presenceStatus?: any;
@@ -11,4 +10,10 @@ export interface SimpleGuest {
   name: string;
   presenceStatus: any;
   confirmedCompanions: number;
+}
+
+export interface GuestEdit {
+  name: string;
+  email: string;
+  companionLimit: number;
 }

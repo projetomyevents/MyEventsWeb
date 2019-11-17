@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar, MatTableDataSource } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { EventService } from '../../shared/event.service';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { Event } from '../../shared/event.model';
@@ -16,7 +16,7 @@ import { PresenceStatus } from '../../../guest/shared/presence-status.enum';
 export class EventPageGuestsComponent implements OnInit {
 
   event: Event;
-  guests: MatTableDataSource<SimpleGuest>;
+  guests: SimpleGuest[];
 
   resolved: boolean;
 
@@ -30,7 +30,7 @@ export class EventPageGuestsComponent implements OnInit {
   ) {
   }
 
-  hasGuests = () => Array.isArray(this.guests.data) && this.guests.data.length;
+  hasGuests = () => Array.isArray(this.guests) && this.guests.length;
   getPresenceStatus = (presenceStatus: string) => PresenceStatus[presenceStatus];
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class EventPageGuestsComponent implements OnInit {
         this.eventService.getGuests(eventResponse.id).then(
           (guestsResponse: any) => {
             this.resolved = true;
-            this.guests = new MatTableDataSource(guestsResponse);
+            this.guests = guestsResponse;
           },
           async (err: any) => {
             await this.snackBar.open(err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.', 'OK',
@@ -49,7 +49,7 @@ export class EventPageGuestsComponent implements OnInit {
             await this.router.navigateByUrl(RoutesConfig.routes.home);
           });
       },
-      async (err: any) => await this.router.navigateByUrl(RoutesConfig.routes.error404));
+      async () => await this.router.navigateByUrl(RoutesConfig.routes.error404));
   }
 
 }
