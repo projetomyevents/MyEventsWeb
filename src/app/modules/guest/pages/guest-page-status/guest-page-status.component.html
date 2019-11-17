@@ -4,13 +4,14 @@
     <div class="card">
       <h1 class="card-title mat-headline">Status de Presença</h1>
       <h3 class="card-header mat-subheading-2">{{info}}</h3>
-      <h4 class="card-subheader mat-subheading-1" *ngFor="let xInfo of extraInfo">- {{xInfo}}</h4>
+      <h4 *ngFor="let xInfo of extraInfo" class="card-subheader mat-subheading-1">- {{xInfo}}</h4>
 
       <form class="card-content" [formGroup]="guest">
         <mat-form-field class="card-field" appearance="outline">
           <mat-label>Acompanhantes confirmados</mat-label>
           <label>
-            <input matInput type="number" min="0" [max]="rawGuest.companionLimit" formControlName="confirmedCompanions">
+            <input matInput type="number" formControlName="confirmedCompanions" min="0" [max]="rawGuest.companionLimit"
+                   [size]="rawGuest.companionLimit">
           </label>
           <mat-error *ngIf="guest.get('confirmedCompanions').hasError('required')">
             Digite seus acompanhantes confirmados

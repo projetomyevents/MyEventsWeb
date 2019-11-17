@@ -12,26 +12,6 @@
       <mat-icon>amp_stories</mat-icon>
       <span>Meus eventos</span>
     </a>
-
-    <!--  TODO: Remover antes da entrega  -->
-    <a mat-button *ngIf="isDevMode" [routerLink]="routes.error404">
-      <mat-icon>error_outline</mat-icon>
-      <span>404</span>
-    </a>
-
-    <!--  TODO: Remover antes da entrega  -->
-    <a mat-button *ngIf="isDevMode" [matMenuTriggerFor]="userActions">
-      <mat-icon>account_circle</mat-icon>
-      <span>Usuário</span>
-      <mat-menu #userActions>
-        <button mat-menu-item [routerLink]="routes.user.signup">Cadastrar-se</button>
-        <button mat-menu-item [routerLink]="routes.user.signin">Entrar</button>
-        <button mat-menu-item [routerLink]="routes.user.activate">Ativar conta</button>
-        <button mat-menu-item [routerLink]="routes.user.resendActivation">Reenviar activação de conta</button>
-        <button mat-menu-item [routerLink]="routes.user.passwordReset">Redefinir senha</button>
-        <button mat-menu-item [routerLink]="routes.user.sendPasswordReset">Solicitar redefinição de senha</button>
-      </mat-menu>
-    </a>
   </nav>
 
   <nav class="nav-spacer"></nav>

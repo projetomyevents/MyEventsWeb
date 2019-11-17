@@ -17,7 +17,7 @@
         <mat-form-field class="card-field" id="password-field" appearance="outline">
           <mat-label>Senha</mat-label>
           <label>
-            <input matInput [type]="hidePassword ? 'password' : 'text'" maxlength="127" formControlName="password">
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" maxlength="127">
           </label>
           <mat-error *ngIf="user.get('password').hasError('required')">Informe uma senha</mat-error>
         </mat-form-field>

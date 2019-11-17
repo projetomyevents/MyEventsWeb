@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { GuestService } from '../../shared/guest.service';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { Guest } from '../../shared/guest.model';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PresenceStatus } from '../../shared/presence-status.enum';
 
 @Component({
   selector: 'app-guest-page-status',
   templateUrl: './guest-page-status.component.html',
-  styleUrls: ['./guest-page-status.component.scss']
+  styleUrls: ['./guest-page-status.component.scss'],
 })
 export class GuestPageStatusComponent implements OnInit {
 
@@ -23,10 +22,10 @@ export class GuestPageStatusComponent implements OnInit {
   resolving: boolean;
 
   constructor(
-  private guestService: GuestService,
-  private router: Router,
-  private route: ActivatedRoute,
-  private snackBar: MatSnackBar,
+    private guestService: GuestService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
   ) {
   }
 

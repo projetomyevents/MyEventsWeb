@@ -13,9 +13,9 @@ mat-grid-list {
 
 mat-grid-tile {
   border: 1px solid hsla(0, 0%, 0%, 0.1);
+  text-align: left;
 
   background: white;
-  text-align: left;
 }
 
 #image {
@@ -39,15 +39,15 @@ mat-grid-tile {
 
   #schedule {
     overflow: auto;
-    justify-self: flex-start;
     margin-bottom: auto;
+    justify-self: flex-start;
   }
 
   #actions {
     display: flex;
     flex-flow: column;
-    justify-self: flex-end;
     align-items: center;
+    justify-self: flex-end;
 
     button {
       width: 90%;
@@ -69,8 +69,8 @@ mat-grid-tile {
   .attribute {
     display: flex;
     align-items: center;
-    height: calc(25% - 30px);
     width: calc(50% - 30px);
+    height: calc(25% - 30px);
     padding: 15px;
 
     .mat-icon {

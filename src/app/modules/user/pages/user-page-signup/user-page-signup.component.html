@@ -2,7 +2,7 @@
   <div class="card">
     <h1 class="card-title mat-headline">Crie sua conta</h1>
     <h3 class="card-header mat-subheading-2">{{info}}</h3>
-    <h4 class="card-subheader mat-subheading-1" *ngFor="let xInfo of extraInfo">- {{xInfo}}</h4>
+    <h4 *ngFor="let xInfo of extraInfo" class="card-subheader mat-subheading-1">- {{xInfo}}</h4>
 
     <form class="card-content" [formGroup]="user">
       <mat-form-field class="card-field" appearance="outline">
@@ -40,7 +40,7 @@
         <mat-form-field class="card-field" appearance="outline">
           <mat-label>Senha</mat-label>
           <label>
-            <input matInput [type]="hidePassword ? 'password' : 'text'" maxlength="127" formControlName="password">
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" maxlength="127">
           </label>
           <mat-error *ngIf="user.get('passwords.password').hasError('required')">Informe uma senha</mat-error>
           <mat-error *ngIf="user.get('passwords.password').hasError('minlength')">
@@ -56,8 +56,8 @@
         <mat-form-field class="card-field" appearance="outline">
           <mat-label>Confirmar senha</mat-label>
           <label>
-            <input matInput [type]="hidePassword ? 'password' : 'text'" maxlength="127"
-                   [errorStateMatcher]="parentErrorStateMatcher" formControlName="confirmedPassword">
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="confirmedPassword"
+                   maxlength="127" [errorStateMatcher]="parentErrorStateMatcher">
           </label>
           <mat-error *ngIf="user.get('passwords').hasError('different')">As senhas são
             <strong>diferentes</strong></mat-error>

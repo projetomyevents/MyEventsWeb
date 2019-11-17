@@ -5,15 +5,15 @@
 
   display: flex;
   align-items: center;
+  box-sizing: border-box;
   width: 100%;
   height: $navbar-height;
   padding: 0 16px;
-  box-sizing: border-box;
 
-  background: $navbar-color;
   color: white;
-  text-transform: uppercase;
+  background: $navbar-color;
   white-space: nowrap;
+  text-transform: uppercase;
 }
 
 .nav-spacer {
@@ -24,8 +24,8 @@ a {
   font-size: 16px;
 
   &:hover {
-    background: hsla(0, 0%, 100%, 0.04);
     color: hsl(0, 0%, 80%);
+    background: hsla(0, 0%, 100%, 0.04);
 
     svg {
       fill: hsl(0, 0%, 80%);

@@ -2,7 +2,7 @@
   <div class="card">
     <h2 class="card-title mat-headline">Crie um evento</h2>
     <h4 class="card-header mat-subheading-2">{{info}}</h4>
-    <h4 class="card-subheader mat-subheading-1" *ngFor="let xInfo of extraInfo">- {{xInfo}}</h4>
+    <h4 *ngFor="let xInfo of extraInfo" class="card-subheader mat-subheading-1">- {{xInfo}}</h4>
 
     <mat-horizontal-stepper [formGroup]="event">
       <mat-step label="Informações básicas" state="subject" [completed]="infoIsValid()">
@@ -18,7 +18,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Data de início</mat-label>
             <label>
-              <input matInput [min]="today" [matDatepicker]="startDate" formControlName="startDate">
+              <input matInput formControlName="startDate" [min]="today" [matDatepicker]="startDate">
             </label>
             <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
             <mat-datepicker #startDate></mat-datepicker>
@@ -28,7 +28,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Limite de acompanhantes</mat-label>
             <label>
-              <input matInput type="number" min="0" max="127" formControlName="companionLimit">
+              <input matInput type="number" formControlName="companionLimit" min="0">
             </label>
             <mat-error *ngIf="event.get('companionLimit').hasError('required')">
               Informe o limite de acompanhantes
@@ -63,7 +63,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Idade mínima (opcional)</mat-label>
             <label>
-              <input matInput type="number" min="0" max="127" formControlName="minimumAge">
+              <input matInput type="number" formControlName="minimumAge" min="0" max="122" size="122">
             </label>
           </mat-form-field>
 

@@ -2,7 +2,7 @@
   <app-loading-spinner *ngIf="!resolved; else content"></app-loading-spinner>
   <ng-template #content>
     <h1 class="mat-headline" id="page-header">Lista de eventos</h1>
-    <h2 class="mat-title" id="empty-message" *ngIf="!hasEvents(); else list">Nenhum evento criado.</h2>
+    <h2 *ngIf="!hasEvents(); else list" class="mat-title" id="empty-message">Nenhum evento criado.</h2>
 
     <ng-template #list>
       <div id="events">
@@ -12,9 +12,8 @@
               <mat-card-title>{{event.name}}</mat-card-title>
             </mat-card-header>
 
-            <img mat-card-image src="{{'data:image/png;base64,' + event.image}}"
-                 (error)="$event.target.src='../../../../assets/default-event-image.jpeg'"
-                 alt="Imagem ilustrativa do evento.">
+            <img mat-card-image src="{{'data:image/png;base64,' + event.image}}" alt="Imagem ilustrativa do evento."
+                 (error)="$event.target.src='../../../../assets/default-event-image.jpeg'">
 
             <mat-card-content>
               <p>{{event.description}}</p>
