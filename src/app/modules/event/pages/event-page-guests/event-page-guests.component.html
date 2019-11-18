@@ -2,7 +2,7 @@
   <app-loading-spinner *ngIf="!resolved; else content"></app-loading-spinner>
   <ng-template #content>
     <h1 class="mat-headline" id="page-header">Lista de convidados do evento: {{event.name}}</h1>
-    <h2 class="mat-title" id="empty-message" *ngIf="!hasGuests(); else list">Nenhum convidado.</h2>
+    <h2 *ngIf="!hasGuests(); else list" class="mat-title" id="empty-message">Nenhum convidado.</h2>
 
     <ng-template #list>
       <table mat-table [dataSource]="guests">

@@ -1,14 +1,12 @@
 <form [formGroup]="cep">
   <label>
-    <input matInput id="local" maxlength="5" size="5" formControlName="local"
-          (blur)="onTouched()"
-          (input)="onAnyInputChange(local.value, local.attributes.getNamedItem('maxLength').value, distribution)"
-           #local>
+    <input #local matInput id="local" formControlName="local" maxlength="5" size="5"
+           (blur)="onTouched()" (input)="onAnyInputChange()"
+          (input)="onAnyInputChange(local.value, local.attributes.getNamedItem('maxLength').value, distribution)">
   </label>
   <span>-</span>
   <label>
-    <input matInput id="distribution" maxlength="3" size="3" formControlName="distribution"
-           (input)="onAnyInputChange()" (blur)="onTouched()"
-           #distribution>
+    <input #distribution matInput id="distribution" formControlName="distribution" maxlength="3" size="3"
+           (blur)="onTouched()" (input)="onAnyInputChange()">
   </label>
 </form>

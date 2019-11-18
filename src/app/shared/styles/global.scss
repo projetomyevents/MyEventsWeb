@@ -6,9 +6,9 @@
   justify-content: center;
   align-items: center;
   min-height: 100%; /* usando min-height aqui por causa de um bug na implementação do flexbox */
+  text-align: center;
 
   background: hsl(0, 0%, 98%);
-  text-align: center;
 }
 
 // colorizar a barra de força da senha com base da sua complexibilidade

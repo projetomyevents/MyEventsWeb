@@ -6,7 +6,7 @@ import {
   MatInputModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
-  MatTooltipModule
+  MatTooltipModule,
 } from '@angular/material';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { EmailInput } from './components/email-input/email-input.component';

@@ -28,9 +28,9 @@
             <app-email-input [formControl]="guests[guestId]['data']['controls']['email']"></app-email-input>
           </mat-form-field>
           <ng-template #plainText>
-            <span matBadge="{{guests[guestId]['original']['confirmedCompanions']}}" matBadgeOverlap="false"
-                  [matBadgeHidden]="guests[guestId]['original']['presenceStatus'] !== 'ACCEPTED'"
-                  [ngClass]="guests[guestId]['status']">
+            <span [ngClass]="guests[guestId]['status']"
+                  matBadge="{{guests[guestId]['original']['confirmedCompanions']}}" matBadgeOverlap="false"
+                  [matBadgeHidden]="guests[guestId]['original']['presenceStatus'] !== 'ACCEPTED'">
               {{guests[guestId]['original']['email']}}
             </span>
           </ng-template>
@@ -53,7 +53,7 @@
         <td mat-cell *matCellDef="let guestId">
           <mat-form-field appearance="outline">
             <label>
-              <input matInput min="0" [formControl]="guests[guestId]['data']['controls']['companionLimit']">
+              <input matInput [formControl]="guests[guestId]['data']['controls']['companionLimit']" min="0">
             </label>
           </mat-form-field>
         </td>
@@ -62,7 +62,9 @@
       <ng-container matColumnDef="presenceStatus">
         <th mat-header-cell *matHeaderCellDef>Presença</th>
         <td mat-cell *matCellDef="let guestId">
-          <span *ngIf="guests[guestId]['status'] !== 'added'">{{getPresenceStatus(guests[guestId]['original']['presenceStatus'])}}</span>
+          <span *ngIf="guests[guestId]['status'] !== 'added'">
+            {{getPresenceStatus(guests[guestId]['original']['presenceStatus'])}}
+          </span>
           <ng-template>
             <span>---</span>
           </ng-template>
