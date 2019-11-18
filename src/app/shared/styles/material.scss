@@ -91,3 +91,8 @@ tr {
     }
   }
 }
+
+// ajustar posição do alinhamento do ícone no botão
+.mat-button-base .mat-icon {
+    margin-bottom: 3px;
+}
