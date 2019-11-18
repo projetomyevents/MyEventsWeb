@@ -61,6 +61,7 @@ export class FileInput implements OnInit, OnDestroy, DoCheck, ControlValueAccess
   }
   @HostBinding('attr.aria-describedby') describedBy = '';
 
+  @Input() accept: string;
   @Input() multiple: boolean;
 
   @Input()

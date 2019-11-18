@@ -1,2 +1,2 @@
 <div>{{getFileNames()}}</div>
-<input #filesInput type="file" [multiple]="multiple" (input)="onInputChanges(filesInput.files)" hidden>
+<input #filesInput type="file" [multiple]="multiple" [accept]="accept" (input)="onInputChanges(filesInput.files)" hidden>
