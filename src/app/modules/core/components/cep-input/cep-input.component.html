@@ -1,8 +1,8 @@
 <form [formGroup]="cep">
   <label>
     <input #local matInput id="local" formControlName="local" maxlength="5" size="5"
-           (blur)="onTouched()" (input)="onAnyInputChange()"
-          (input)="onAnyInputChange(local.value, local.attributes.getNamedItem('maxLength').value, distribution)">
+           (blur)="onTouched()"
+           (input)="onAnyInputChange(local.value, local.attributes.getNamedItem('maxLength').value, distribution)">
   </label>
   <span>-</span>
   <label>

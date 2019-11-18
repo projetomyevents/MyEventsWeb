@@ -124,12 +124,12 @@ export class CPFInput implements OnInit, OnDestroy, DoCheck, ControlValueAccesso
   onChange = (_: any) => {};
   onTouched = () => {};
 
-    onAnyInputChange(value?: string, length?: string, nextInput?: any): void {
-      this.onChange(this.value);
-      if (value && nextInput && value.length === Number(length)) {
-        nextInput.focus();
-      }
+  onAnyInputChange(value?: string, length?: string, nextInput?: any): void {
+    this.onChange(this.value);
+    if (value && nextInput && value.length === Number(length)) {
+      nextInput.focus();
     }
+  }
 
   ngOnInit(): void {
   }
