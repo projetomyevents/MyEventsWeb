@@ -1,8 +1,8 @@
 <h2 *ngIf="data.title" mat-dialog-title class="mat-subheading-2">{{data.title}}</h2>
-<mat-dialog-content class="mat-body">
+<mat-dialog-content class="mat-subheading-1">
   <span>{{data.message}}</span>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-flat-button [mat-dialog-close]="true">Sim</button>
+  <button mat-flat-button color="warn" [mat-dialog-close]="true">Sim</button>
   <button mat-flat-button color="primary" mat-dialog-close>Não</button>
 </mat-dialog-actions>
