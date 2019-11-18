@@ -20,6 +20,7 @@ export class EventPageOverviewComponent implements OnInit {
   event: Event;
 
   resolved: boolean;
+  resolving: boolean;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -60,6 +61,7 @@ export class EventPageOverviewComponent implements OnInit {
         title: 'Cancelar evento',
         message: `Tem certeza que deseja CANCELAR o evento '${this.event.name}'?`,
         accept: async () => {
+          this.resolving = true;
           // TODO: this shit
           new Audio('../../../../assets/i-giorno-giovanna-have-a-dream.mp3').play();
           try {

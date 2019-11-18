@@ -64,25 +64,25 @@
 
       <mat-grid-tile colspan="15" rowspan="3">
         <div id="actions">
-          <button *ngIf="isOwner()" mat-flat-button color="accent" (click)="guestsEdit()">
+          <button *ngIf="isOwner()" mat-flat-button color="accent" (click)="guestsEdit()" [disabled]="resolving">
             <mat-icon>create</mat-icon>
             Editar lista de convidados
           </button>
 
-          <button mat-flat-button color="primary" (click)="guests()">
+          <button mat-flat-button color="primary" (click)="guests()" [disabled]="resolving">
             <mat-icon>list</mat-icon>
             Lista de convidados
           </button>
 
-          <button *ngIf="isOwner()" mat-flat-button color="warn" (click)="cancel()">
+          <button *ngIf="isOwner()" mat-flat-button color="warn" (click)="cancel()" [disabled]="resolving">
             <mat-icon>delete_forever</mat-icon>
             Cancelar evento
           </button>
 
-          <button mat-flat-button color="primary" (click)="downloadAttachments()">
-            <mat-icon>attachments</mat-icon>
-            Baixar anexos
-          </button>
+<!--          <button mat-flat-button color="primary" (click)="downloadAttachments()">-->
+<!--            <mat-icon>attachments</mat-icon>-->
+<!--            Baixar anexos-->
+<!--          </button>-->
         </div>
       </mat-grid-tile>
     </mat-grid-list>
