@@ -1,54 +1,43 @@
 <div class="content">
   <app-loading-spinner *ngIf="!resolved; else content"></app-loading-spinner>
   <ng-template #content>
-    <h2 class="mat-headline">{{event.name}}</h2>
-
-    <mat-grid-list cols="4" rowHeight="1:1" gutterSize="15px">
-      <mat-grid-tile id="image">
-        <img src="{{'data:image/png;base64,' + event.image}}" alt="Imagem ilustrativa do evento."
-             (error)="$event.target.src='../../../../assets/default-event-image.jpeg'">
+    <mat-grid-list cols="20" rowHeight="2:1" gutterSize="10">
+      <mat-grid-tile colspan="5" rowspan="8">
+        <div id="image" [style.backgroundImage]="'url(' + (event.image ? 'data:image/png;base64,' + event.image : '../../../../assets/default-event-image.jpeg') + ')'"></div>
       </mat-grid-tile>
 
-      <mat-grid-tile id="description" colspan="2">
-        <p>{{event.description}}</p>
-      </mat-grid-tile>
-
-      <mat-grid-tile rowspan="2">
-        <div id="schedule-actions">
-          <div id="schedule">
-            <p>{{event.schedule}}</p>
-          </div>
-
-          <div id="actions">
-            <button *ngIf="isOwner()" mat-flat-button color="primary" (click)="guestsEdit()">Editar convidados</button>
-            <button mat-flat-button color="accent" (click)="guests()">Convidados</button>
-            <button mat-flat-button color="warn" (click)="cancel()">Cancelar</button>
-          </div>
+      <mat-grid-tile colspan="10" rowspan="8">
+        <div id="description">
+          <h2 class="mat-title">{{event.name}}</h2>
+          <p>{{event.description}}</p>
         </div>
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="3">
+      <mat-grid-tile colspan="5" rowspan="19">
+        <span id="schedule">{{event.schedule}}</span>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="15" rowspan="8">
         <div id="attributes">
           <div class="attribute">
-            <mat-icon>date_range</mat-icon>
+            <mat-icon matTooltip="Data de início do evento">date_range</mat-icon>
             <span>{{event.startDate.toLocaleDateString()}}</span>
           </div>
 
           <div class="attribute">
-            <mat-icon>person</mat-icon>
+            <mat-icon matTooltip="Organizar do evento">person</mat-icon>
             <span>{{event.user.name}}</span>
           </div>
 
           <div class="attribute">
-            <mat-icon>local_phone</mat-icon>
-            <span>{{event.user.phone}}</span>
+            <mat-icon matTooltip="Telefone/celular do organizador do evento">local_phone</mat-icon>
+            <span>{{formatedPhone()}}</span>
           </div>
 
-          <div class="attribute" [matTooltip]="event.complement">
-            <mat-icon>directions</mat-icon>
+          <div class="attribute" id="directions">
+            <mat-icon [matTooltip]="event.complement">directions</mat-icon>
             <div class="attribute-multiline">
-              <span><strong>CEP</strong>: {{event.cep}}</span>
-              <span><strong>Estado/Cidade</strong>: {{event.stateName}}/{{event.cityName}}</span>
+              <span><strong>Estado/Cidade</strong>: {{formatedCEP()}}, {{event.stateName}}/{{event.cityName}}</span>
               <span>
                 <strong>Local</strong>: {{event.neighborhood}}, {{event.street}}
                 {{event.number ? ', ' + event.number : ''}}
@@ -57,19 +46,38 @@
           </div>
 
           <div *ngIf="event.admissionPrice" class="attribute">
-            <mat-icon>attach_money</mat-icon>
+            <mat-icon matTooltip="Preço de entrada">attach_money</mat-icon>
             <span>{{event.admissionPrice}}</span>
           </div>
 
           <div *ngIf="event.attire" class="attribute">
-            <mat-icon>wc</mat-icon>
+            <mat-icon matTooltip="Traje">wc</mat-icon>
             <span>{{event.attire}}</span>
           </div>
 
           <div *ngIf="event.minimumAge" class="attribute">
-            <mat-icon>assignment_ind</mat-icon>
+            <mat-icon matTooltip="Idade mínima">assignment_ind</mat-icon>
             <span>{{event.minimumAge}}</span>
           </div>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="15" rowspan="3">
+        <div id="actions">
+          <button *ngIf="isOwner()" mat-flat-button color="accent" (click)="guestsEdit()">
+            <mat-icon>create</mat-icon>
+            Editar lista de convidados
+          </button>
+
+          <button mat-flat-button color="primary" (click)="guests()">
+            <mat-icon>list</mat-icon>
+            Lista de convidados
+          </button>
+
+          <button *ngIf="isOwner()" mat-flat-button color="warn" (click)="cancel()">
+            <mat-icon>delete_forever</mat-icon>
+            <span>Cancelar evento</span>
+          </button>
         </div>
       </mat-grid-tile>
     </mat-grid-list>

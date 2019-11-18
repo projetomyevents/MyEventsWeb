@@ -79,4 +79,15 @@ export class EventPageOverviewComponent implements OnInit {
     });
   }
 
+  formatedPhone(): string {
+    const phone = this.event.user.phone;
+    const phoneHifenIndex = phone.length === 11 ? 7 : 6;
+    return `(${phone.substring(0, 2)}) ${phone.substring(2, phoneHifenIndex)}-${phone.substring(phoneHifenIndex)}`;
+  }
+
+  formatedCEP(): string {
+    const cep = this.event.cep;
+    return `${cep.substring(0, 3)}-${cep.substring(3)}`;
+  }
+
 }

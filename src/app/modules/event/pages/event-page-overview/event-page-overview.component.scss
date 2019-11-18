@@ -1,10 +1,9 @@
+@import "variables";
+
 .content {
   justify-content: flex-start;
-  padding: 0 15px;
-}
-
-.mat-headline {
-  margin-top: 16px;
+  min-height: calc(100% - #{$navbar-height});
+  padding: 10px;
 }
 
 mat-grid-list {
@@ -13,50 +12,45 @@ mat-grid-list {
 
 mat-grid-tile {
   border: 1px solid hsla(0, 0%, 0%, 0.1);
-  text-align: left;
 
   background: white;
 }
 
 #image {
+  width: 100%;
+  height: 100%;
+
+  background: white no-repeat center/cover;
 }
 
 #description {
-  overflow: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+
+  text-align: left;
+
+  h2 {
+    margin: 0;
+  }
 
   p {
     align-self: flex-start;
-    padding: 0 15px 15px;
+    margin-block-start: 6px;
+
+    overflow: auto;
   }
 }
 
-#schedule-actions {
-  display: flex;
-  flex-flow: column;
+#schedule {
+  align-self: flex-start;
   width: 100%;
-  height: 100%;
-  padding: 15px;
+  padding: 10px;
 
-  #schedule {
-    overflow: auto;
-    margin-bottom: auto;
-    justify-self: flex-start;
-  }
-
-  #actions {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-self: flex-end;
-
-    button {
-      width: 90%;
-      margin-bottom: 16px;
-      border-radius: 1em;
-
-      font-size: 18px;
-    }
-  }
+  text-align: left;
+  overflow-wrap: break-word;
 }
 
 #attributes {
@@ -73,6 +67,8 @@ mat-grid-tile {
     height: calc(25% - 30px);
     padding: 15px;
 
+    text-align: left;
+
     .mat-icon {
       width: 42px;
       height: 42px;
@@ -87,9 +83,21 @@ mat-grid-tile {
 
     .attribute-multiline {
       display: flex;
-      flex-flow: column;
+      flex-flow: column nowrap;
     }
+  }
+
+  #directions {
+    width: auto;
   }
 }
 
-/* TODO: @media para telas menores */
+#actions {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+
+  button {
+    height: 42px;
+  }
+}
