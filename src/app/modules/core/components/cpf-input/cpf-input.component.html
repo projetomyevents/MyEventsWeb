@@ -1,19 +1,20 @@
 <form [formGroup]="cpf">
   <label>
-    <input matInput maxlength="3" size="3" formControlName="group1"
-           (input)="onAnyInputChange()" (blur)="onTouched()"
-           #group1>
+    <input #group1 matInput maxlength="3" size="3" formControlName="group1"
+            (blur)="onTouched()"
+            (input)="onAnyInputChange(group1.value, group1.attributes.getNamedItem('maxLength').value, group2)"
+           >
   </label>
   <span>.</span>
   <label>
     <input matInput maxlength="3" size="3" formControlName="group2"
-           (input)="onAnyInputChange()" (blur)="onTouched()"
+           (input)="onAnyInputChange(group2.value, group2.attributes.getNamedItem('maxLength').value, group3)" (blur)="onTouched()"
            #group2>
   </label>
   <span>.</span>
   <label>
     <input matInput maxlength="3" size="3" formControlName="group3"
-           (input)="onAnyInputChange()" (blur)="onTouched()"
+           (input)="onAnyInputChange(group3.value, group3.attributes.getNamedItem('maxLength').value, cv)" (blur)="onTouched()"
            #group3>
   </label>
   <span>-</span>

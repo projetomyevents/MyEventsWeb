@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MAT_TOOLTIP_DEFAULT_OPTIONS, MAT_DATE_LOCALE } from '@angular/material';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +43,7 @@ import { ConfirmationDialogComponent } from './shared/components/confirmation-di
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000}},
     {provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: {showDelay: 200, hideDelay: 200, touchendHideDelay: 200}},
     {provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}},
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}
   ],
   entryComponents: [ConfirmationDialogComponent],
   bootstrap: [AppComponent],

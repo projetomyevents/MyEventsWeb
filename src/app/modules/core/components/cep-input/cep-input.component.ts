@@ -120,8 +120,11 @@ export class CEPInput implements OnInit, OnDestroy, DoCheck, ControlValueAccesso
   onChange = (_: any) => {};
   onTouched = () => {};
 
-  onAnyInputChange(): void {
+  onAnyInputChange(value?: string, length?: string, nextInput?: any): void {
     this.onChange(this.value);
+    if (value && nextInput && value.length === Number(length)) {
+      nextInput.focus();
+    }
   }
 
   ngOnInit(): void {

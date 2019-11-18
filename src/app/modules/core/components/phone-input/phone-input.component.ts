@@ -121,8 +121,11 @@ export class PhoneInput implements OnInit, OnDestroy, DoCheck, ControlValueAcces
   onChange = (_: any) => {};
   onTouched = () => {};
 
-  onAnyInputChange(): void {
+  onAnyInputChange(value?: string, length?: string, nextInput?: any): void {
     this.onChange(this.value);
+    if (value && nextInput && value.length === Number(length)) {
+      nextInput.focus();
+    }
   }
 
   ngOnInit(): void {
