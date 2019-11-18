@@ -47,6 +47,8 @@
     color: transparent;
     background: white no-repeat center/cover;
     text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: color 500ms ease, background-color 500ms ease;
     user-select: none;
   }

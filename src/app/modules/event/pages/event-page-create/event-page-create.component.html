@@ -149,6 +149,20 @@
       </mat-step>
 
       <mat-step label="Anexos" state="attachments">
+        <mat-form-field appearance="outline">
+          <mat-label>Imagem (opcional)</mat-label>
+          <label>
+            <app-file-input formControlName="image"></app-file-input>
+          </label>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Anexos (opcional)</mat-label>
+          <label>
+            <app-file-input formControlName="attachments" multiple="true"></app-file-input>
+          </label>
+        </mat-form-field>
+
         <div class="step-actions">
           <button mat-button color="primary" matStepperPrevious>Editar o local</button>
           <span></span>

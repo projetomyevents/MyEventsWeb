@@ -10,7 +10,7 @@
           <div class="event-card" (click)="details(event.id)">
             <h2 class="mat-title">{{event.name}}</h2>
 
-            <div [style.backgroundImage]="'url(' + (event.image ? 'data:image/png;base64,' + event.image : '../../../../assets/default-event-image.jpeg') + ')'">
+            <div [style.backgroundImage]="getBackgroundImage(event)">
               {{event.description}}
             </div>
           </div>

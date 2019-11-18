@@ -9,7 +9,6 @@ import { RoutesConfig } from '../../../../config/routes.config';
 import { EventService } from '../../shared/event.service';
 
 
-// TODO: implementar upload de arquivos
 @Component({
   selector: 'app-event-page-create',
   templateUrl: './event-page-create.component.html',
@@ -56,8 +55,8 @@ export class EventPageCreateComponent implements OnInit {
       number: new FormControl(''),
       complement: new FormControl(''),
       // setp 3 - anexos
-      image: new FormControl(''),
-      attachments: new FormControl(''),
+      image: new FormControl(null),
+      attachments: new FormControl(null),
     });
 
     this.addressService.getAllStates().then((states: State[]) => this.states = states);
@@ -78,17 +77,16 @@ export class EventPageCreateComponent implements OnInit {
       try {
         const rawEvent = this.event.getRawValue();
 
-        // TODO: tratar valores de inputs com tipo 'file', quando eles forem implementados
         // caso algum atributo ser uma string vazia setá-lo para null
-        Object.keys(rawEvent).map((value: string) => {
-          if (typeof rawEvent[value] === 'string' && rawEvent[value].length === 0) {
-            rawEvent[value] = null;
+        Object.keys(rawEvent).map((key: string) => {
+          if (typeof rawEvent[key] === 'string' && rawEvent[key].length === 0) {
+            rawEvent[key] = null;
           }
         });
-        // caso não existir nenhum anexo setar o atributo de anexos para uma lista vazia (para não ocorrer erro no back)
-        if (rawEvent.attachments === null) {
-          rawEvent.attachments = [];
-        }
+
+        // TODO: implementar upload de arquivos
+        rawEvent.image = null;
+        rawEvent.attachments = [];
 
         const response = await this.userEventService.create({
           name: rawEvent.name,

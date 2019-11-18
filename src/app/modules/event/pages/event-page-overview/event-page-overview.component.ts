@@ -79,6 +79,9 @@ export class EventPageOverviewComponent implements OnInit {
     });
   }
 
+  downloadAttachments(): void {
+  }
+
   formatedPhone(): string {
     const phone = this.event.user.phone;
     const phoneHifenIndex = phone.length === 11 ? 7 : 6;
@@ -88,6 +91,12 @@ export class EventPageOverviewComponent implements OnInit {
   formatedCEP(): string {
     const cep = this.event.cep;
     return `${cep.substring(0, 3)}-${cep.substring(3)}`;
+  }
+
+  getBackgroundImage(): string {
+    return `url(${this.event.image
+      ? 'data:' + this.event.image.type + ';base64,' + this.event.image.content
+      : '../../../../assets/default-event-image.jpeg'})`;
   }
 
 }

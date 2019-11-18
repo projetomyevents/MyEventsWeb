@@ -1,4 +1,5 @@
 import { SimpleUser } from '../../user/shared/user.model';
+import { EventFile } from './event-file.model';
 
 export interface Event {
   id: number;
@@ -16,8 +17,8 @@ export interface Event {
   street: string;
   number?: string;
   complement?: string;
-  image?: string;
-  attachments?: string[];
+  image?: EventFile;
+  attachments?: EventFile[];
   user: SimpleUser;
 }
 
@@ -26,7 +27,7 @@ export interface SimpleEvent {
   name: string;
   startDate: any;
   description: string;
-  image?: string;
+  image?: EventFile;
 }
 
 export interface NewEvent {
@@ -44,6 +45,6 @@ export interface NewEvent {
   street: string;
   number?: string;
   complement?: string;
-  image?: string;
-  attachments?: string[];
+  image?: EventFile;
+  attachments?: EventFile[];
 }

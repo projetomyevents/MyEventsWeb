@@ -3,7 +3,7 @@
   <ng-template #content>
     <mat-grid-list cols="20" rowHeight="2:1" gutterSize="10">
       <mat-grid-tile colspan="5" rowspan="8">
-        <div id="image" [style.backgroundImage]="'url(' + (event.image ? 'data:image/png;base64,' + event.image : '../../../../assets/default-event-image.jpeg') + ')'"></div>
+        <div id="image" [style.backgroundImage]="getBackgroundImage()"></div>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="10" rowspan="8">
@@ -76,7 +76,12 @@
 
           <button *ngIf="isOwner()" mat-flat-button color="warn" (click)="cancel()">
             <mat-icon>delete_forever</mat-icon>
-            <span>Cancelar evento</span>
+            Cancelar evento
+          </button>
+
+          <button mat-flat-button color="primary" (click)="downloadAttachments()">
+            <mat-icon>attachments</mat-icon>
+            Baixar anexos
           </button>
         </div>
       </mat-grid-tile>

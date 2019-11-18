@@ -47,4 +47,10 @@ export class EventPageListComponent implements OnInit {
     await this.router.navigateByUrl(RoutesConfig.routes.event.event(id));
   }
 
+  getBackgroundImage(event: SimpleEvent): string {
+    return `url(${event.image
+      ? 'data:' + event.image.type + ';base64,' + event.image.content
+      : '../../../../assets/default-event-image.jpeg'})`;
+  }
+
 }
