@@ -10,7 +10,8 @@
           <th mat-header-cell *matHeaderCellDef>Nome</th>
           <td mat-cell *matCellDef="let guest">
             <span matBadge="{{guest['confirmedCompanions']}}" matBadgeOverlap="false"
-                  [matBadgeHidden]="guest['presenceStatus'] !== 'ACCEPTED'">
+                  [matBadgeHidden]="guest['presenceStatus'] !== 'ACCEPTED'"
+                  matTooltip="Número de acompanhantes confirmados">
               {{guest['name']}}
             </span>
           </td>
@@ -27,5 +28,10 @@
         <tr mat-row *matRowDef="let guest; columns: headers"></tr>
       </table>
     </ng-template>
+
+    <button mat-flat-button color="primary" (click)="backToEvent()">
+      <mat-icon>restore_page</mat-icon>
+      Voltar a visão geral do evento
+    </button>
   </ng-template>
 </div>

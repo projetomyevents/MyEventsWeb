@@ -26,6 +26,7 @@ export class EventPageGuestsEditComponent implements OnInit {
   guests: {[id: string]: {data: FormGroup, original: Guest, status: null | 'added' | 'removed' | 'modified'}} = {};
 
   resolved: boolean;
+  resolving: boolean;
 
   headers = ['email', 'name', 'companionLimit', 'presenceStatus', 'operations'];
 
@@ -103,10 +104,17 @@ export class EventPageGuestsEditComponent implements OnInit {
   }
 
   async save(): Promise<void> {
+    this.resolving = true;
     try {
       const response = await this.eventService.putGuestsEdit(this.event.id, this.guestsId.data.filter((id: any) => {
-        const guest = this.guests[id].data.getRawValue();
-        return guest.email && guest.name;
+        const guest = this.guests[id];
+        if (guest.data.valid && guest.data.get('email').value.length !== 0 && guest.data.get('name').value.length !== 0
+          && guest.status !== 'removed') {
+          const data = guest.data.getRawValue();
+          return data.email && data.name;
+        } else {
+          return false;
+        }
       }).map((id: any) => {
         return this.guests[id].data.getRawValue();
       }));
@@ -114,8 +122,10 @@ export class EventPageGuestsEditComponent implements OnInit {
       await this.snackBar.open(response.message, 'OK', {duration: -1, panelClass: 'snack-bar-success'}).onAction()
         .toPromise();
 
-      await this.router.navigateByUrl(this.eventRoutes.eventGuests(this.event.id));
+      location.reload();
     } catch (err) {
+      this.resolving = false;
+
       this.snackBar.open(err.status ? err.message : 'Erro interno no servidor. Tente mais tarde.', 'OK',
         {panelClass: 'snack-bar-failure'});
     }
@@ -135,6 +145,10 @@ export class EventPageGuestsEditComponent implements OnInit {
     } else {
       this.guests[id].status = 'removed';
     }
+  }
+
+  async backToEvent(): Promise<void> {
+    await this.router.navigateByUrl(this.eventRoutes.event(this.event.id));
   }
 
 }

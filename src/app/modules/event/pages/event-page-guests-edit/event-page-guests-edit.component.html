@@ -4,17 +4,18 @@
     <h1 class="mat-headline" id="page-header">Lista de convidados do evento: {{event.name}}</h1>
 
     <div id="action-bar">
-      <button mat-flat-button color="primary" (click)="add()">
-        <mat-icon>add</mat-icon>
+      <button mat-flat-button color="primary" (click)="add()" [disabled]="resolving">
+        <mat-icon>person_add</mat-icon>
         Adicionar convidado
       </button>
 
-      <button mat-flat-button (click)="refresh()">
-        <mat-icon>replay</mat-icon>
+      <button mat-flat-button (click)="refresh()" [disabled]="resolving">
+        <mat-icon>autorenew</mat-icon>
         Desfazer alterações
       </button>
 
-      <button mat-flat-button color="primary" (click)="save()">
+      <button mat-flat-button color="primary" (click)="save()" [disabled]="resolving"
+              matTooltip="Uma mensagem será enviada para o email de cada novo convidado informando-o que foi convidado para este evento.">
         <mat-icon>done</mat-icon>
         Salvar alterações
       </button>
@@ -30,7 +31,8 @@
           <ng-template #plainText>
             <span [ngClass]="guests[guestId]['status']"
                   matBadge="{{guests[guestId]['original']['confirmedCompanions']}}" matBadgeOverlap="false"
-                  [matBadgeHidden]="guests[guestId]['original']['presenceStatus'] !== 'ACCEPTED'">
+                  [matBadgeHidden]="guests[guestId]['original']['presenceStatus'] !== 'ACCEPTED'"
+                  matTooltip="Número de acompanhantes confirmados">
               {{guests[guestId]['original']['email']}}
             </span>
           </ng-template>
@@ -62,10 +64,10 @@
       <ng-container matColumnDef="presenceStatus">
         <th mat-header-cell *matHeaderCellDef>Presença</th>
         <td mat-cell *matCellDef="let guestId">
-          <span *ngIf="guests[guestId]['status'] !== 'added'">
+          <span *ngIf="guests[guestId]['status'] !== 'added'; else plainText">
             {{getPresenceStatus(guests[guestId]['original']['presenceStatus'])}}
           </span>
-          <ng-template>
+          <ng-template #plainText>
             <span>---</span>
           </ng-template>
         </td>
@@ -75,12 +77,12 @@
         <th mat-header-cell *matHeaderCellDef>Operações</th>
         <td mat-cell *matCellDef="let guestId">
           <button *ngIf="guests[guestId]['status'] !== 'added'" mat-icon-button (click)="revert(guestId)"
-                  matTooltip="Reverter alterações no convidado." matTooltipPosition="above">
+                  matTooltip="Reverter alterações no convidado." matTooltipPosition="above" [disabled]="resolving">
             <mat-icon>replay</mat-icon>
           </button>
 
           <button mat-icon-button color="warn" (click)="remove(guestId)"
-                  matTooltip="Remover o convidado." matTooltipPosition="above">
+                  matTooltip="Remover o convidado." matTooltipPosition="above" [disabled]="resolving">
             <mat-icon>remove</mat-icon>
           </button>
         </td>
@@ -89,5 +91,10 @@
       <tr mat-header-row *matHeaderRowDef="headers"></tr>
       <tr mat-row *matRowDef="let guestId; columns: headers"></tr>
     </table>
+
+    <button mat-flat-button id="back-to-event" color="primary" (click)="backToEvent()" [disabled]="resolving">
+      <mat-icon>restore_page</mat-icon>
+      Voltar a visão geral do evento
+    </button>
   </ng-template>
 </div>

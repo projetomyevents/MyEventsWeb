@@ -52,4 +52,8 @@ export class EventPageGuestsComponent implements OnInit {
       async () => await this.router.navigateByUrl(RoutesConfig.routes.error404));
   }
 
+  async backToEvent(): Promise<void> {
+    await this.router.navigateByUrl(RoutesConfig.routes.event.event(Number(this.route.snapshot.paramMap.get('id'))));
+  }
+
 }
