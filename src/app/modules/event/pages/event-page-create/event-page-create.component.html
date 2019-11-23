@@ -154,6 +154,7 @@
           <label>
             <app-file-input formControlName="image" accept="image/*"></app-file-input>
           </label>
+          <mat-hint>O arquivo da imagem não pode exceder 20mb.</mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -161,6 +162,7 @@
           <label>
             <app-file-input formControlName="attachments" multiple="true"></app-file-input>
           </label>
+          <mat-hint>O conjunto de anexos não pode exceder 100mb.</mat-hint>
         </mat-form-field>
 
         <div class="step-actions">

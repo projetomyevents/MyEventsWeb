@@ -7,6 +7,7 @@ import { City, State } from '../../shared/address.model';
 import { AddressService } from '../../shared/address.service';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { EventService } from '../../shared/event.service';
+import { readAsByteString } from '../../../core/shared/file-handler';
 
 
 @Component({
@@ -54,7 +55,7 @@ export class EventPageCreateComponent implements OnInit {
       street: new FormControl('', Validators.required),
       number: new FormControl(''),
       complement: new FormControl(''),
-      // setp 3 - anexos
+      // step 3 - anexos
       image: new FormControl(null),
       attachments: new FormControl(null),
     });
@@ -84,9 +85,28 @@ export class EventPageCreateComponent implements OnInit {
           }
         });
 
-        // TODO: implementar upload de arquivos
-        rawEvent.image = null;
-        rawEvent.attachments = [];
+        if (rawEvent.image) {
+          rawEvent.image = rawEvent.image[0];
+          rawEvent.image = {
+            name: rawEvent.image.name,
+            type: rawEvent.image.type,
+            content: await readAsByteString(rawEvent.image),
+          };
+        }
+
+        if (rawEvent.attachments) {
+          const attachments = rawEvent.attachments;
+          rawEvent.attachments = [];
+          for (const file of attachments) {
+            rawEvent.attachments.push({
+              name: file.name,
+              type: file.type,
+              content: await readAsByteString(file),
+            });
+          }
+        } else {
+          rawEvent.attachments = [];
+        }
 
         const response = await this.userEventService.create({
           name: rawEvent.name,
