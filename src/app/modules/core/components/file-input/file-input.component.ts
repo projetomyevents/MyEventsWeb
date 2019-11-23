@@ -131,7 +131,7 @@ export class FileInput implements OnInit, OnDestroy, DoCheck, ControlValueAccess
   }
 
   getFileNames(): any {
-    return this.value ? this.value.map<string>((file: File) => file.name).join(', ') : '.';
+    return this.value ? this.value.map<string>((file: File) => file.name).join(', ') : null;
   }
 
   registerOnChange(fn: any): void {
