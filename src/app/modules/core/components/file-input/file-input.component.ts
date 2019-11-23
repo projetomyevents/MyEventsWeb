@@ -10,7 +10,7 @@ import {
   Self,
   ViewChild,
 } from '@angular/core';
-import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { Subject } from 'rxjs';
@@ -130,8 +130,11 @@ export class FileInput implements OnInit, OnDestroy, DoCheck, ControlValueAccess
     this.onChange(this._files);
   }
 
-  getFileNames(): any {
-    return this.value ? this.value.map<string>((file: File) => file.name).join(', ') : null;
+  getFilesDisplayText(): any {
+    return this.value
+      ? this.value.map<string>((file: File) => `[${file.name} - ${((file.size / 1024) / 1024).toFixed(2)} mb]`)
+        .join('\n')
+      : null;
   }
 
   registerOnChange(fn: any): void {
