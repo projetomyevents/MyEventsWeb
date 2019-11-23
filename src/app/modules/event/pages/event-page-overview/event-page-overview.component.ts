@@ -4,8 +4,11 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { AuthenticationService } from '../../../core/shared/authentication.service';
 import { EventService } from '../../shared/event.service';
 import { Event } from '../../shared/event.model';
+import { EventFile } from '../../shared/event-file.model';
 import { RoutesConfig } from '../../../../config/routes.config';
 import { ConfirmationDialogComponent } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import JSZip from '../../../core/shared/jszip.js';
+import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -21,6 +24,8 @@ export class EventPageOverviewComponent implements OnInit {
 
   resolved: boolean;
   resolving: boolean;
+
+  jsZip = new JSZip();
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -40,6 +45,12 @@ export class EventPageOverviewComponent implements OnInit {
         this.resolved = true;
         response.startDate = new Date(response.startDate);
         this.event = response;
+
+        // criar pasta zippada de anexos e inserir os arquivos
+        const attachmentsFolder = this.jsZip.folder('anexos');
+        // noinspection TypeScriptValidateJSTypes
+        response.attachments.forEach(
+          (attachment: EventFile) => attachmentsFolder.file(attachment.name, attachment.content, {base64: true}));
       },
       async () => {
         await this.router.navigateByUrl(RoutesConfig.routes.error404);
@@ -81,7 +92,12 @@ export class EventPageOverviewComponent implements OnInit {
     });
   }
 
-  downloadAttachments(): void {
+  async downloadAttachments(): Promise<void> {
+    this.resolving = true;
+    const blobZip = await this.jsZip.generateAsync({type: 'blob'});
+
+    saveAs(blobZip, `anexos-${this.event.name.replace(/\s/g, '_')}.zip`);
+    this.resolving = false;
   }
 
   formatedPhone(): string {

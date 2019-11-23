@@ -79,10 +79,10 @@
             Cancelar evento
           </button>
 
-<!--          <button mat-flat-button color="primary" (click)="downloadAttachments()">-->
-<!--            <mat-icon>attachments</mat-icon>-->
-<!--            Baixar anexos-->
-<!--          </button>-->
+          <button mat-flat-button color="primary" (click)="downloadAttachments()" [disabled]="resolving">
+            <mat-icon>attachments</mat-icon>
+            Baixar anexos
+          </button>
         </div>
       </mat-grid-tile>
     </mat-grid-list>
